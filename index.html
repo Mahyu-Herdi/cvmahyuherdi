@@ -567,7 +567,8 @@
 
     </div>
 
-     <script>
+    <!-- === SCRIPT KHUSUS === -->
+    <script>
         // 1. Hitung Umur Otomatis
         document.addEventListener("DOMContentLoaded", function() {
             const birthDate = new Date('2001-03-08');
@@ -584,17 +585,34 @@
         // 2. DAFTAR VIDEO DARI LUAR CHANNEL (ISI MANUAL DI SINI)
         // =========================================================
         const videoDariLuar = [
-            // Kosongkan atau isi sesuai format sebelumnya jika ada video luar
+            {
+                title: "Ganteng Kuh Hana",
+                link: "https://youtu.be/CL0D7jd22i4?si=5RKnzLXOz4VkTNQ0",
+                pubDate: "2025-06-01" // Format: Tahun-Bulan-Tanggal
+            },
+            {
+                title: "Stalk Aku",
+                link: "https://youtu.be/3hHPGq52GUY?si=7LD-dF0gFyUyFQEO",
+                pubDate: "2021-08-01"
+            }
+            
+            /* CARA NAMBAH VIDEO LAIN DARI LUAR:
+            , {
+                title: "Judul Video Karya Kamu di Channel Orang Lain",
+                link: "https://youtu.be/contoh_link_videonya",
+                pubDate: "2026-05-20"
+            } 
+            */
         ];
 
-        // 3. Script YouTube Dinamis (Dari Channel Kamu)
+        // 3. Script YouTube Dinamis (Tarik Otomatis dari Channel)
         const channelId = 'UCU3NZDtls7xJpYAkXZ00Abw'; 
         const rssUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`;
         const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
 
         let allVideos = [];
 
-        // RUMUS BARU: Lebih akurat baca semua jenis link YouTube
+        // Rumus baca semua jenis link YouTube (Embed, Watch, YouTu.be)
         function extractVideoID(url) {
             const regExp = /(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=|shorts\/))([\w-]{11})/;
             const match = url.match(regExp);
@@ -607,7 +625,7 @@
             .then(data => {
                 let fetchedVideos = [];
                 if(data && data.items && data.items.length > 0) {
-                    // FILTER SHORTS: Buang video yang link-nya mengandung '/shorts/' atau judulnya ada tulisan 'short'
+                    // FILTER SHORTS: Buang video yang terdeteksi sebagai Shorts
                     fetchedVideos = data.items.filter(video => {
                         const isShortUrl = video.link.toLowerCase().includes('/shorts/');
                         const isShortTitle = video.title.toLowerCase().includes('#short') || video.title.toLowerCase().includes('shorts');
@@ -615,7 +633,7 @@
                     });
                 }
                 
-                // Gabungin dengan video luar (kalau ada)
+                // Gabungin dengan video luar (manual)
                 const manualVideosFiltered = videoDariLuar.filter(video => {
                     const isShortUrl = video.link.toLowerCase().includes('/shorts/');
                     const isShortTitle = video.title.toLowerCase().includes('#short');
@@ -624,7 +642,7 @@
 
                 allVideos = fetchedVideos.concat(manualVideosFiltered);
 
-                // Buang video yang ID-nya gagal terbaca biar gak error di layar
+                // Buang video error
                 allVideos = allVideos.filter(video => extractVideoID(video.link) !== null);
 
                 // URUTKAN DARI TANGGAL TERBARU KE TERLAMA
@@ -633,12 +651,12 @@
                 if(allVideos.length > 0) {
                     displayVideo(allVideos[0]);
                 } else {
-                    document.getElementById('video-container').innerHTML = '<p style="text-align:center;">Belum ada video / Hanya ada video Shorts.</p>';
+                    document.getElementById('video-container').innerHTML = '<p style="text-align:center;">Belum ada video ditemukan / Hanya ada video Shorts.</p>';
                 }
             })
             .catch(error => {
                 console.error('Error:', error);
-                // Kalau gagal, coba muat video manual saja
+                // Kalau gagal load channel utama, muat video manual
                 allVideos = videoDariLuar.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
                 if(allVideos.length > 0) {
                     displayVideo(allVideos[0]);
@@ -647,7 +665,7 @@
                 }
             });
 
-        // Fungsi Render 1 Video ke HTML
+        // Fungsi Render HTML
         function displayVideo(video) {
             const container = document.getElementById('video-container');
             if(!video) {
@@ -695,7 +713,5 @@
             displayVideo(filtered.length > 0 ? filtered[0] : null);
         });
     </script>
-
-
 </body>
 </html>
