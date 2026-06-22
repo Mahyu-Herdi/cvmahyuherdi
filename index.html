@@ -280,12 +280,34 @@
             color: var(--accent-blue);
         }
 
-        /* === GALERI VIDEO (YOUTUBE EMBED) DENGAN KARTU === */
-        .video-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            margin-top: 20px;
+        /* === PENCARIAN & KARTU VIDEO === */
+        .search-container {
+            margin: 15px 0 20px 0;
+            width: 100%;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 14px 20px;
+            border-radius: 12px;
+            background: var(--panel-bg);
+            border: 1px solid var(--panel-border);
+            color: var(--text-main);
+            font-size: 1rem;
+            outline: none;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            box-shadow: var(--shadow-inner);
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 10px rgba(94, 129, 172, 0.3), var(--shadow-inner);
+        }
+
+        .search-input::placeholder {
+            color: var(--text-muted);
         }
 
         .video-card {
@@ -335,14 +357,14 @@
         }
 
         .video-title {
-            font-size: 1.05rem;
+            font-size: 1.1rem;
             color: var(--text-main);
             font-weight: 600;
             line-height: 1.4;
         }
 
         .video-date {
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             color: var(--accent-blue);
             font-weight: 500;
         }
@@ -372,9 +394,9 @@
 
     <div class="container">
         
+        <!-- HEADER -->
         <header class="panel header-section">
             <img src="foto.png" alt="Foto Mahyu Herdi" class="profile-img">
-            
             <div class="header-info">
                 <h1>Mahyu Herdi</h1>
                 <p>Kreator Digital & Wirausahawan</p>
@@ -436,46 +458,21 @@
         </section>
 
         <!-- ==========================================
-             BAGIAN GALERI KARYA & VIDEO (UPDATE KARTU)
+             BAGIAN VIDEO OTOMATIS & PENCARIAN
         =========================================== -->
         <section class="panel">
             <h2>
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>
-                Galeri Karya & Video
+                Galeri Karya & Video Terbaru
             </h2>
-            <p>Kumpulan karya orisinal Music Video dan Film Pendek yang saya produksi.</p>
+            <p>Berisi video portofolio yang ditarik otomatis dari YouTube, ditambah karya pilihan lainnya. Gunakan kolom pencarian untuk mencari video spesifik.</p>
             
-            <div class="video-grid">
-                
-                <!-- KARTU VIDEO 1 -->
-                <div class="video-card">
-                    <div class="video-wrapper">
-                        <!-- Ganti link src di bawah dengan embed link YouTube -->
-                        <iframe src="https://youtu.be/CL0D7jd22i4?si=5RKnzLXOz4VkTNQ0" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
-                    <div class="video-info">
-                        <!-- Ganteng Kuh Hana -->
-                        <div class="video-title">Judul Film Pendek / Music Video Pertama</div>
-                        <!-- Februari 2021-->
-                        <div class="video-date">Juni 2025</div>
-                    </div>
-                </div>
+            <div class="search-container">
+                <input type="text" id="videoSearch" class="search-input" placeholder="Cari judul video, bulan, atau tahun...">
+            </div>
 
-                <!-- KARTU VIDEO 2 -->
-                <div class="video-card">
-                    <div class="video-wrapper">
-                        <iframe src="https://youtu.be/3hHPGq52GUY?si=7LD-dF0gFyUyFQEO" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
-                    <div class="video-info">
-                        <div class="video-title">Stalk Aku</div>
-                        <div class="video-date">Agustus 2021</div>
-                    </div>
-                </div>
-
-                <!-- CARA NAMBAH VIDEO BARU:
-                     Copy dari <div class="video-card"> sampai </div> di atas, 
-                     lalu paste di bawah sini -->
-
+            <div id="video-container">
+                <p style="text-align: center; color: var(--text-muted); padding: 20px;">Mengambil video dari YouTube...</p>
             </div>
         </section>
 
@@ -570,20 +567,129 @@
 
     </div>
 
-    <!-- SCRIPT UNTUK MENGHITUNG UMUR OTOMATIS -->
+    <!-- === SCRIPT KHUSUS === -->
     <script>
+        // 1. Hitung Umur Otomatis
         document.addEventListener("DOMContentLoaded", function() {
             const birthDate = new Date('2001-03-08');
             const today = new Date();
-            
             let age = today.getFullYear() - birthDate.getFullYear();
             const monthDiff = today.getMonth() - birthDate.getMonth();
-            
             if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
                 age--;
             }
-            
             document.getElementById("dynamic-age").innerText = age + " Tahun";
+        });
+
+        // =========================================================
+        // 2. DAFTAR VIDEO DARI LUAR CHANNEL (ISI MANUAL DI SINI)
+        // =========================================================
+        const videoDariLuar = [
+            {
+                title: "Film Dokumenter (Upload di Channel Teman)",
+                link: "https://youtu.be/contoh_id_video_1",
+                pubDate: "2024-05-15" // Format: Tahun-Bulan-Tanggal
+            },
+            {
+                title: "Music Video Client ABC",
+                link: "https://youtu.be/contoh_id_video_2",
+                pubDate: "2023-11-20"
+            }
+            // Kalau mau nambah lagi, tambahin koma di atas, lalu copy blok { ... } nya
+        ];
+
+        // 3. Script YouTube Dinamis (Dari Channel Kamu)
+        const channelId = 'UCU3NZDtls7xJpYAkXZ00Abw'; 
+        const rssUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`;
+        const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
+
+        let allVideos = [];
+
+        function extractVideoID(url) {
+            const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+            const match = url.match(regExp);
+            return (match && match[2].length === 11) ? match[2] : null;
+        }
+
+        // Mulai tarik data
+        fetch(apiUrl)
+            .then(response => response.json())
+            .then(data => {
+                // Siapin penampung buat gabungin video kamu + video teman
+                let fetchedVideos = [];
+                if(data && data.items && data.items.length > 0) {
+                    fetchedVideos = data.items;
+                }
+                
+                // GABUNGIN KEDUA SUMBER VIDEO
+                allVideos = fetchedVideos.concat(videoDariLuar);
+
+                // URUTKAN DARI TANGGAL TERBARU KE TERLAMA
+                allVideos.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
+
+                if(allVideos.length > 0) {
+                    displayVideo(allVideos[0]);
+                } else {
+                    document.getElementById('video-container').innerHTML = '<p style="text-align:center;">Belum ada video ditemukan.</p>';
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                // Kalau API error, minimal tampilin video manual
+                allVideos = videoDariLuar.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
+                if(allVideos.length > 0) {
+                    displayVideo(allVideos[0]);
+                } else {
+                    document.getElementById('video-container').innerHTML = '<p style="text-align:center;">Gagal memuat video.</p>';
+                }
+            });
+
+        // Fungsi Render 1 Video ke HTML
+        function displayVideo(video) {
+            const container = document.getElementById('video-container');
+            if(!video) {
+                container.innerHTML = '<p style="color: var(--text-muted); text-align: center; padding: 20px;">Video tidak ditemukan. Coba kata kunci lain.</p>';
+                return;
+            }
+            
+            const videoId = extractVideoID(video.link);
+            const embedUrl = `https://www.youtube.com/embed/${videoId}`;
+            
+            const date = new Date(video.pubDate);
+            const options = { day: 'numeric', month: 'long', year: 'numeric' };
+            const formattedDate = date.toLocaleDateString('id-ID', options);
+
+            container.innerHTML = `
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <iframe src="${embedUrl}" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-info">
+                        <div class="video-title">${video.title}</div>
+                        <div class="video-date">${formattedDate}</div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Pencarian Video
+        document.getElementById('videoSearch').addEventListener('input', function(e) {
+            const keyword = e.target.value.toLowerCase();
+            
+            if(keyword === '') {
+                displayVideo(allVideos[0]); 
+                return;
+            }
+            
+            const filtered = allVideos.filter(vid => {
+                const date = new Date(vid.pubDate);
+                const options = { month: 'long', year: 'numeric' };
+                const dateStr = date.toLocaleDateString('id-ID', options).toLowerCase();
+                
+                return vid.title.toLowerCase().includes(keyword) || dateStr.includes(keyword);
+            });
+            
+            displayVideo(filtered.length > 0 ? filtered[0] : null);
         });
     </script>
 </body>
