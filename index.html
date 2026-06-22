@@ -330,7 +330,6 @@
         }
 
         .video-card {
-            /* Di HP tampil 1 Card penuh, tinggal geser */
             flex: 0 0 calc(100% - 10px); 
             scroll-snap-align: start;
             background: var(--panel-bg);
@@ -346,7 +345,6 @@
             gap: 15px;
         }
 
-        /* Di Layar Tablet / PC, tampil 2 Card bersampingan, sisanya tinggal geser */
         @media (min-width: 650px) {
             .video-card {
                 flex: 0 0 calc(50% - 10px); 
@@ -360,23 +358,33 @@
                        var(--shadow-inner);
         }
 
+        /* Wrapper khusus YouTube (16:9) */
         .video-wrapper {
             position: relative;
-            padding-bottom: 56.25%; /* Aspect Ratio 16:9 */
+            padding-bottom: 56.25%; 
             height: 0;
             border-radius: 12px;
             overflow: hidden;
             background: #000;
         }
 
-        .video-wrapper iframe, .video-wrapper img {
+        /* Wrapper khusus Sosial Media Vertikal (1:1 / Kotak biar rapi) */
+        .social-wrapper {
+            position: relative;
+            padding-bottom: 100%; 
+            height: 0;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .video-wrapper iframe, .social-wrapper iframe {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             border: none;
-            object-fit: cover;
         }
 
         .video-info {
@@ -528,53 +536,44 @@
         </section>
 
         <!-- ==========================================
-             BAGIAN 2: GALERI IKLAN & CAMPAIGN (MANUAL)
+             BAGIAN 2: GALERI IKLAN & CAMPAIGN (MANUAL EMBED)
         =========================================== -->
         <section class="panel">
             <h2>
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
                 Iklan & Campaign Klien
             </h2>
-            <p>Geser (swipe) ke samping untuk melihat portofolio promosi dari Instagram, TikTok, dll.</p>
+            <p>Geser (swipe) ke samping untuk melihat portofolio promosi di Instagram dan TikTok.</p>
             
             <div class="carousel-container">
                 
-                <!-- CARD IKLAN 1 (Bisa diganti linknya pakai Bitly / TinyURL) -->
+                <!-- CARD IKLAN 1 (CONTOH INSTAGRAM EMBED) -->
                 <div class="video-card">
-                    <div class="video-wrapper">
-                        <!-- Kalau ada gambar/foto thumbnail, masukkan url fotonya di src di bawah ini -->
-                        <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Thumbnail IG">
+                    <div class="social-wrapper">
+                        <!-- Ganti "ID_POSTINGAN" pakai kode unik link IG kamu, misal: Cq_Yv1qgXYZ -->
+                        <iframe src="https://www.instagram.com/p/ID_POSTINGAN/embed" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
                     </div>
                     <div class="video-info">
                         <div class="video-title">Iklan Kopi Campaign Instagram</div>
                         <div class="video-date">September 2023</div>
-                        <a href="https://tinyurl.com/contoh-link-kopi" target="_blank" class="btn-link">Tonton di Instagram</a>
+                        <a href="https://www.instagram.com/p/ID_POSTINGAN" target="_blank" class="btn-link">Buka di Instagram</a>
                     </div>
                 </div>
 
-                <!-- CARD IKLAN 2 -->
+                <!-- CARD IKLAN 2 (CONTOH TIKTOK EMBED) -->
                 <div class="video-card">
-                    <div class="video-wrapper">
-                        <img src="https://images.unsplash.com/photo-1611605698335-8b1569810432?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Thumbnail TikTok">
+                    <div class="social-wrapper">
+                        <!-- Ganti "ID_VIDEO" pakai angka di ujung link TikTok kamu, misal: 7198751859346656538 -->
+                        <iframe src="https://www.tiktok.com/embed/v2/ID_VIDEO" frameborder="0" allowfullscreen></iframe>
                     </div>
                     <div class="video-info">
                         <div class="video-title">Promosi Brand Pakaian TikTok</div>
                         <div class="video-date">Desember 2024</div>
-                        <a href="https://bit.ly/contoh-link-baju" target="_blank" class="btn-link">Tonton di TikTok</a>
+                        <a href="https://www.tiktok.com/@username/video/ID_VIDEO" target="_blank" class="btn-link">Buka di TikTok</a>
                     </div>
                 </div>
                 
-                <!-- CARD IKLAN 3 -->
-                <div class="video-card">
-                    <div class="video-wrapper">
-                        <img src="https://images.unsplash.com/photo-1616469829581-73993eb86b02?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Thumbnail FB">
-                    </div>
-                    <div class="video-info">
-                        <div class="video-title">Campaign Facebook Klien ABC</div>
-                        <div class="video-date">Januari 2025</div>
-                        <a href="https://facebook.com/contoh" target="_blank" class="btn-link">Tonton di Facebook</a>
-                    </div>
-                </div>
+                <!-- CARA NAMBAH: Tinggal copy dari <div class="video-card"> sampai </div> dan ganti linknya -->
 
             </div>
         </section>
@@ -773,7 +772,6 @@
                 return;
             }
             
-            // Render semua video, container carousel akan otomatis mengaturnya memanjang ke samping (Swipe)
             for(let i = 0; i < videoList.length; i++) {
                 const video = videoList[i];
                 const videoId = extractVideoID(video.link);
@@ -797,7 +795,7 @@
             }
         }
 
-        // Pencarian Video (tetap memunculkan hasil ke dalam carousel)
+        // Pencarian Video
         document.getElementById('videoSearch').addEventListener('input', function(e) {
             const keyword = e.target.value.toLowerCase();
             
