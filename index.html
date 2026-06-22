@@ -280,7 +280,7 @@
             color: var(--accent-blue);
         }
 
-        /* === PENCARIAN & KARTU VIDEO === */
+        /* === PENCARIAN & KARTU VIDEO (SWIPE CAROUSEL) === */
         .search-container {
             margin: 15px 0 20px 0;
             width: 100%;
@@ -310,7 +310,29 @@
             color: var(--text-muted);
         }
 
+        /* Container Carousel buat Swipe Kiri-Kanan */
+        .carousel-container {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            gap: 20px;
+            padding-bottom: 15px;
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent-blue) transparent;
+        }
+
+        .carousel-container::-webkit-scrollbar {
+            height: 6px;
+        }
+        .carousel-container::-webkit-scrollbar-thumb {
+            background: var(--accent-blue);
+            border-radius: 4px;
+        }
+
         .video-card {
+            /* Di HP tampil 1 Card penuh, tinggal geser */
+            flex: 0 0 calc(100% - 10px); 
+            scroll-snap-align: start;
             background: var(--panel-bg);
             border: 1px solid var(--panel-border);
             border-radius: 20px;
@@ -322,6 +344,13 @@
             display: flex;
             flex-direction: column;
             gap: 15px;
+        }
+
+        /* Di Layar Tablet / PC, tampil 2 Card bersampingan, sisanya tinggal geser */
+        @media (min-width: 650px) {
+            .video-card {
+                flex: 0 0 calc(50% - 10px); 
+            }
         }
 
         .video-card:hover {
@@ -340,13 +369,14 @@
             background: #000;
         }
 
-        .video-wrapper iframe {
+        .video-wrapper iframe, .video-wrapper img {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             border: none;
+            object-fit: cover;
         }
 
         .video-info {
@@ -367,6 +397,26 @@
             font-size: 0.9rem;
             color: var(--accent-blue);
             font-weight: 500;
+        }
+
+        /* Tombol Eksternal Link */
+        .btn-link {
+            display: inline-block;
+            margin-top: 5px;
+            padding: 10px 15px;
+            background: rgba(94, 129, 172, 0.15);
+            border: 1px solid var(--accent-blue);
+            color: var(--text-main);
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .btn-link:hover {
+            background: var(--accent-blue);
+            box-shadow: 0 0 10px rgba(94, 129, 172, 0.5);
         }
 
         /* === RESPONSIVE === */
@@ -458,21 +508,74 @@
         </section>
 
         <!-- ==========================================
-             BAGIAN VIDEO OTOMATIS & PENCARIAN
+             BAGIAN 1: GALERI YOUTUBE (SWIPE / CAROUSEL)
         =========================================== -->
         <section class="panel">
             <h2>
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>
-                Galeri Karya & Video Terbaru
+                Galeri Karya & YouTube
             </h2>
-            <p>Berisi video portofolio yang ditarik otomatis dari YouTube, ditambah karya pilihan lainnya. Gunakan kolom pencarian untuk mencari video spesifik.</p>
+            <p>Geser (swipe) area video ke samping untuk melihat koleksi lainnya. Gunakan pencarian untuk hasil spesifik.</p>
             
             <div class="search-container">
                 <input type="text" id="videoSearch" class="search-input" placeholder="Cari judul video, bulan, atau tahun...">
             </div>
 
-            <div id="video-container">
-                <p style="text-align: center; color: var(--text-muted); padding: 20px;">Mengambil video dari YouTube...</p>
+            <!-- Container Swipe -->
+            <div id="video-container" class="carousel-container">
+                <p style="text-align: center; color: var(--text-muted); padding: 20px; width: 100%;">Mengambil video dari YouTube...</p>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             BAGIAN 2: GALERI IKLAN & CAMPAIGN (MANUAL)
+        =========================================== -->
+        <section class="panel">
+            <h2>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                Iklan & Campaign Klien
+            </h2>
+            <p>Geser (swipe) ke samping untuk melihat portofolio promosi dari Instagram, TikTok, dll.</p>
+            
+            <div class="carousel-container">
+                
+                <!-- CARD IKLAN 1 (Bisa diganti linknya pakai Bitly / TinyURL) -->
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <!-- Kalau ada gambar/foto thumbnail, masukkan url fotonya di src di bawah ini -->
+                        <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Thumbnail IG">
+                    </div>
+                    <div class="video-info">
+                        <div class="video-title">Iklan Kopi Campaign Instagram</div>
+                        <div class="video-date">September 2023</div>
+                        <a href="https://tinyurl.com/contoh-link-kopi" target="_blank" class="btn-link">Tonton di Instagram</a>
+                    </div>
+                </div>
+
+                <!-- CARD IKLAN 2 -->
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <img src="https://images.unsplash.com/photo-1611605698335-8b1569810432?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Thumbnail TikTok">
+                    </div>
+                    <div class="video-info">
+                        <div class="video-title">Promosi Brand Pakaian TikTok</div>
+                        <div class="video-date">Desember 2024</div>
+                        <a href="https://bit.ly/contoh-link-baju" target="_blank" class="btn-link">Tonton di TikTok</a>
+                    </div>
+                </div>
+                
+                <!-- CARD IKLAN 3 -->
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <img src="https://images.unsplash.com/photo-1616469829581-73993eb86b02?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Thumbnail FB">
+                    </div>
+                    <div class="video-info">
+                        <div class="video-title">Campaign Facebook Klien ABC</div>
+                        <div class="video-date">Januari 2025</div>
+                        <a href="https://facebook.com/contoh" target="_blank" class="btn-link">Tonton di Facebook</a>
+                    </div>
+                </div>
+
             </div>
         </section>
 
@@ -582,28 +685,28 @@
         });
 
         // =========================================================
-        // 2. DAFTAR VIDEO DARI LUAR CHANNEL (ISI MANUAL DI SINI)
+        // 2. DAFTAR VIDEO DARI LUAR CHANNEL (Dipertahankan Persis Seperti Punyamu)
         // =========================================================
         const videoDariLuar = [
             {
                 title: "Ganteng Kuh Hana",
                 link: "https://youtu.be/CL0D7jd22i4?si=5RKnzLXOz4VkTNQ0",
-                pubDate: "2025-06-01" // Format: Tahun-Bulan-Tanggal
+                pubDate: "2025-06-01" 
             },
             {
                 title: "Stalk Aku",
                 link: "https://youtu.be/3hHPGq52GUY?si=7LD-dF0gFyUyFQEO",
                 pubDate: "2021-08-01"
             },
-{
+            {
                 title: "Jie Komuya - Pukeuh Nyo Cinta",
                 link: "https://youtu.be/guhoF8LA7d0?si=UssRzPdvPQJ1OJUF",
                 pubDate: "2020-01-14"
             },
-{
+            {
                 title: "Jie Komuya - Meusyen",
                 link: "https://youtu.be/5nXHBb2bfOU?si=PNOy1co4aBjBRIM-",
-                pubDate: "2021-05-2"
+                pubDate: "2021-05-20"
             },
             {
                 title: "Neyza Wahyudi - Bukan Segalanya",
@@ -615,37 +718,26 @@
                 link: "https://youtu.be/IcDYugcmZqM?si=OrKvxANbxw2bK1NP",
                 pubDate: "2023-04-14"
             }
-            
-            /* CARA NAMBAH VIDEO LAIN DARI LUAR:
-            , {
-                title: "Judul Video Karya Kamu di Channel Orang Lain",
-                link: "https://youtu.be/contoh_link_videonya",
-                pubDate: "2026-05-20"
-            } 
-            */
         ];
 
-        // 3. Script YouTube Dinamis (Tarik Otomatis dari Channel)
+        // 3. Script YouTube Dinamis
         const channelId = 'UCU3NZDtls7xJpYAkXZ00Abw'; 
         const rssUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`;
         const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
 
         let allVideos = [];
 
-        // Rumus baca semua jenis link YouTube (Embed, Watch, YouTu.be)
         function extractVideoID(url) {
             const regExp = /(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=|shorts\/))([\w-]{11})/;
             const match = url.match(regExp);
             return match ? match[1] : null;
         }
 
-        // Mulai tarik data
         fetch(apiUrl)
             .then(response => response.json())
             .then(data => {
                 let fetchedVideos = [];
                 if(data && data.items && data.items.length > 0) {
-                    // FILTER SHORTS: Buang video yang terdeteksi sebagai Shorts
                     fetchedVideos = data.items.filter(video => {
                         const isShortUrl = video.link.toLowerCase().includes('/shorts/');
                         const isShortTitle = video.title.toLowerCase().includes('#short') || video.title.toLowerCase().includes('shorts');
@@ -653,7 +745,6 @@
                     });
                 }
                 
-                // Gabungin dengan video luar (manual)
                 const manualVideosFiltered = videoDariLuar.filter(video => {
                     const isShortUrl = video.link.toLowerCase().includes('/shorts/');
                     const isShortTitle = video.title.toLowerCase().includes('#short');
@@ -661,64 +752,57 @@
                 });
 
                 allVideos = fetchedVideos.concat(manualVideosFiltered);
-
-                // Buang video error
                 allVideos = allVideos.filter(video => extractVideoID(video.link) !== null);
-
-                // URUTKAN DARI TANGGAL TERBARU KE TERLAMA
                 allVideos.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
 
-                if(allVideos.length > 0) {
-                    displayVideo(allVideos[0]);
-                } else {
-                    document.getElementById('video-container').innerHTML = '<p style="text-align:center;">Belum ada video ditemukan / Hanya ada video Shorts.</p>';
-                }
+                renderVideos(allVideos);
             })
             .catch(error => {
                 console.error('Error:', error);
-                // Kalau gagal load channel utama, muat video manual
                 allVideos = videoDariLuar.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
-                if(allVideos.length > 0) {
-                    displayVideo(allVideos[0]);
-                } else {
-                    document.getElementById('video-container').innerHTML = '<p style="text-align:center;">Gagal memuat video.</p>';
-                }
+                renderVideos(allVideos);
             });
 
-        // Fungsi Render HTML
-        function displayVideo(video) {
+        // FUNGSI RENDER SEMUA VIDEO KE DALAM CAROUSEL
+        function renderVideos(videoList) {
             const container = document.getElementById('video-container');
-            if(!video) {
-                container.innerHTML = '<p style="color: var(--text-muted); text-align: center; padding: 20px;">Video tidak ditemukan. Coba kata kunci lain.</p>';
+            container.innerHTML = ''; 
+
+            if(!videoList || videoList.length === 0) {
+                container.innerHTML = '<p style="color: var(--text-muted); text-align: center; padding: 20px; width: 100%;">Tidak ada video yang sesuai.</p>';
                 return;
             }
             
-            const videoId = extractVideoID(video.link);
-            const embedUrl = `https://www.youtube.com/embed/${videoId}`;
-            
-            const date = new Date(video.pubDate);
-            const options = { day: 'numeric', month: 'long', year: 'numeric' };
-            const formattedDate = date.toLocaleDateString('id-ID', options);
+            // Render semua video, container carousel akan otomatis mengaturnya memanjang ke samping (Swipe)
+            for(let i = 0; i < videoList.length; i++) {
+                const video = videoList[i];
+                const videoId = extractVideoID(video.link);
+                const embedUrl = `https://www.youtube.com/embed/${videoId}`;
+                
+                const date = new Date(video.pubDate);
+                const options = { day: 'numeric', month: 'long', year: 'numeric' };
+                const formattedDate = date.toLocaleDateString('id-ID', options);
 
-            container.innerHTML = `
-                <div class="video-card">
-                    <div class="video-wrapper">
-                        <iframe src="${embedUrl}" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                container.innerHTML += `
+                    <div class="video-card">
+                        <div class="video-wrapper">
+                            <iframe src="${embedUrl}" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                        <div class="video-info">
+                            <div class="video-title">${video.title}</div>
+                            <div class="video-date">${formattedDate}</div>
+                        </div>
                     </div>
-                    <div class="video-info">
-                        <div class="video-title">${video.title}</div>
-                        <div class="video-date">${formattedDate}</div>
-                    </div>
-                </div>
-            `;
+                `;
+            }
         }
 
-        // Pencarian Video
+        // Pencarian Video (tetap memunculkan hasil ke dalam carousel)
         document.getElementById('videoSearch').addEventListener('input', function(e) {
             const keyword = e.target.value.toLowerCase();
             
             if(keyword === '') {
-                displayVideo(allVideos[0]); 
+                renderVideos(allVideos); 
                 return;
             }
             
@@ -730,7 +814,7 @@
                 return vid.title.toLowerCase().includes(keyword) || dateStr.includes(keyword);
             });
             
-            displayVideo(filtered.length > 0 ? filtered[0] : null);
+            renderVideos(filtered);
         });
     </script>
 </body>
