@@ -280,6 +280,73 @@
             color: var(--accent-blue);
         }
 
+        /* === GALERI VIDEO (YOUTUBE EMBED) DENGAN KARTU === */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .video-card {
+            background: var(--panel-bg);
+            border: 1px solid var(--panel-border);
+            border-radius: 20px;
+            padding: 15px;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            box-shadow: var(--shadow-outer), var(--shadow-inner);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .video-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 15px 15px 40px rgba(0, 0, 0, 0.6), 
+                       -5px -5px 20px rgba(255, 255, 255, 0.03),
+                       var(--shadow-inner);
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* Aspect Ratio 16:9 */
+            height: 0;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .video-info {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            padding: 0 5px 5px 5px;
+        }
+
+        .video-title {
+            font-size: 1.05rem;
+            color: var(--text-main);
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        .video-date {
+            font-size: 0.85rem;
+            color: var(--accent-blue);
+            font-weight: 500;
+        }
+
         /* === RESPONSIVE === */
         @media (max-width: 600px) {
             .header-section {
@@ -351,7 +418,6 @@
             <div class="info-grid">
                 <div class="info-item">
                     <div class="info-label">Usia</div>
-                    <!-- Ini yang nanti diubah otomatis sama JavaScript di bawah -->
                     <div class="highlight" id="dynamic-age">Menghitung...</div>
                 </div>
                 <div class="info-item">
@@ -366,6 +432,50 @@
                     <div class="info-label">Alamat Tinggal</div>
                     <div class="highlight">Dusun Cot Kuta, Gampong Ulee Nyeue, Kec. Banda Baro, Aceh Utara 24376</div>
                 </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             BAGIAN GALERI KARYA & VIDEO (UPDATE KARTU)
+        =========================================== -->
+        <section class="panel">
+            <h2>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>
+                Galeri Karya & Video
+            </h2>
+            <p>Kumpulan karya orisinal Music Video dan Film Pendek yang saya produksi.</p>
+            
+            <div class="video-grid">
+                
+                <!-- KARTU VIDEO 1 -->
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <!-- Ganti link src di bawah dengan embed link YouTube -->
+                        <iframe src="https://www.youtube.com/embed/ganti_id_video_1" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-info">
+                        <!-- Tulis Judul Video Di Sini -->
+                        <div class="video-title">Judul Film Pendek / Music Video Pertama</div>
+                        <!-- Tulis Bulan dan Tahun Di Sini -->
+                        <div class="video-date">Juni 2025</div>
+                    </div>
+                </div>
+
+                <!-- KARTU VIDEO 2 -->
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/ganti_id_video_2" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-info">
+                        <div class="video-title">Judul Film Pendek / Music Video Kedua</div>
+                        <div class="video-date">Agustus 2025</div>
+                    </div>
+                </div>
+
+                <!-- CARA NAMBAH VIDEO BARU:
+                     Copy dari <div class="video-card"> sampai </div> di atas, 
+                     lalu paste di bawah sini -->
+
             </div>
         </section>
 
@@ -463,19 +573,16 @@
     <!-- SCRIPT UNTUK MENGHITUNG UMUR OTOMATIS -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            // Format tanggal: Tahun-Bulan-Tanggal (08 Maret 2001)
             const birthDate = new Date('2001-03-08');
             const today = new Date();
             
             let age = today.getFullYear() - birthDate.getFullYear();
             const monthDiff = today.getMonth() - birthDate.getMonth();
             
-            // Mengurangi umur jika bulan belum lewat, atau jika bulan sama tapi tanggal belum lewat
             if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
                 age--;
             }
             
-            // Masukkan hasil hitungan ke dalam div yang id-nya 'dynamic-age'
             document.getElementById("dynamic-age").innerText = age + " Tahun";
         });
     </script>
