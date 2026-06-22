@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV - Mahyu Herdi</title>
+    <style>
+        /* === VARIABEL WARNA & TEMA (Gampang diedit di sini) === */
+        :root {
+            --bg-color: #12141d;
+            --text-main: #f0f0f5;
+            --text-muted: #a0a4b8;
+            --accent-blue: #5e81ac; /* Biru yang kalem dan mudah dibaca */
+            
+            /* Warna untuk Neon Blur Background */
+            --neon-1: rgba(94, 129, 172, 0.4); /* Soft Blue */
+            --neon-2: rgba(136, 192, 208, 0.3); /* Cyan */
+            --neon-3: rgba(180, 142, 173, 0.3); /* Soft Purple/Pink */
+
+            /* Efek Panel Neumorphism + Claymorphism ala iOS */
+            --panel-bg: rgba(255, 255, 255, 0.03);
+            --panel-border: rgba(255, 255, 255, 0.08);
+            --shadow-outer: 10px 10px 30px rgba(0, 0, 0, 0.5), 
+                           -5px -5px 20px rgba(255, 255, 255, 0.02);
+            --shadow-inner: inset 2px 2px 5px rgba(255, 255, 255, 0.05), 
+                            inset -3px -3px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        /* === RESET & BASE STYLES === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* === BACKGROUND NEON BLUR ANIMASI === */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            overflow: hidden;
+            background: var(--bg-color);
+        }
+
+        .blob {
+            position: absolute;
+            filter: blur(90px);
+            border-radius: 50%;
+            animation: breathe 8s infinite alternate cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0.7;
+        }
+
+        .blob-1 {
+            top: -10%; left: -10%;
+            width: 50vw; height: 50vw;
+            background: var(--neon-1);
+            animation-delay: 0s;
+        }
+
+        .blob-2 {
+            bottom: -20%; right: -10%;
+            width: 60vw; height: 60vw;
+            background: var(--neon-2);
+            animation-delay: -2s;
+        }
+
+        .blob-3 {
+            top: 40%; left: 40%;
+            width: 40vw; height: 40vw;
+            background: var(--neon-3);
+            animation-delay: -4s;
+        }
+
+        @keyframes breathe {
+            0% { transform: scale(1) translate(0, 0); opacity: 0.5; }
+            50% { transform: scale(1.1) translate(2%, 2%); opacity: 0.8; }
+            100% { transform: scale(0.9) translate(-2%, -2%); opacity: 0.5; }
+        }
+
+        /* === LAYOUT UTAMA === */
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        /* === GAYA KOTAK (PANEL) === */
+        .panel {
+            background: var(--panel-bg);
+            border: 1px solid var(--panel-border);
+            border-radius: 24px;
+            padding: 30px;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            box-shadow: var(--shadow-outer), var(--shadow-inner);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        /* Animasi melayang halus saat di-hover */
+        .panel:hover {
+            transform: translateY(-5px);
+            box-shadow: 15px 15px 40px rgba(0, 0, 0, 0.6), 
+                       -5px -5px 20px rgba(255, 255, 255, 0.03),
+                       var(--shadow-inner);
+        }
+
+        /* === TIPOGRAFI === */
+        h1, h2, h3 {
+            color: var(--accent-blue);
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        p, li {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        ul {
+            list-style-type: none;
+        }
+
+        .highlight {
+            color: var(--text-main);
+            font-weight: 500;
+        }
+
+        /* === HEADER / PROFIL === */
+        .header-section {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid rgba(255,255,255,0.1);
+            box-shadow: var(--shadow-outer), var(--shadow-inner);
+            padding: 5px;
+        }
+
+        .header-info h1 {
+            font-size: 2.2rem;
+            margin-bottom: 5px;
+        }
+
+        .header-info p {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+        }
+
+        /* === SOSIAL MEDIA ICONS === */
+        .social-links {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .social-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            border-radius: 14px; /* Persegi melengkung ala iOS */
+            background: var(--panel-bg);
+            border: 1px solid var(--panel-border);
+            color: var(--text-muted);
+            text-decoration: none;
+            box-shadow: var(--shadow-outer), var(--shadow-inner);
+            transition: all 0.3s ease;
+        }
+
+        .social-icon svg {
+            width: 22px;
+            height: 22px;
+        }
+
+        .social-icon:hover {
+            color: var(--accent-blue);
+            transform: translateY(-3px);
+            background: rgba(255,255,255,0.08);
+        }
+
+        /* === GRID LAYOUT (UNTUK INFORMASI) === */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .info-item {
+            margin-bottom: 15px;
+        }
+
+        .info-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent-blue);
+            margin-bottom: 4px;
+            opacity: 0.8;
+        }
+
+        /* === TIMELINE (PENGALAMAN & PENDIDIKAN) === */
+        .timeline-item {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 25px;
+            border-left: 2px solid rgba(255,255,255,0.1);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: 5px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--accent-blue);
+            box-shadow: 0 0 10px var(--accent-blue);
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-title {
+            font-size: 1.1rem;
+            color: var(--text-main);
+            font-weight: 600;
+        }
+
+        .timeline-date {
+            font-size: 0.85rem;
+            color: var(--accent-blue);
+            margin-bottom: 8px;
+            display: inline-block;
+        }
+
+        .timeline-item ul {
+            margin-top: 10px;
+        }
+        
+        .timeline-item li {
+            position: relative;
+            padding-left: 15px;
+            margin-bottom: 5px;
+        }
+
+        .timeline-item li::before {
+            content: '-';
+            position: absolute;
+            left: 0;
+            color: var(--accent-blue);
+        }
+
+        /* === RESPONSIVE === */
+        @media (max-width: 600px) {
+            .header-section {
+                flex-direction: column;
+                text-align: center;
+            }
+            .social-links {
+                justify-content: center;
+            }
+            .panel {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-animation">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <div class="container">
+        
+        <header class="panel header-section">
+            <img src="foto.png" alt="Foto Mahyu Herdi" class="profile-img">
+            
+            <div class="header-info">
+                <h1>Mahyu Herdi</h1>
+                <p>Wirausahawan Muda & Digital Enthusiast</p>
+                
+                <div class="social-links">
+                    <a href="https://wa.me/6281294379909" target="_blank" class="social-icon" title="WhatsApp">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+                    </a>
+                    <a href="mailto:erbeawebird@gmail.com" class="social-icon" title="Email">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                    </a>
+                    <a href="#" target="_blank" class="social-icon" title="Instagram">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                    </a>
+                    <a href="#" target="_blank" class="social-icon" title="Facebook">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                    </a>
+                    <a href="#" target="_blank" class="social-icon" title="YouTube">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33 2.78 2.78 0 0 0 1.94 2c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.33 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>
+                    </a>
+                    <a href="#" target="_blank" class="social-icon" title="Spotify">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M8 11.5c2.5-1 6.5-1 9 1"></path><path d="M9 15c2-.5 5-.5 7 .5"></path><path d="M7 8c3-1.5 8-1.5 11 1"></path></svg>
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <section class="panel">
+            <h2>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                Profil Singkat
+            </h2>
+            <p>Seorang wirausahawan muda dengan pengalaman dalam mengelola usaha <i>coffee shop</i> dan <i>counter</i> pulsa. Memiliki keterampilan di bidang manajemen usaha, pelayanan pelanggan, serta penguasaan berbagai perangkat lunak desain, editing, dan teknologi digital. Terbiasa bekerja mandiri maupun dalam tim dengan fokus pada inovasi dan efisiensi.</p>
+        </section>
+
+        <section class="panel">
+            <h2>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                Informasi Pribadi
+            </h2>
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="info-label">Tempat, Tanggal Lahir</div>
+                    <div class="highlight">Ulee Nyeue, 08 Maret 2001</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Jenis Kelamin</div>
+                    <div class="highlight">Laki - Laki</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Agama / Status</div>
+                    <div class="highlight">Islam / Menikah</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Alamat Tinggal</div>
+                    <div class="highlight">Dusun Cot Kuta, Gampong Ulee Nyeue, Kec. Banda Baro, Aceh Utara 24376</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="panel">
+            <h2>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+                Pengalaman Kerja
+            </h2>
+            
+            <div class="timeline-item">
+                <div class="timeline-title">Pemilik Counter Pulsa</div>
+                <div class="timeline-date">2024 - Sekarang</div>
+                <ul>
+                    <li>Menjual pulsa, paket data, dan produk digital.</li>
+                    <li>Melayani pelanggan langsung maupun melalui platform digital.</li>
+                    <li>Mengelola laporan transaksi harian dan saldo modal.</li>
+                </ul>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-title">Pemilik Coffee Shop</div>
+                <div class="timeline-date">2022 - 2025</div>
+                <ul>
+                    <li>Mengelola operasional harian kedai.</li>
+                    <li>Bertanggung jawab atas keuangan, promosi, dan pelayanan pelanggan.</li>
+                    <li>Melatih staf dan menjaga ketersediaan stok bahan baku.</li>
+                </ul>
+            </div>
+            
+            </section>
+
+        <section class="panel">
+            <h2>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                Keterampilan
+            </h2>
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="info-label">Desain & Editing</div>
+                    <div class="highlight">Canva, Adobe Premiere, DaVinci Resolve, Vegas Pro, Adobe Audition</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Administrasi & Digital Tools</div>
+                    <div class="highlight">Microsoft Office, Excel, OBS Studio</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Pemrograman & Teknis</div>
+                    <div class="highlight">Visual Basic, Desain Grafis, Kameraman</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Manajerial</div>
+                    <div class="highlight">Manajemen usaha, pelayanan pelanggan, pelatihan staf, pengelolaan keuangan</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="panel">
+            <h2>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                Pendidikan
+            </h2>
+            <div class="timeline-item">
+                <div class="timeline-title">MAS Darul Kiram Aceh Utara</div>
+                <div class="timeline-date">Lulus 2019</div>
+            </div>
+        </section>
+
+    </div>
+</body>
+</html>
