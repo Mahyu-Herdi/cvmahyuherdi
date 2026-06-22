@@ -5,19 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CV - Mahyu Herdi</title>
     <style>
-        /* === VARIABEL WARNA & TEMA (Gampang diedit di sini) === */
+        /* === VARIABEL WARNA & TEMA === */
         :root {
             --bg-color: #12141d;
             --text-main: #f0f0f5;
             --text-muted: #a0a4b8;
-            --accent-blue: #5e81ac; /* Biru yang kalem dan mudah dibaca */
+            --accent-blue: #5e81ac;
             
-            /* Warna untuk Neon Blur Background */
-            --neon-1: rgba(94, 129, 172, 0.4); /* Soft Blue */
-            --neon-2: rgba(136, 192, 208, 0.3); /* Cyan */
-            --neon-3: rgba(180, 142, 173, 0.3); /* Soft Purple/Pink */
+            --neon-1: rgba(94, 129, 172, 0.4);
+            --neon-2: rgba(136, 192, 208, 0.3);
+            --neon-3: rgba(180, 142, 173, 0.3);
 
-            /* Efek Panel Neumorphism + Claymorphism ala iOS */
             --panel-bg: rgba(255, 255, 255, 0.03);
             --panel-border: rgba(255, 255, 255, 0.08);
             --shadow-outer: 10px 10px 30px rgba(0, 0, 0, 0.5), 
@@ -111,7 +109,6 @@
             transition: transform 0.4s ease, box-shadow 0.4s ease;
         }
 
-        /* Animasi melayang halus saat di-hover */
         .panel:hover {
             transform: translateY(-5px);
             box-shadow: 15px 15px 40px rgba(0, 0, 0, 0.6), 
@@ -189,7 +186,7 @@
             justify-content: center;
             width: 45px;
             height: 45px;
-            border-radius: 14px; /* Persegi melengkung ala iOS */
+            border-radius: 14px;
             background: var(--panel-bg);
             border: 1px solid var(--panel-border);
             color: var(--text-muted);
@@ -209,7 +206,7 @@
             background: rgba(255,255,255,0.08);
         }
 
-        /* === GRID LAYOUT (UNTUK INFORMASI) === */
+        /* === GRID LAYOUT === */
         .info-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -229,7 +226,7 @@
             opacity: 0.8;
         }
 
-        /* === TIMELINE (PENGALAMAN & PENDIDIKAN) === */
+        /* === TIMELINE === */
         .timeline-item {
             position: relative;
             padding-left: 25px;
@@ -313,7 +310,7 @@
             
             <div class="header-info">
                 <h1>Mahyu Herdi</h1>
-                <p>Wirausahawan Muda & Digital Enthusiast</p>
+                <p>Digital Enthusiast & Wirausahawan</p>
                 
                 <div class="social-links">
                     <a href="https://wa.me/6281294379909" target="_blank" class="social-icon" title="WhatsApp">
@@ -343,7 +340,7 @@
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
                 Profil Singkat
             </h2>
-            <p>Seorang wirausahawan muda dengan pengalaman dalam mengelola usaha <i>coffee shop</i> dan <i>counter</i> pulsa. Memiliki keterampilan di bidang manajemen usaha, pelayanan pelanggan, serta penguasaan berbagai perangkat lunak desain, editing, dan teknologi digital. Terbiasa bekerja mandiri maupun dalam tim dengan fokus pada inovasi dan efisiensi.</p>
+            <p>Seorang profesional serba bisa dengan latar belakang kuat di bidang kewirausahaan dan minat mendalam pada teknologi visual serta pengembangan web. Punya pengalaman mengelola usaha mandiri sekaligus aktif mengeksplorasi dunia kreatif, mulai dari <i>video editing</i>, desain grafis, hingga mengelola <i>deployment project web</i> menggunakan platform modern. Terbiasa bekerja efisien, beradaptasi cepat dengan perangkat lunak baru, dan selalu antusias memaksimalkan *tools* digital untuk produktivitas.</p>
         </section>
 
         <section class="panel">
@@ -374,16 +371,26 @@
         <section class="panel">
             <h2>
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
-                Pengalaman Kerja
+                Pengalaman Kerja & Proyek
             </h2>
             
+            <div class="timeline-item">
+                <div class="timeline-title">Freelance Visual Media & Web Project</div>
+                <div class="timeline-date">2025 - Sekarang</div>
+                <ul>
+                    <li>Mengeksplorasi dan memproduksi konten visual, termasuk eksplorasi tipografi, desain, dan <i>video editing</i> profesional.</li>
+                    <li>Mengelola <i>hosting</i> dan melakukan <i>deployment project website</i> secara berkala menggunakan Netlify dan Vercel.</li>
+                    <li>Memanfaatkan <i>version control</i> via GitHub untuk manajemen proyek dan integrasi sistem.</li>
+                </ul>
+            </div>
+
             <div class="timeline-item">
                 <div class="timeline-title">Pemilik Counter Pulsa</div>
                 <div class="timeline-date">2024 - Sekarang</div>
                 <ul>
-                    <li>Menjual pulsa, paket data, dan produk digital.</li>
-                    <li>Melayani pelanggan langsung maupun melalui platform digital.</li>
-                    <li>Mengelola laporan transaksi harian dan saldo modal.</li>
+                    <li>Menjual pulsa, paket data, dan mengelola transaksi produk digital sehari-hari.</li>
+                    <li>Melayani pelanggan langsung maupun melalui ekosistem digital/dompet digital.</li>
+                    <li>Mengelola laporan transaksi harian dan ketersediaan saldo modal.</li>
                 </ul>
             </div>
 
@@ -391,35 +398,34 @@
                 <div class="timeline-title">Pemilik Coffee Shop</div>
                 <div class="timeline-date">2022 - 2025</div>
                 <ul>
-                    <li>Mengelola operasional harian kedai.</li>
-                    <li>Bertanggung jawab atas keuangan, promosi, dan pelayanan pelanggan.</li>
-                    <li>Melatih staf dan menjaga ketersediaan stok bahan baku.</li>
+                    <li>Mengelola operasional harian kedai secara mandiri dan tim.</li>
+                    <li>Bertanggung jawab penuh atas manajemen keuangan, promosi, dan <i>customer service</i>.</li>
+                    <li>Melatih staf operasional dan menjaga stabilitas ketersediaan stok bahan baku.</li>
                 </ul>
             </div>
-            
-            </section>
+        </section>
 
         <section class="panel">
             <h2>
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                Keterampilan
+                Keterampilan & Teknologi
             </h2>
             <div class="info-grid">
                 <div class="info-item">
-                    <div class="info-label">Desain & Editing</div>
-                    <div class="highlight">Canva, Adobe Premiere, DaVinci Resolve, Vegas Pro, Adobe Audition</div>
+                    <div class="info-label">Video & Audio Editing</div>
+                    <div class="highlight">Adobe Premiere Pro, DaVinci Resolve, Vegas Pro, OBS Studio</div>
                 </div>
                 <div class="info-item">
-                    <div class="info-label">Administrasi & Digital Tools</div>
-                    <div class="highlight">Microsoft Office, Excel, OBS Studio</div>
+                    <div class="info-label">Desain Grafis & Visual</div>
+                    <div class="highlight">Adobe Illustrator, Canva, Eksplorasi Tipografi & Fotografi</div>
                 </div>
                 <div class="info-item">
-                    <div class="info-label">Pemrograman & Teknis</div>
-                    <div class="highlight">Visual Basic, Desain Grafis, Kameraman</div>
+                    <div class="info-label">Web & Deployment</div>
+                    <div class="highlight">GitHub, Vercel, Netlify, Dasar-dasar Pemrograman Web</div>
                 </div>
                 <div class="info-item">
-                    <div class="info-label">Manajerial</div>
-                    <div class="highlight">Manajemen usaha, pelayanan pelanggan, pelatihan staf, pengelolaan keuangan</div>
+                    <div class="info-label">Administrasi & Tools Digital</div>
+                    <div class="highlight">Microsoft Office 2024, Manajemen PDF, Pemanfaatan AI Tools</div>
                 </div>
             </div>
         </section>
