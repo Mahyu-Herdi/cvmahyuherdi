@@ -567,8 +567,7 @@
 
     </div>
 
-    <!-- === SCRIPT KHUSUS === -->
-    <script>
+     <script>
         // 1. Hitung Umur Otomatis
         document.addEventListener("DOMContentLoaded", function() {
             const birthDate = new Date('2001-03-08');
@@ -585,17 +584,7 @@
         // 2. DAFTAR VIDEO DARI LUAR CHANNEL (ISI MANUAL DI SINI)
         // =========================================================
         const videoDariLuar = [
-            {
-                title: "Film Dokumenter (Upload di Channel Teman)",
-                link: "https://youtu.be/contoh_id_video_1",
-                pubDate: "2024-05-15" // Format: Tahun-Bulan-Tanggal
-            },
-            {
-                title: "Music Video Client ABC",
-                link: "https://youtu.be/contoh_id_video_2",
-                pubDate: "2023-11-20"
-            }
-            // Kalau mau nambah lagi, tambahin koma di atas, lalu copy blok { ... } nya
+            // Kosongkan atau isi sesuai format sebelumnya jika ada video luar
         ];
 
         // 3. Script YouTube Dinamis (Dari Channel Kamu)
@@ -605,24 +594,38 @@
 
         let allVideos = [];
 
+        // RUMUS BARU: Lebih akurat baca semua jenis link YouTube
         function extractVideoID(url) {
-            const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+            const regExp = /(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=|shorts\/))([\w-]{11})/;
             const match = url.match(regExp);
-            return (match && match[2].length === 11) ? match[2] : null;
+            return match ? match[1] : null;
         }
 
         // Mulai tarik data
         fetch(apiUrl)
             .then(response => response.json())
             .then(data => {
-                // Siapin penampung buat gabungin video kamu + video teman
                 let fetchedVideos = [];
                 if(data && data.items && data.items.length > 0) {
-                    fetchedVideos = data.items;
+                    // FILTER SHORTS: Buang video yang link-nya mengandung '/shorts/' atau judulnya ada tulisan 'short'
+                    fetchedVideos = data.items.filter(video => {
+                        const isShortUrl = video.link.toLowerCase().includes('/shorts/');
+                        const isShortTitle = video.title.toLowerCase().includes('#short') || video.title.toLowerCase().includes('shorts');
+                        return !isShortUrl && !isShortTitle;
+                    });
                 }
                 
-                // GABUNGIN KEDUA SUMBER VIDEO
-                allVideos = fetchedVideos.concat(videoDariLuar);
+                // Gabungin dengan video luar (kalau ada)
+                const manualVideosFiltered = videoDariLuar.filter(video => {
+                    const isShortUrl = video.link.toLowerCase().includes('/shorts/');
+                    const isShortTitle = video.title.toLowerCase().includes('#short');
+                    return !isShortUrl && !isShortTitle;
+                });
+
+                allVideos = fetchedVideos.concat(manualVideosFiltered);
+
+                // Buang video yang ID-nya gagal terbaca biar gak error di layar
+                allVideos = allVideos.filter(video => extractVideoID(video.link) !== null);
 
                 // URUTKAN DARI TANGGAL TERBARU KE TERLAMA
                 allVideos.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
@@ -630,12 +633,12 @@
                 if(allVideos.length > 0) {
                     displayVideo(allVideos[0]);
                 } else {
-                    document.getElementById('video-container').innerHTML = '<p style="text-align:center;">Belum ada video ditemukan.</p>';
+                    document.getElementById('video-container').innerHTML = '<p style="text-align:center;">Belum ada video / Hanya ada video Shorts.</p>';
                 }
             })
             .catch(error => {
                 console.error('Error:', error);
-                // Kalau API error, minimal tampilin video manual
+                // Kalau gagal, coba muat video manual saja
                 allVideos = videoDariLuar.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
                 if(allVideos.length > 0) {
                     displayVideo(allVideos[0]);
@@ -692,5 +695,7 @@
             displayVideo(filtered.length > 0 ? filtered[0] : null);
         });
     </script>
+
+
 </body>
 </html>
