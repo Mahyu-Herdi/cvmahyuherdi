@@ -89,8 +89,8 @@
 
         /* === LAYOUT UTAMA === */
         .container {
-            max-width: 1400px; /* Diperlebar agar full di layar PC */
-            width: 95%;        /* Proporsi pas untuk layar horizontal */
+            max-width: 1400px;
+            width: 95%;
             margin: 40px auto;
             padding: 0 20px;
             display: flex;
@@ -311,7 +311,6 @@
             color: var(--text-muted);
         }
 
-        /* Container Carousel buat Swipe Kiri-Kanan */
         .carousel-container {
             display: flex;
             overflow-x: auto;
@@ -346,21 +345,14 @@
             gap: 15px;
         }
 
-        /* Penyesuaian Responsif untuk Video Card di berbagai ukuran layar */
         @media (min-width: 650px) {
-            .video-card {
-                flex: 0 0 calc(50% - 10px); /* 2 video di tablet */
-            }
+            .video-card { flex: 0 0 calc(50% - 10px); }
         }
         @media (min-width: 1024px) {
-            .video-card {
-                flex: 0 0 calc(33.33% - 13.33px); /* 3 video di PC/Laptop biasa */
-            }
+            .video-card { flex: 0 0 calc(33.33% - 13.33px); }
         }
         @media (min-width: 1400px) {
-            .video-card {
-                flex: 0 0 calc(25% - 15px); /* 4 video di monitor ultrawide */
-            }
+            .video-card { flex: 0 0 calc(25% - 15px); }
         }
 
         .video-card:hover {
@@ -370,7 +362,6 @@
                        var(--shadow-inner);
         }
 
-        /* Wrapper khusus YouTube (16:9) */
         .video-wrapper {
             position: relative;
             padding-bottom: 56.25%; 
@@ -409,6 +400,30 @@
             font-weight: 500;
         }
 
+        /* === TOMBOL PDF === */
+        .print-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 28px;
+            background: var(--accent-blue);
+            color: #fff;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(94, 129, 172, 0.4);
+            margin: 10px auto;
+        }
+
+        .print-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(94, 129, 172, 0.6);
+            background: #4c6a8d;
+        }
+
         /* === RESPONSIVE UTAMA === */
         @media (max-width: 600px) {
             .header-section {
@@ -422,6 +437,47 @@
                 padding: 20px;
             }
         }
+
+        /* === PRINT KE PDF STYLES (DISEMBUNYIKAN & DIRAPIKAN SAAT CETAK) === */
+        @media print {
+            @page {
+                size: A4;
+                margin: 10mm;
+            }
+            body {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                background-color: var(--bg-color) !important;
+                font-size: 12px; /* Dikecilin dikit biar muat 1 halaman */
+            }
+            .container {
+                width: 100%;
+                max-width: none;
+                margin: 0;
+                padding: 0;
+                gap: 15px;
+            }
+            .panel {
+                padding: 15px 20px;
+                box-shadow: none !important;
+                border: 1px solid rgba(255,255,255,0.1) !important;
+                transform: none !important;
+                page-break-inside: avoid;
+            }
+            .bg-animation { display: none !important; }
+            
+            /* Sembunyikan Galeri YouTube, Campaign, & Tombol Print */
+            #youtube-section, #campaign-section, .print-wrapper {
+                display: none !important;
+            }
+
+            /* Penyesuaian agar muat di 1 halaman */
+            h2 { margin-bottom: 10px; font-size: 1.2rem; }
+            .header-info h1 { font-size: 1.8rem; }
+            .profile-img { width: 120px; height: 120px; }
+            .info-item { margin-bottom: 8px; }
+            .timeline-item { margin-bottom: 15px; }
+        }
     </style>
 </head>
 <body>
@@ -434,7 +490,6 @@
 
     <div class="container">
         
-        <!-- HEADER -->
         <header class="panel header-section">
             <img src="foto.png" alt="Foto Mahyu Herdi" class="profile-img">
             <div class="header-info">
@@ -497,10 +552,7 @@
             </div>
         </section>
 
-        <!-- ==========================================
-             BAGIAN 1: GALERI YOUTUBE (SWIPE / CAROUSEL)
-        =========================================== -->
-        <section class="panel">
+        <section class="panel" id="youtube-section">
             <h2>
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>
                 Galeri Karya & YouTube
@@ -516,10 +568,7 @@
             </div>
         </section>
 
-        <!-- ==========================================
-             BAGIAN 2: GALERI IKLAN & CAMPAIGN (YOUTUBE UNLISTED)
-        =========================================== -->
-        <section class="panel">
+        <section class="panel" id="campaign-section">
             <h2>
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
                 Iklan & Campaign Klien
@@ -527,11 +576,8 @@
             <p>Geser (swipe) ke samping. Video portofolio klien ini diunggah secara <i>Unlisted</i> khusus untuk ditampilkan di sini.</p>
             
             <div class="carousel-container">
-                
-                <!-- CARD CAMPAIGN 1 -->
                 <div class="video-card">
                     <div class="video-wrapper">
-                        <!-- Paste ID video YouTube (Unlisted) kamu di src="..." -->
                         <iframe src="https://www.youtube.com/embed/ZFNQEmBaErg" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
                     <div class="video-info">
@@ -540,7 +586,6 @@
                     </div>
                 </div>
 
-                <!-- CARD CAMPAIGN 2 -->
                 <div class="video-card">
                     <div class="video-wrapper">
                         <iframe src="https://www.youtube.com/embed/8Y-gidMYyX4" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -551,7 +596,6 @@
                     </div>
                 </div>
                 
-                 <!-- CARD CAMPAIGN 3 -->
                 <div class="video-card">
                     <div class="video-wrapper">
                         <iframe src="https://www.youtube.com/embed/b37mx7dqqIY" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -561,8 +605,6 @@
                         <div class="video-date">Juli 2021</div>
                     </div>
                 </div>
-                <!-- CARA NAMBAH VIDEO CAMPAIGN: Copy dari <div class="video-card"> sampai </div> -->
-
             </div>
         </section>
 
@@ -655,9 +697,15 @@
             </div>
         </section>
 
+        <div class="print-wrapper" style="text-align: center; margin-top: 10px;">
+            <button onclick="window.print()" class="print-btn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                Download PDF
+            </button>
+        </div>
+
     </div>
 
-    <!-- === SCRIPT KHUSUS === -->
     <script>
         // 1. Hitung Umur Otomatis
         document.addEventListener("DOMContentLoaded", function() {
@@ -671,9 +719,7 @@
             document.getElementById("dynamic-age").innerText = age + " Tahun";
         });
 
-        // =========================================================
         // 2. DAFTAR VIDEO DARI LUAR CHANNEL
-        // =========================================================
         const videoDariLuar = [
             {
                 title: "Ganteng Kuh Hana",
@@ -750,7 +796,6 @@
                 renderVideos(allVideos);
             });
 
-        // FUNGSI RENDER SEMUA VIDEO KE DALAM CAROUSEL
         function renderVideos(videoList) {
             const container = document.getElementById('video-container');
             container.innerHTML = ''; 
@@ -783,7 +828,6 @@
             }
         }
 
-        // Pencarian Video
         document.getElementById('videoSearch').addEventListener('input', function(e) {
             const keyword = e.target.value.toLowerCase();
             
