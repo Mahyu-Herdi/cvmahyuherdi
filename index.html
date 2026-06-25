@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CV - Mahyu Herdi</title>
     
-    <!-- Library untuk Generate PDF langsung di HTML -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
     <style>
@@ -179,10 +178,8 @@
         <div class="blob blob-3"></div>
     </div>
 
-    <!-- KONTEN WEB UTAMA -->
     <div class="container" id="web-container">
         
-        <!-- HEADER -->
         <header class="panel header-section">
             <img src="foto.png" alt="Foto Mahyu Herdi" class="profile-img">
             <div class="header-info">
@@ -256,7 +253,6 @@
             <div class="timeline-item"><div class="timeline-title">SD 5 Banda Baro, Gampong Ulee Nyeue</div><div class="timeline-date">Alumni</div></div>
         </section>
 
-        <!-- === TOMBOL GENERATE PDF BARU === -->
         <div style="text-align: center; margin-top: 10px;">
             <button id="btn-download" onclick="generatePDF()" class="print-btn">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
@@ -266,14 +262,9 @@
 
     </div>
 
-    <!-- =========================================================
-         TEMPLATE RAHASIA KHUSUS UNTUK HASIL PDF
-         (Ini disembunyikan pakai CSS, bakal kepanggil cuma pas klik Download PDF)
-    ========================================================== -->
     <div id="cv-pdf-template" style="display: none;">
-        <div id="pdf-content" style="padding: 40px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #222; background: #fff; width: 794px; box-sizing: border-box;">
+        <div id="pdf-content" style="padding: 40px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #222; background: #ffffff; width: 794px; min-height: 1122px; box-sizing: border-box;">
             
-            <!-- HEADER PDF -->
             <div style="display: flex; align-items: center; border-bottom: 3px solid #5e81ac; padding-bottom: 25px; margin-bottom: 25px;">
                 <img src="foto.png" style="width: 140px; height: 140px; border-radius: 50%; object-fit: cover; margin-right: 30px; border: 2px solid #5e81ac;">
                 <div>
@@ -286,10 +277,8 @@
                 </div>
             </div>
 
-            <!-- DUA KOLOM PDF -->
             <div style="display: flex; gap: 40px;">
                 
-                <!-- KOLOM KIRI (Info & Pendidikan) -->
                 <div style="flex: 1;">
                     <h4 style="color: #5e81ac; border-bottom: 2px solid #eee; padding-bottom: 5px; margin-bottom: 15px; font-size: 15px; text-transform: uppercase;">Profil Singkat</h4>
                     <p style="font-size: 13px; line-height: 1.6; margin-bottom: 25px; text-align: justify; color: #444;">
@@ -311,7 +300,6 @@
                     </ul>
                 </div>
 
-                <!-- KOLOM KANAN (Pengalaman & Skill) -->
                 <div style="flex: 1.4;">
                     <h4 style="color: #5e81ac; border-bottom: 2px solid #eee; padding-bottom: 5px; margin-bottom: 15px; font-size: 15px; text-transform: uppercase;">Pengalaman Kerja</h4>
                     
@@ -363,7 +351,6 @@
     </div>
 
 
-    <!-- === SCRIPT KHUSUS LOGIKA === -->
     <script>
         // 1. Hitung Umur Otomatis
         document.addEventListener("DOMContentLoaded", function() {
@@ -383,32 +370,35 @@
         // ==========================================
         function generatePDF() {
             const btn = document.getElementById('btn-download');
-            btn.innerHTML = "Merapikan PDF..."; // Loading state
+            btn.innerHTML = "Memproses PDF..."; // Kasih tanda ke user kalau lagi loading
 
-            // Tampilkan sebentar si template PDF tapi sembunyiin dari layar mata (trik jitu)
             const templateBox = document.getElementById('cv-pdf-template');
-            templateBox.style.display = 'block';
-            templateBox.style.position = 'absolute';
-            templateBox.style.left = '-9999px'; 
-
             const element = document.getElementById('pdf-content');
 
-            // Pengaturan output dari html2pdf
+            // Tampilkan elemennya di layar tapi taruh di tumpukan paling belakang biar tertutup background web
+            templateBox.style.display = 'block';
+            templateBox.style.position = 'absolute';
+            templateBox.style.top = '0';
+            templateBox.style.left = '0';
+            templateBox.style.zIndex = '-999';
+
             const options = {
-                margin:       [0, 0, 0, 0], 
+                margin:       0, 
                 filename:     'CV_Mahyu_Herdi.pdf',
                 image:        { type: 'jpeg', quality: 0.98 },
-                html2canvas:  { scale: 2, useCORS: true },
+                html2canvas:  { scale: 2, useCORS: true, backgroundColor: '#ffffff' },
                 jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
             };
 
-            // Proses generate
-            html2pdf().set(options).from(element).save().then(() => {
-                // Balikin seperti semula kalau udah selesai download
-                templateBox.style.display = 'none';
-                templateBox.style.position = 'static';
-                btn.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg> Download PDF A4`;
-            });
+            // Beri jeda waktu browser 0.5 detik untuk nge-render gambarnya sebelum di-capture
+            setTimeout(() => {
+                html2pdf().set(options).from(element).save().then(() => {
+                    // Sembunyikan lagi setelah selesai download
+                    templateBox.style.display = 'none';
+                    templateBox.style.position = 'static';
+                    btn.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg> Download PDF A4`;
+                });
+            }, 500);
         }
 
         // =========================================================
