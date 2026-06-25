@@ -143,7 +143,7 @@
 </head>
 <body>
 
-    <div class="bg-animation">
+    <div class="bg-animation" id="bg-anim">
         <div class="blob blob-1"></div>
         <div class="blob blob-2"></div>
         <div class="blob blob-3"></div>
@@ -235,9 +235,9 @@
     </div>
 
     <!-- =========================================================
-         TEMPLATE CV KLASIK (Layout sesuai referensi PDF user)
+         TEMPLATE CV KLASIK (Akan ditampilkan sesaat saat diklik)
     ========================================================== -->
-    <div id="cv-pdf-template" style="display: none; background: #ffffff; width: 210mm; min-height: 297mm; padding: 15mm 20mm; color: #000000; font-family: Arial, sans-serif; box-sizing: border-box;">
+    <div id="cv-pdf-template" style="display: none; background: #ffffff; width: 210mm; min-height: 297mm; padding: 15mm 20mm; color: #000000; font-family: Arial, sans-serif; box-sizing: border-box; margin: 0 auto;">
         
         <h1 style="text-align: center; font-size: 24px; font-weight: bold; margin-bottom: 30px; text-transform: uppercase;">Curriculum Vitae</h1>
         
@@ -329,37 +329,41 @@
         });
 
         // ==========================================
-        // FUNGSI GENERATE PDF ANTI BLANK
+        // FUNGSI GENERATE PDF SUPER AMAN (SWAP SCREEN)
         // ==========================================
         function generatePDF() {
             const btn = document.getElementById('btn-download');
             const template = document.getElementById('cv-pdf-template');
+            const webContainer = document.getElementById('web-container');
+            const bgAnim = document.getElementById('bg-anim');
             
-            btn.innerHTML = "Merapikan PDF... Mohon Tunggu";
+            // Ubah teks tombol biar user tahu prosesnya lagi jalan
+            btn.innerHTML = "Memproses PDF... Mohon Tunggu";
             
-            // KUNCINYA DI SINI:
-            // Tampilkan secara fisik di urutan teratas layar lalu di scroll ke pucuk.
-            // Biar library html2canvas ngerender 100% tanpa di-cut sama keamanan browser.
-            window.scrollTo(0, 0);
+            // KUNCI UTAMA: Hilangkan web utama sama background neon-nya
+            // Dan munculin template CV secara normal layaknya web biasa
+            webContainer.style.display = 'none';
+            bgAnim.style.display = 'none';
+            
             template.style.display = 'block';
-            template.style.position = 'absolute';
-            template.style.top = '0';
-            template.style.left = '0';
-            template.style.zIndex = '999999';
+            window.scrollTo(0, 0); // Scroll ke atas biar capture-nya pas
 
             const options = {
                 margin:       0, 
                 filename:     'CV_Mahyu_Herdi.pdf',
-                image:        { type: 'jpeg', quality: 0.98 },
-                html2canvas:  { scale: 2, useCORS: true, scrollX: 0, scrollY: 0 },
+                image:        { type: 'jpeg', quality: 1 },
+                html2canvas:  { scale: 2, useCORS: true, backgroundColor: '#ffffff' },
                 jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
             };
 
-            // Jeda 800ms biar semua font dan gambar sempat ke-load di layar sebelum difoto
+            // Jeda 800ms biar semua font dan gambar sempat ke-load dengan baik
             setTimeout(() => {
                 html2pdf().set(options).from(template).save().then(() => {
-                    // Setelah PDF sukses terunduh, hilangkan kembali layar putih CV nya
+                    // Kalo PDF udah berhasil didownload, balikin ke web utama lagi
                     template.style.display = 'none';
+                    webContainer.style.display = 'flex';
+                    bgAnim.style.display = 'block';
+                    
                     btn.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg> Download PDF CV`;
                 });
             }, 800);
