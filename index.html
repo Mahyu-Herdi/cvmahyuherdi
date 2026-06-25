@@ -131,7 +131,7 @@
         .video-date { font-size: 0.9rem; color: var(--accent-blue); font-weight: 500; }
 
         /* === TOMBOL PDF === */
-        .print-btn { display: inline-flex; align-items: center; gap: 10px; padding: 14px 28px; background: var(--accent-blue); color: #fff; font-size: 1.1rem; font-weight: 600; border: none; border-radius: 12px; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(94, 129, 172, 0.4); margin: 10px auto; }
+        .print-btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 14px 28px; background: var(--accent-blue); color: #fff; font-size: 1.1rem; font-weight: 600; border: none; border-radius: 12px; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(94, 129, 172, 0.4); margin: 10px auto; width: 100%; max-width: 300px; }
         .print-btn:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(94, 129, 172, 0.6); background: #4c6a8d; }
 
         @media (max-width: 600px) {
@@ -225,23 +225,23 @@
             <div class="timeline-item"><div class="timeline-title">SD 5 Banda Baro, Gampong Ulee Nyeue</div><div class="timeline-date">Alumni</div></div>
         </section>
 
-        <div style="text-align: center; margin-top: 10px;">
+        <div style="text-align: center; margin-top: 10px; padding-bottom: 40px;">
             <button id="btn-download" onclick="generatePDF()" class="print-btn">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-                Download PDF CV Klasik
+                Download PDF CV
             </button>
         </div>
 
     </div>
 
     <!-- =========================================================
-         TEMPLATE CV KLASIK (Disembunyikan, Dieksekusi khusus buat PDF)
+         TEMPLATE CV KLASIK (Layout sesuai referensi PDF user)
     ========================================================== -->
-    <div id="cv-pdf-template" style="display: none; position: absolute; top: 0; left: 0; width: 210mm; padding: 20mm; background: #ffffff; color: #000000; font-family: Arial, sans-serif; box-sizing: border-box; z-index: -100;">
+    <div id="cv-pdf-template" style="display: none; background: #ffffff; width: 210mm; min-height: 297mm; padding: 15mm 20mm; color: #000000; font-family: Arial, sans-serif; box-sizing: border-box;">
         
         <h1 style="text-align: center; font-size: 24px; font-weight: bold; margin-bottom: 30px; text-transform: uppercase;">Curriculum Vitae</h1>
         
-        <!-- SECTION: FOTO & DATA DIRI (Layout sesuai referensi text) -->
+        <!-- SECTION: FOTO & DATA DIRI -->
         <div style="display: flex; justify-content: space-between; margin-bottom: 25px;">
             <div style="width: 75%;">
                 <h2 style="font-size: 16px; font-weight: bold; margin-bottom: 10px; border-bottom: 2px solid #000; padding-bottom: 5px;">DATA DIRI</h2>
@@ -312,12 +312,11 @@
                 <li>Mengelola Coffee Shop (2022 - 2025): menangani manajemen operasional harian, suplai bahan, dan promosi kedai.</li>
             </ul>
         </div>
-
     </div>
 
     <!-- === SCRIPT KHUSUS LOGIKA === -->
     <script>
-        // 1. Hitung Umur Otomatis
+        // Hitung Umur
         document.addEventListener("DOMContentLoaded", function() {
             const birthDate = new Date('2001-03-08');
             const today = new Date();
@@ -330,37 +329,44 @@
         });
 
         // ==========================================
-        // 2. FUNGSI GENERATE PDF YANG PASTI JALAN
+        // FUNGSI GENERATE PDF ANTI BLANK
         // ==========================================
         function generatePDF() {
             const btn = document.getElementById('btn-download');
-            btn.innerHTML = "Menyiapkan PDF..."; // Status loading biar user tahu
+            const template = document.getElementById('cv-pdf-template');
             
-            const element = document.getElementById('cv-pdf-template');
+            btn.innerHTML = "Merapikan PDF... Mohon Tunggu";
             
-            // Kuncinya di sini: Tampilkan elemennya, tapi posisinya di z-index minus biar nggak nutupin web
-            element.style.display = 'block';
-            
+            // KUNCINYA DI SINI:
+            // Tampilkan secara fisik di urutan teratas layar lalu di scroll ke pucuk.
+            // Biar library html2canvas ngerender 100% tanpa di-cut sama keamanan browser.
+            window.scrollTo(0, 0);
+            template.style.display = 'block';
+            template.style.position = 'absolute';
+            template.style.top = '0';
+            template.style.left = '0';
+            template.style.zIndex = '999999';
+
             const options = {
                 margin:       0, 
                 filename:     'CV_Mahyu_Herdi.pdf',
                 image:        { type: 'jpeg', quality: 0.98 },
-                html2canvas:  { scale: 2, useCORS: true, backgroundColor: '#ffffff' },
+                html2canvas:  { scale: 2, useCORS: true, scrollX: 0, scrollY: 0 },
                 jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
             };
 
-            // Jeda 0.5 detik buat nunggu foto/font beres ke-load di belakang layar
+            // Jeda 800ms biar semua font dan gambar sempat ke-load di layar sebelum difoto
             setTimeout(() => {
-                html2pdf().set(options).from(element).save().then(() => {
-                    // Balikin disembunyiin lagi setelah beres didownload
-                    element.style.display = 'none';
-                    btn.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg> Download PDF CV Klasik`;
+                html2pdf().set(options).from(template).save().then(() => {
+                    // Setelah PDF sukses terunduh, hilangkan kembali layar putih CV nya
+                    template.style.display = 'none';
+                    btn.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg> Download PDF CV`;
                 });
-            }, 500);
+            }, 800);
         }
 
         // =========================================================
-        // 3. DAFTAR VIDEO DARI LUAR CHANNEL & YOUTUBE API
+        // DATA YOUTUBE
         // =========================================================
         const videoDariLuar = [
             { title: "Ganteng Kuh Hana", link: "https://youtu.be/CL0D7jd22i4", pubDate: "2025-06-01" },
