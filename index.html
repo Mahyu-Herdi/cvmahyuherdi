@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CV - Mahyu Herdi</title>
+    
+    <!-- Library untuk Generate PDF langsung di HTML -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
     <style>
         /* === VARIABEL WARNA & TEMA === */
         :root {
@@ -60,26 +64,9 @@
             opacity: 0.7;
         }
 
-        .blob-1 {
-            top: -10%; left: -10%;
-            width: 50vw; height: 50vw;
-            background: var(--neon-1);
-            animation-delay: 0s;
-        }
-
-        .blob-2 {
-            bottom: -20%; right: -10%;
-            width: 60vw; height: 60vw;
-            background: var(--neon-2);
-            animation-delay: -2s;
-        }
-
-        .blob-3 {
-            top: 40%; left: 40%;
-            width: 40vw; height: 40vw;
-            background: var(--neon-3);
-            animation-delay: -4s;
-        }
+        .blob-1 { top: -10%; left: -10%; width: 50vw; height: 50vw; background: var(--neon-1); animation-delay: 0s; }
+        .blob-2 { bottom: -20%; right: -10%; width: 60vw; height: 60vw; background: var(--neon-2); animation-delay: -2s; }
+        .blob-3 { top: 40%; left: 40%; width: 40vw; height: 40vw; background: var(--neon-3); animation-delay: -4s; }
 
         @keyframes breathe {
             0% { transform: scale(1) translate(0, 0); opacity: 0.5; }
@@ -118,365 +105,69 @@
         }
 
         /* === TIPOGRAFI === */
-        h1, h2, h3 {
-            color: var(--accent-blue);
-            font-weight: 600;
-            letter-spacing: 0.5px;
-        }
-
-        h2 {
-            margin-bottom: 20px;
-            font-size: 1.4rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        p, li {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-        }
-
-        ul {
-            list-style-type: none;
-        }
-
-        .highlight {
-            color: var(--text-main);
-            font-weight: 500;
-        }
+        h1, h2, h3 { color: var(--accent-blue); font-weight: 600; letter-spacing: 0.5px; }
+        h2 { margin-bottom: 20px; font-size: 1.4rem; display: flex; align-items: center; gap: 10px; }
+        p, li { color: var(--text-muted); font-size: 0.95rem; }
+        ul { list-style-type: none; }
+        .highlight { color: var(--text-main); font-weight: 500; }
 
         /* === HEADER / PROFIL === */
-        .header-section {
-            display: flex;
-            align-items: center;
-            gap: 30px;
-            flex-wrap: wrap;
-        }
-
-        .profile-img {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid rgba(255,255,255,0.1);
-            box-shadow: var(--shadow-outer), var(--shadow-inner);
-            padding: 5px;
-        }
-
-        .header-info h1 {
-            font-size: 2.2rem;
-            margin-bottom: 5px;
-        }
-
-        .header-info p {
-            font-size: 1.1rem;
-            margin-bottom: 15px;
-        }
+        .header-section { display: flex; align-items: center; gap: 30px; flex-wrap: wrap; }
+        .profile-img { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; border: 3px solid rgba(255,255,255,0.1); box-shadow: var(--shadow-outer), var(--shadow-inner); padding: 5px; }
+        .header-info h1 { font-size: 2.2rem; margin-bottom: 5px; }
+        .header-info p { font-size: 1.1rem; margin-bottom: 15px; }
 
         /* === SOSIAL MEDIA ICONS === */
-        .social-links {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .social-icon {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 45px;
-            height: 45px;
-            border-radius: 14px;
-            background: var(--panel-bg);
-            border: 1px solid var(--panel-border);
-            color: var(--text-muted);
-            text-decoration: none;
-            box-shadow: var(--shadow-outer), var(--shadow-inner);
-            transition: all 0.3s ease;
-        }
-
-        .social-icon svg {
-            width: 22px;
-            height: 22px;
-        }
-
-        .social-icon:hover {
-            color: var(--accent-blue);
-            transform: translateY(-3px);
-            background: rgba(255,255,255,0.08);
-        }
+        .social-links { display: flex; gap: 15px; flex-wrap: wrap; }
+        .social-icon { display: flex; align-items: center; justify-content: center; width: 45px; height: 45px; border-radius: 14px; background: var(--panel-bg); border: 1px solid var(--panel-border); color: var(--text-muted); text-decoration: none; box-shadow: var(--shadow-outer), var(--shadow-inner); transition: all 0.3s ease; }
+        .social-icon svg { width: 22px; height: 22px; }
+        .social-icon:hover { color: var(--accent-blue); transform: translateY(-3px); background: rgba(255,255,255,0.08); }
 
         /* === GRID LAYOUT === */
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px;
-        }
-
-        .info-item {
-            margin-bottom: 15px;
-        }
-
-        .info-label {
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--accent-blue);
-            margin-bottom: 4px;
-            opacity: 0.8;
-        }
+        .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; }
+        .info-item { margin-bottom: 15px; }
+        .info-label { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: var(--accent-blue); margin-bottom: 4px; opacity: 0.8; }
 
         /* === TIMELINE === */
-        .timeline-item {
-            position: relative;
-            padding-left: 25px;
-            margin-bottom: 25px;
-            border-left: 2px solid rgba(255,255,255,0.1);
-        }
+        .timeline-item { position: relative; padding-left: 25px; margin-bottom: 25px; border-left: 2px solid rgba(255,255,255,0.1); }
+        .timeline-item::before { content: ''; position: absolute; left: -6px; top: 5px; width: 10px; height: 10px; border-radius: 50%; background: var(--accent-blue); box-shadow: 0 0 10px var(--accent-blue); }
+        .timeline-item:last-child { margin-bottom: 0; }
+        .timeline-title { font-size: 1.1rem; color: var(--text-main); font-weight: 600; }
+        .timeline-date { font-size: 0.85rem; color: var(--accent-blue); margin-bottom: 8px; display: inline-block; }
+        .timeline-item ul { margin-top: 10px; }
+        .timeline-item li { position: relative; padding-left: 15px; margin-bottom: 5px; }
+        .timeline-item li::before { content: '-'; position: absolute; left: 0; color: var(--accent-blue); }
 
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -6px;
-            top: 5px;
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: var(--accent-blue);
-            box-shadow: 0 0 10px var(--accent-blue);
-        }
+        /* === PENCARIAN & KARTU VIDEO === */
+        .search-container { margin: 15px 0 20px 0; width: 100%; }
+        .search-input { width: 100%; padding: 14px 20px; border-radius: 12px; background: var(--panel-bg); border: 1px solid var(--panel-border); color: var(--text-main); font-size: 1rem; outline: none; backdrop-filter: blur(16px); box-shadow: var(--shadow-inner); transition: all 0.3s ease; }
+        .search-input:focus { border-color: var(--accent-blue); box-shadow: 0 0 10px rgba(94, 129, 172, 0.3), var(--shadow-inner); }
+        .search-input::placeholder { color: var(--text-muted); }
 
-        .timeline-item:last-child {
-            margin-bottom: 0;
-        }
+        .carousel-container { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 20px; padding-bottom: 15px; scrollbar-width: thin; scrollbar-color: var(--accent-blue) transparent; }
+        .carousel-container::-webkit-scrollbar { height: 6px; }
+        .carousel-container::-webkit-scrollbar-thumb { background: var(--accent-blue); border-radius: 4px; }
 
-        .timeline-title {
-            font-size: 1.1rem;
-            color: var(--text-main);
-            font-weight: 600;
-        }
+        .video-card { flex: 0 0 calc(100% - 10px); scroll-snap-align: start; background: var(--panel-bg); border: 1px solid var(--panel-border); border-radius: 20px; padding: 15px; backdrop-filter: blur(16px); box-shadow: var(--shadow-outer), var(--shadow-inner); transition: transform 0.4s ease, box-shadow 0.4s ease; display: flex; flex-direction: column; gap: 15px; }
+        @media (min-width: 650px) { .video-card { flex: 0 0 calc(50% - 10px); } }
+        @media (min-width: 1024px) { .video-card { flex: 0 0 calc(33.33% - 13.33px); } }
+        @media (min-width: 1400px) { .video-card { flex: 0 0 calc(25% - 15px); } }
+        .video-card:hover { transform: translateY(-5px); box-shadow: 15px 15px 40px rgba(0, 0, 0, 0.6), -5px -5px 20px rgba(255, 255, 255, 0.03), var(--shadow-inner); }
 
-        .timeline-date {
-            font-size: 0.85rem;
-            color: var(--accent-blue);
-            margin-bottom: 8px;
-            display: inline-block;
-        }
-
-        .timeline-item ul {
-            margin-top: 10px;
-        }
-        
-        .timeline-item li {
-            position: relative;
-            padding-left: 15px;
-            margin-bottom: 5px;
-        }
-
-        .timeline-item li::before {
-            content: '-';
-            position: absolute;
-            left: 0;
-            color: var(--accent-blue);
-        }
-
-        /* === PENCARIAN & KARTU VIDEO (SWIPE CAROUSEL) === */
-        .search-container {
-            margin: 15px 0 20px 0;
-            width: 100%;
-        }
-
-        .search-input {
-            width: 100%;
-            padding: 14px 20px;
-            border-radius: 12px;
-            background: var(--panel-bg);
-            border: 1px solid var(--panel-border);
-            color: var(--text-main);
-            font-size: 1rem;
-            outline: none;
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            box-shadow: var(--shadow-inner);
-            transition: all 0.3s ease;
-        }
-
-        .search-input:focus {
-            border-color: var(--accent-blue);
-            box-shadow: 0 0 10px rgba(94, 129, 172, 0.3), var(--shadow-inner);
-        }
-
-        .search-input::placeholder {
-            color: var(--text-muted);
-        }
-
-        .carousel-container {
-            display: flex;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            gap: 20px;
-            padding-bottom: 15px;
-            scrollbar-width: thin;
-            scrollbar-color: var(--accent-blue) transparent;
-        }
-
-        .carousel-container::-webkit-scrollbar {
-            height: 6px;
-        }
-        .carousel-container::-webkit-scrollbar-thumb {
-            background: var(--accent-blue);
-            border-radius: 4px;
-        }
-
-        .video-card {
-            flex: 0 0 calc(100% - 10px); 
-            scroll-snap-align: start;
-            background: var(--panel-bg);
-            border: 1px solid var(--panel-border);
-            border-radius: 20px;
-            padding: 15px;
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            box-shadow: var(--shadow-outer), var(--shadow-inner);
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        @media (min-width: 650px) {
-            .video-card { flex: 0 0 calc(50% - 10px); }
-        }
-        @media (min-width: 1024px) {
-            .video-card { flex: 0 0 calc(33.33% - 13.33px); }
-        }
-        @media (min-width: 1400px) {
-            .video-card { flex: 0 0 calc(25% - 15px); }
-        }
-
-        .video-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 15px 15px 40px rgba(0, 0, 0, 0.6), 
-                       -5px -5px 20px rgba(255, 255, 255, 0.03),
-                       var(--shadow-inner);
-        }
-
-        .video-wrapper {
-            position: relative;
-            padding-bottom: 56.25%; 
-            height: 0;
-            border-radius: 12px;
-            overflow: hidden;
-            background: #000;
-        }
-
-        .video-wrapper iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        .video-info {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-            padding: 0 5px 5px 5px;
-        }
-
-        .video-title {
-            font-size: 1.1rem;
-            color: var(--text-main);
-            font-weight: 600;
-            line-height: 1.4;
-        }
-
-        .video-date {
-            font-size: 0.9rem;
-            color: var(--accent-blue);
-            font-weight: 500;
-        }
+        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; border-radius: 12px; overflow: hidden; background: #000; }
+        .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+        .video-info { display: flex; flex-direction: column; gap: 5px; padding: 0 5px 5px 5px; }
+        .video-title { font-size: 1.1rem; color: var(--text-main); font-weight: 600; line-height: 1.4; }
+        .video-date { font-size: 0.9rem; color: var(--accent-blue); font-weight: 500; }
 
         /* === TOMBOL PDF === */
-        .print-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 14px 28px;
-            background: var(--accent-blue);
-            color: #fff;
-            font-size: 1.1rem;
-            font-weight: 600;
-            border: none;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(94, 129, 172, 0.4);
-            margin: 10px auto;
-        }
+        .print-btn { display: inline-flex; align-items: center; gap: 10px; padding: 14px 28px; background: var(--accent-blue); color: #fff; font-size: 1.1rem; font-weight: 600; border: none; border-radius: 12px; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(94, 129, 172, 0.4); margin: 10px auto; }
+        .print-btn:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(94, 129, 172, 0.6); background: #4c6a8d; }
 
-        .print-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(94, 129, 172, 0.6);
-            background: #4c6a8d;
-        }
-
-        /* === RESPONSIVE UTAMA === */
         @media (max-width: 600px) {
-            .header-section {
-                flex-direction: column;
-                text-align: center;
-            }
-            .social-links {
-                justify-content: center;
-            }
-            .panel {
-                padding: 20px;
-            }
-        }
-
-        /* === PRINT KE PDF STYLES (DISEMBUNYIKAN & DIRAPIKAN SAAT CETAK) === */
-        @media print {
-            @page {
-                size: A4;
-                margin: 10mm;
-            }
-            body {
-                -webkit-print-color-adjust: exact !important;
-                print-color-adjust: exact !important;
-                background-color: var(--bg-color) !important;
-                font-size: 12px; /* Dikecilin dikit biar muat 1 halaman */
-            }
-            .container {
-                width: 100%;
-                max-width: none;
-                margin: 0;
-                padding: 0;
-                gap: 15px;
-            }
-            .panel {
-                padding: 15px 20px;
-                box-shadow: none !important;
-                border: 1px solid rgba(255,255,255,0.1) !important;
-                transform: none !important;
-                page-break-inside: avoid;
-            }
-            .bg-animation { display: none !important; }
-            
-            /* Sembunyikan Galeri YouTube, Campaign, & Tombol Print */
-            #youtube-section, #campaign-section, .print-wrapper {
-                display: none !important;
-            }
-
-            /* Penyesuaian agar muat di 1 halaman */
-            h2 { margin-bottom: 10px; font-size: 1.2rem; }
-            .header-info h1 { font-size: 1.8rem; }
-            .profile-img { width: 120px; height: 120px; }
-            .info-item { margin-bottom: 8px; }
-            .timeline-item { margin-bottom: 15px; }
+            .header-section { flex-direction: column; text-align: center; }
+            .social-links { justify-content: center; }
+            .panel { padding: 20px; }
         }
     </style>
 </head>
@@ -488,224 +179,191 @@
         <div class="blob blob-3"></div>
     </div>
 
-    <div class="container">
+    <!-- KONTEN WEB UTAMA -->
+    <div class="container" id="web-container">
         
+        <!-- HEADER -->
         <header class="panel header-section">
             <img src="foto.png" alt="Foto Mahyu Herdi" class="profile-img">
             <div class="header-info">
                 <h1>Mahyu Herdi</h1>
                 <p>Kreator Digital & Wirausahawan</p>
-                
                 <div class="social-links">
-                    <a href="https://wa.me/6281294379909" target="_blank" class="social-icon" title="WhatsApp">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
-                    </a>
-                    <a href="mailto:erbeawebird@gmail.com" class="social-icon" title="Email">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-                    </a>
-                    <a href="https://www.instagram.com/mahyu_herdi?igsh=MWYwZTU1amVtajc4dA==" target="_blank" class="social-icon" title="Instagram">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-                    </a>
-                    <a href="https://www.facebook.com/share/1GQGn4iiAr/" target="_blank" class="social-icon" title="Facebook">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
-                    </a>
-                    <a href="https://youtube.com/@mahyu_herdi?si=_LxpYpvXxtexoUDV" target="_blank" class="social-icon" title="YouTube">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33 2.78 2.78 0 0 0 1.94 2c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.33 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>
-                    </a>
-                    <a href="https://open.spotify.com/artist/3FLOui009jvjCgroSj9Q38?si=kHktjh5PRXeibmhwjcagtA" target="_blank" class="social-icon" title="Spotify">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M8 11.5c2.5-1 6.5-1 9 1"></path><path d="M9 15c2-.5 5-.5 7 .5"></path><path d="M7 8c3-1.5 8-1.5 11 1"></path></svg>
-                    </a>
+                    <a href="https://wa.me/6281294379909" target="_blank" class="social-icon" title="WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg></a>
+                    <a href="mailto:erbeawebird@gmail.com" class="social-icon" title="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a>
+                    <a href="https://www.instagram.com/mahyu_herdi?igsh=MWYwZTU1amVtajc4dA==" target="_blank" class="social-icon" title="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
+                    <a href="https://www.facebook.com/share/1GQGn4iiAr/" target="_blank" class="social-icon" title="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
+                    <a href="https://youtube.com/@mahyu_herdi?si=_LxpYpvXxtexoUDV" target="_blank" class="social-icon" title="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33 2.78 2.78 0 0 0 1.94 2c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.33 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg></a>
+                    <a href="https://open.spotify.com/artist/3FLOui009jvjCgroSj9Q38?si=kHktjh5PRXeibmhwjcagtA" target="_blank" class="social-icon" title="Spotify"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M8 11.5c2.5-1 6.5-1 9 1"></path><path d="M9 15c2-.5 5-.5 7 .5"></path><path d="M7 8c3-1.5 8-1.5 11 1"></path></svg></a>
                 </div>
             </div>
         </header>
 
         <section class="panel">
-            <h2>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-                Profil Singkat
-            </h2>
+            <h2><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg> Profil Singkat</h2>
             <p>Seorang profesional multitalenta di bidang media visual dan administrasi dengan latar belakang kewirausahaan. Berpengalaman dalam pengelolaan akuntansi, produksi karya orisinal seperti <i>music video</i> dan film pendek, hingga <i>deployment project web</i> menggunakan platform modern. Saya terbiasa beradaptasi cepat, memaksimalkan <i>tools</i> digital untuk efisiensi kerja, dan sangat terbuka untuk berkolaborasi dalam proyek-proyek kreatif maupun inisiatif baru yang menantang.</p>
         </section>
 
         <section class="panel">
-            <h2>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
-                Informasi Pribadi
-            </h2>
+            <h2><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg> Informasi Pribadi</h2>
             <div class="info-grid">
-                <div class="info-item">
-                    <div class="info-label">Usia</div>
-                    <div class="highlight" id="dynamic-age">Menghitung...</div>
-                </div>
-                <div class="info-item">
-                    <div class="info-label">Jenis Kelamin</div>
-                    <div class="highlight">Laki - Laki</div>
-                </div>
-                <div class="info-item">
-                    <div class="info-label">Agama / Status</div>
-                    <div class="highlight">Islam / Menikah</div>
-                </div>
-                <div class="info-item">
-                    <div class="info-label">Alamat Tinggal</div>
-                    <div class="highlight">Dusun Cot Kuta, Gampong Ulee Nyeue, Kec. Banda Baro, Aceh Utara 24376</div>
-                </div>
+                <div class="info-item"><div class="info-label">Usia</div><div class="highlight" id="dynamic-age">Menghitung...</div></div>
+                <div class="info-item"><div class="info-label">Jenis Kelamin</div><div class="highlight">Laki - Laki</div></div>
+                <div class="info-item"><div class="info-label">Agama / Status</div><div class="highlight">Islam / Menikah</div></div>
+                <div class="info-item"><div class="info-label">Alamat Tinggal</div><div class="highlight">Dusun Cot Kuta, Gampong Ulee Nyeue, Kec. Banda Baro, Aceh Utara 24376</div></div>
             </div>
         </section>
 
-        <section class="panel" id="youtube-section">
-            <h2>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>
-                Galeri Karya & YouTube
-            </h2>
+        <section class="panel">
+            <h2><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg> Galeri Karya & YouTube</h2>
             <p>Geser (swipe) area video ke samping untuk melihat koleksi lainnya. Gunakan pencarian untuk hasil spesifik.</p>
-            
-            <div class="search-container">
-                <input type="text" id="videoSearch" class="search-input" placeholder="Cari judul video, bulan, atau tahun...">
-            </div>
-
-            <div id="video-container" class="carousel-container">
-                <p style="text-align: center; color: var(--text-muted); padding: 20px; width: 100%;">Mengambil video dari YouTube...</p>
-            </div>
+            <div class="search-container"><input type="text" id="videoSearch" class="search-input" placeholder="Cari judul video, bulan, atau tahun..."></div>
+            <div id="video-container" class="carousel-container"><p style="text-align: center; color: var(--text-muted); padding: 20px; width: 100%;">Mengambil video dari YouTube...</p></div>
         </section>
 
-        <section class="panel" id="campaign-section">
-            <h2>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
-                Iklan & Campaign Klien
-            </h2>
+        <section class="panel">
+            <h2><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg> Iklan & Campaign Klien</h2>
             <p>Geser (swipe) ke samping. Video portofolio klien ini diunggah secara <i>Unlisted</i> khusus untuk ditampilkan di sini.</p>
-            
             <div class="carousel-container">
-                <div class="video-card">
-                    <div class="video-wrapper">
-                        <iframe src="https://www.youtube.com/embed/ZFNQEmBaErg" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
-                    <div class="video-info">
-                        <div class="video-title">Iklan Pomade</div>
-                        <div class="video-date">September 2024</div>
-                    </div>
-                </div>
-
-                <div class="video-card">
-                    <div class="video-wrapper">
-                        <iframe src="https://www.youtube.com/embed/8Y-gidMYyX4" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
-                    <div class="video-info">
-                        <div class="video-title">Vzel Cafe Resto</div>
-                        <div class="video-date">Oktober 2021</div>
-                    </div>
-                </div>
-                
-                <div class="video-card">
-                    <div class="video-wrapper">
-                        <iframe src="https://www.youtube.com/embed/b37mx7dqqIY" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
-                    <div class="video-info">
-                        <div class="video-title">Ghathaf Coffe Premium</div>
-                        <div class="video-date">Juli 2021</div>
-                    </div>
-                </div>
+                <div class="video-card"><div class="video-wrapper"><iframe src="https://www.youtube.com/embed/ZFNQEmBaErg" title="YouTube video player" allowfullscreen></iframe></div><div class="video-info"><div class="video-title">Iklan Pomade</div><div class="video-date">September 2024</div></div></div>
+                <div class="video-card"><div class="video-wrapper"><iframe src="https://www.youtube.com/embed/8Y-gidMYyX4" title="YouTube video player" allowfullscreen></iframe></div><div class="video-info"><div class="video-title">Vzel Cafe Resto</div><div class="video-date">Oktober 2021</div></div></div>
+                <div class="video-card"><div class="video-wrapper"><iframe src="https://www.youtube.com/embed/b37mx7dqqIY" title="YouTube video player" allowfullscreen></iframe></div><div class="video-info"><div class="video-title">Ghathaf Coffe Premium</div><div class="video-date">Juli 2021</div></div></div>
             </div>
         </section>
 
         <section class="panel">
-            <h2>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
-                Pengalaman Kerja & Proyek
-            </h2>
-
-            <div class="timeline-item">
-                <div class="timeline-title">Yayasan Muslim Aceh Peduli</div>
-                <div class="timeline-date">Staf & Eksekutif (Berjalan)</div>
-                <ul>
-                    <li>Memulai karier sebagai Akuntan lembaga.</li>
-                    <li>Berkembang mengelola Divisi Media dan Publikasi untuk kebutuhan informasi yayasan.</li>
-                    <li>Menangani akuntansi khusus untuk rekapan fasilitas pembangunan.</li>
-                </ul>
-            </div>
-
-            <div class="timeline-item">
-                <div class="timeline-title">CV Kembar Group</div>
-                <div class="timeline-date">Staf Akuntansi</div>
-                <ul>
-                    <li>Bertanggung jawab atas administrasi keuangan dan pembukuan perusahaan.</li>
-                    <li>Mengelola laporan transaksi dan pencatatan akuntansi operasional secara sistematis.</li>
-                </ul>
-            </div>
-            
-            <div class="timeline-item">
-                <div class="timeline-title">Kreator Independen & Visual Media</div>
-                <div class="timeline-date">Karya Orisinal</div>
-                <ul>
-                    <li>Memproduksi, menyutradarai, dan mengedit <i>Music Video</i> dan Film Pendek orisinal secara mandiri.</li>
-                    <li>Mengeksplorasi tipografi, desain visual, dan <i>video editing</i> profesional.</li>
-                    <li>Mengelola <i>deployment project web</i> untuk kebutuhan portofolio via Netlify dan Vercel.</li>
-                </ul>
-            </div>
-
-            <div class="timeline-item">
-                <div class="timeline-title">Wirausaha Mandiri</div>
-                <div class="timeline-date">2022 - Sekarang</div>
-                <ul>
-                    <li>Mengelola <i>Counter</i> Pulsa & Produk Digital (2024 - Sekarang): melayani transaksi pelanggan dan kelancaran sirkulasi saldo.</li>
-                    <li>Mengelola <i>Coffee Shop</i> (2022 - 2025): menangani manajemen operasional harian, suplai bahan, dan promosi kedai.</li>
-                </ul>
-            </div>
+            <h2><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg> Pengalaman Kerja & Proyek</h2>
+            <div class="timeline-item"><div class="timeline-title">Yayasan Muslim Aceh Peduli</div><div class="timeline-date">Staf & Eksekutif (Berjalan)</div><ul><li>Memulai karier sebagai Akuntan lembaga.</li><li>Berkembang mengelola Divisi Media dan Publikasi untuk kebutuhan informasi yayasan.</li><li>Menangani akuntansi khusus untuk rekapan fasilitas pembangunan.</li></ul></div>
+            <div class="timeline-item"><div class="timeline-title">CV Kembar Group</div><div class="timeline-date">Staf Akuntansi</div><ul><li>Bertanggung jawab atas administrasi keuangan dan pembukuan perusahaan.</li><li>Mengelola laporan transaksi dan pencatatan akuntansi operasional secara sistematis.</li></ul></div>
+            <div class="timeline-item"><div class="timeline-title">Kreator Independen & Visual Media</div><div class="timeline-date">Karya Orisinal</div><ul><li>Memproduksi, menyutradarai, dan mengedit <i>Music Video</i> dan Film Pendek orisinal secara mandiri.</li><li>Mengeksplorasi tipografi, desain visual, dan <i>video editing</i> profesional.</li><li>Mengelola <i>deployment project web</i> untuk kebutuhan portofolio via Netlify dan Vercel.</li></ul></div>
+            <div class="timeline-item"><div class="timeline-title">Wirausaha Mandiri</div><div class="timeline-date">2022 - Sekarang</div><ul><li>Mengelola <i>Counter</i> Pulsa & Produk Digital (2024 - Sekarang): melayani transaksi pelanggan dan kelancaran sirkulasi saldo.</li><li>Mengelola <i>Coffee Shop</i> (2022 - 2025): menangani manajemen operasional harian, suplai bahan, dan promosi kedai.</li></ul></div>
         </section>
 
         <section class="panel">
-            <h2>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                Keterampilan & Teknologi
-            </h2>
+            <h2><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg> Keterampilan & Teknologi</h2>
             <div class="info-grid">
-                <div class="info-item">
-                    <div class="info-label">Video & Audio Editing</div>
-                    <div class="highlight">Adobe Premiere Pro, DaVinci Resolve, Vegas Pro, OBS Studio</div>
-                </div>
-                <div class="info-item">
-                    <div class="info-label">Akuntansi & Administrasi</div>
-                    <div class="highlight">Microsoft Office, Excel, Manajemen Keuangan, Pembukuan Transaksi</div>
-                </div>
-                <div class="info-item">
-                    <div class="info-label">Desain Grafis & Visual</div>
-                    <div class="highlight">Adobe Illustrator, Canva, Produksi Film Pendek/MV</div>
-                </div>
-                <div class="info-item">
-                    <div class="info-label">Web & Deployment</div>
-                    <div class="highlight">GitHub, Vercel, Netlify, Dasar-dasar Pemrograman Web</div>
-                </div>
+                <div class="info-item"><div class="info-label">Video & Audio Editing</div><div class="highlight">Adobe Premiere Pro, DaVinci Resolve, Vegas Pro, OBS Studio</div></div>
+                <div class="info-item"><div class="info-label">Akuntansi & Administrasi</div><div class="highlight">Microsoft Office, Excel, Manajemen Keuangan, Pembukuan Transaksi</div></div>
+                <div class="info-item"><div class="info-label">Desain Grafis & Visual</div><div class="highlight">Adobe Illustrator, Canva, Produksi Film Pendek/MV</div></div>
+                <div class="info-item"><div class="info-label">Web & Deployment</div><div class="highlight">GitHub, Vercel, Netlify, Dasar-dasar Pemrograman Web</div></div>
             </div>
         </section>
 
         <section class="panel">
-            <h2>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
-                Pendidikan
-            </h2>
-            <div class="timeline-item">
-                <div class="timeline-title">MAS Darul Kiram Aceh Utara</div>
-                <div class="timeline-date">Alumni 2019</div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-title">MTs Jabal Nur Paloh Lada</div>
-                <div class="timeline-date">Alumni</div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-title">SD 5 Banda Baro, Gampong Ulee Nyeue</div>
-                <div class="timeline-date">Alumni</div>
-            </div>
+            <h2><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg> Pendidikan</h2>
+            <div class="timeline-item"><div class="timeline-title">MAS Darul Kiram Aceh Utara</div><div class="timeline-date">Alumni 2019</div></div>
+            <div class="timeline-item"><div class="timeline-title">MTs Jabal Nur Paloh Lada</div><div class="timeline-date">Alumni</div></div>
+            <div class="timeline-item"><div class="timeline-title">SD 5 Banda Baro, Gampong Ulee Nyeue</div><div class="timeline-date">Alumni</div></div>
         </section>
 
-        <div class="print-wrapper" style="text-align: center; margin-top: 10px;">
-            <button onclick="window.print()" class="print-btn">
+        <!-- === TOMBOL GENERATE PDF BARU === -->
+        <div style="text-align: center; margin-top: 10px;">
+            <button id="btn-download" onclick="generatePDF()" class="print-btn">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-                Download PDF
+                Download PDF A4
             </button>
         </div>
 
     </div>
 
+    <!-- =========================================================
+         TEMPLATE RAHASIA KHUSUS UNTUK HASIL PDF
+         (Ini disembunyikan pakai CSS, bakal kepanggil cuma pas klik Download PDF)
+    ========================================================== -->
+    <div id="cv-pdf-template" style="display: none;">
+        <div id="pdf-content" style="padding: 40px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #222; background: #fff; width: 794px; box-sizing: border-box;">
+            
+            <!-- HEADER PDF -->
+            <div style="display: flex; align-items: center; border-bottom: 3px solid #5e81ac; padding-bottom: 25px; margin-bottom: 25px;">
+                <img src="foto.png" style="width: 140px; height: 140px; border-radius: 50%; object-fit: cover; margin-right: 30px; border: 2px solid #5e81ac;">
+                <div>
+                    <h1 style="margin: 0 0 5px 0; color: #12141d; font-size: 36px; font-weight: bold; letter-spacing: 1px;">Mahyu Herdi</h1>
+                    <h3 style="margin: 0 0 12px 0; color: #5e81ac; font-size: 18px; font-weight: 500;">Kreator Digital & Wirausahawan</h3>
+                    <p style="margin: 0; font-size: 13px; color: #555; line-height: 1.6;">
+                        📞 +62 812-9437-9909 &nbsp;&nbsp;|&nbsp;&nbsp; ✉️ erbeawebird@gmail.com <br>
+                        🌍 Aceh Utara, Indonesia &nbsp;&nbsp;|&nbsp;&nbsp; 📸 IG: @mahyu_herdi
+                    </p>
+                </div>
+            </div>
+
+            <!-- DUA KOLOM PDF -->
+            <div style="display: flex; gap: 40px;">
+                
+                <!-- KOLOM KIRI (Info & Pendidikan) -->
+                <div style="flex: 1;">
+                    <h4 style="color: #5e81ac; border-bottom: 2px solid #eee; padding-bottom: 5px; margin-bottom: 15px; font-size: 15px; text-transform: uppercase;">Profil Singkat</h4>
+                    <p style="font-size: 13px; line-height: 1.6; margin-bottom: 25px; text-align: justify; color: #444;">
+                        Seorang profesional multitalenta di bidang media visual dan administrasi dengan latar belakang kewirausahaan. Berpengalaman dalam pengelolaan akuntansi, produksi karya orisinal (music video/film pendek), hingga deployment web portofolio.
+                    </p>
+                    
+                    <h4 style="color: #5e81ac; border-bottom: 2px solid #eee; padding-bottom: 5px; margin-bottom: 15px; font-size: 15px; text-transform: uppercase;">Informasi Pribadi</h4>
+                    <ul style="list-style: none; padding: 0; font-size: 13px; line-height: 1.8; margin-bottom: 25px; color: #444;">
+                        <li><strong>Usia:</strong> <span id="pdf-dynamic-age"></span></li>
+                        <li><strong>Jenis Kelamin:</strong> Laki-Laki</li>
+                        <li><strong>Agama/Status:</strong> Islam / Menikah</li>
+                    </ul>
+
+                    <h4 style="color: #5e81ac; border-bottom: 2px solid #eee; padding-bottom: 5px; margin-bottom: 15px; font-size: 15px; text-transform: uppercase;">Pendidikan</h4>
+                    <ul style="list-style: none; padding: 0; font-size: 13px; line-height: 1.8; margin-bottom: 25px; color: #444;">
+                        <li><strong>MAS Darul Kiram</strong><br><span style="color: #777;">Alumni 2019</span></li>
+                        <li style="margin-top: 10px;"><strong>MTs Jabal Nur Paloh Lada</strong><br><span style="color: #777;">Alumni</span></li>
+                        <li style="margin-top: 10px;"><strong>SD 5 Banda Baro</strong><br><span style="color: #777;">Alumni</span></li>
+                    </ul>
+                </div>
+
+                <!-- KOLOM KANAN (Pengalaman & Skill) -->
+                <div style="flex: 1.4;">
+                    <h4 style="color: #5e81ac; border-bottom: 2px solid #eee; padding-bottom: 5px; margin-bottom: 15px; font-size: 15px; text-transform: uppercase;">Pengalaman Kerja</h4>
+                    
+                    <div style="margin-bottom: 18px;">
+                        <div style="font-weight: bold; font-size: 14px; color: #12141d;">Yayasan Muslim Aceh Peduli</div>
+                        <div style="font-size: 12px; color: #5e81ac; margin-bottom: 5px; font-weight: 500;">Staf & Eksekutif (Berjalan)</div>
+                        <ul style="font-size: 13px; padding-left: 18px; margin: 0; line-height: 1.5; color: #444;">
+                            <li>Akuntan lembaga & Mengelola Divisi Media Publikasi.</li>
+                            <li>Menangani akuntansi khusus rekapan fasilitas pembangunan.</li>
+                        </ul>
+                    </div>
+
+                    <div style="margin-bottom: 18px;">
+                        <div style="font-weight: bold; font-size: 14px; color: #12141d;">CV Kembar Group</div>
+                        <div style="font-size: 12px; color: #5e81ac; margin-bottom: 5px; font-weight: 500;">Staf Akuntansi</div>
+                        <ul style="font-size: 13px; padding-left: 18px; margin: 0; line-height: 1.5; color: #444;">
+                            <li>Administrasi keuangan, pembukuan, dan laporan transaksi harian.</li>
+                        </ul>
+                    </div>
+
+                    <div style="margin-bottom: 18px;">
+                        <div style="font-weight: bold; font-size: 14px; color: #12141d;">Kreator Independen</div>
+                        <div style="font-size: 12px; color: #5e81ac; margin-bottom: 5px; font-weight: 500;">Karya Orisinal & Visual Media</div>
+                        <ul style="font-size: 13px; padding-left: 18px; margin: 0; line-height: 1.5; color: #444;">
+                            <li>Produksi Music Video dan Film Pendek secara mandiri.</li>
+                            <li>Deployment project web portofolio (Netlify/Vercel).</li>
+                        </ul>
+                    </div>
+
+                    <div style="margin-bottom: 25px;">
+                        <div style="font-weight: bold; font-size: 14px; color: #12141d;">Wirausaha Mandiri</div>
+                        <div style="font-size: 12px; color: #5e81ac; margin-bottom: 5px; font-weight: 500;">2022 - Sekarang</div>
+                        <ul style="font-size: 13px; padding-left: 18px; margin: 0; line-height: 1.5; color: #444;">
+                            <li>Mengelola Counter Pulsa & Produk Digital (2024 - Sekarang).</li>
+                            <li>Manajemen operasional Coffee Shop (2022 - 2025).</li>
+                        </ul>
+                    </div>
+
+                    <h4 style="color: #5e81ac; border-bottom: 2px solid #eee; padding-bottom: 5px; margin-bottom: 15px; font-size: 15px; text-transform: uppercase;">Keterampilan & Teknologi</h4>
+                    <ul style="font-size: 13px; padding-left: 18px; margin: 0; line-height: 1.8; color: #444;">
+                        <li><strong>Video Editing:</strong> Premiere Pro, DaVinci Resolve, Vegas Pro, OBS</li>
+                        <li><strong>Administrasi:</strong> Microsoft Office, Excel, Manajemen Keuangan</li>
+                        <li><strong>Desain:</strong> Adobe Illustrator, Canva</li>
+                        <li><strong>Web Deployment:</strong> GitHub, Vercel, Netlify</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- === SCRIPT KHUSUS LOGIKA === -->
     <script>
         // 1. Hitung Umur Otomatis
         document.addEventListener("DOMContentLoaded", function() {
@@ -717,43 +375,54 @@
                 age--;
             }
             document.getElementById("dynamic-age").innerText = age + " Tahun";
+            document.getElementById("pdf-dynamic-age").innerText = age + " Tahun"; // Lempar umur ke template PDF
         });
 
-        // 2. DAFTAR VIDEO DARI LUAR CHANNEL
+        // ==========================================
+        // 2. FUNGSI BARU UNTUK GENERATE PDF A4
+        // ==========================================
+        function generatePDF() {
+            const btn = document.getElementById('btn-download');
+            btn.innerHTML = "Merapikan PDF..."; // Loading state
+
+            // Tampilkan sebentar si template PDF tapi sembunyiin dari layar mata (trik jitu)
+            const templateBox = document.getElementById('cv-pdf-template');
+            templateBox.style.display = 'block';
+            templateBox.style.position = 'absolute';
+            templateBox.style.left = '-9999px'; 
+
+            const element = document.getElementById('pdf-content');
+
+            // Pengaturan output dari html2pdf
+            const options = {
+                margin:       [0, 0, 0, 0], 
+                filename:     'CV_Mahyu_Herdi.pdf',
+                image:        { type: 'jpeg', quality: 0.98 },
+                html2canvas:  { scale: 2, useCORS: true },
+                jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            };
+
+            // Proses generate
+            html2pdf().set(options).from(element).save().then(() => {
+                // Balikin seperti semula kalau udah selesai download
+                templateBox.style.display = 'none';
+                templateBox.style.position = 'static';
+                btn.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg> Download PDF A4`;
+            });
+        }
+
+        // =========================================================
+        // 3. DAFTAR VIDEO DARI LUAR CHANNEL & YOUTUBE API
+        // =========================================================
         const videoDariLuar = [
-            {
-                title: "Ganteng Kuh Hana",
-                link: "https://youtu.be/CL0D7jd22i4?si=5RKnzLXOz4VkTNQ0",
-                pubDate: "2025-06-01" 
-            },
-            {
-                title: "Stalk Aku",
-                link: "https://youtu.be/3hHPGq52GUY?si=7LD-dF0gFyUyFQEO",
-                pubDate: "2021-08-01"
-            },
-            {
-                title: "Jie Komuya - Pukeuh Nyo Cinta",
-                link: "https://youtu.be/guhoF8LA7d0?si=UssRzPdvPQJ1OJUF",
-                pubDate: "2020-01-14"
-            },
-            {
-                title: "Jie Komuya - Meusyen",
-                link: "https://youtu.be/5nXHBb2bfOU?si=PNOy1co4aBjBRIM-",
-                pubDate: "2021-05-20"
-            },
-            {
-                title: "Neyza Wahyudi - Bukan Segalanya",
-                link: "https://youtu.be/t-N9kMaVRTk?si=e38251qwxfhI3UH7",
-                pubDate: "2022-03-19"
-            },
-            {
-                title: "Wahyu Sn - Tiang Nangroe- Bayuna Musik",
-                link: "https://youtu.be/IcDYugcmZqM?si=OrKvxANbxw2bK1NP",
-                pubDate: "2023-04-14"
-            }
+            { title: "Ganteng Kuh Hana", link: "https://youtu.be/CL0D7jd22i4", pubDate: "2025-06-01" },
+            { title: "Stalk Aku", link: "https://youtu.be/3hHPGq52GUY", pubDate: "2021-08-01" },
+            { title: "Jie Komuya - Pukeuh Nyo Cinta", link: "https://youtu.be/guhoF8LA7d0", pubDate: "2020-01-14" },
+            { title: "Jie Komuya - Meusyen", link: "https://youtu.be/5nXHBb2bfOU", pubDate: "2021-05-20" },
+            { title: "Neyza Wahyudi - Bukan Segalanya", link: "https://youtu.be/t-N9kMaVRTk", pubDate: "2022-03-19" },
+            { title: "Wahyu Sn - Tiang Nangroe- Bayuna Musik", link: "https://youtu.be/IcDYugcmZqM", pubDate: "2023-04-14" }
         ];
 
-        // 3. Script YouTube Dinamis
         const channelId = 'UCU3NZDtls7xJpYAkXZ00Abw'; 
         const rssUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`;
         const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
