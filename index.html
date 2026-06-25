@@ -89,7 +89,8 @@
 
         /* === LAYOUT UTAMA === */
         .container {
-            max-width: 900px;
+            max-width: 1400px; /* Diperlebar agar full di layar PC */
+            width: 95%;        /* Proporsi pas untuk layar horizontal */
             margin: 40px auto;
             padding: 0 20px;
             display: flex;
@@ -345,9 +346,20 @@
             gap: 15px;
         }
 
+        /* Penyesuaian Responsif untuk Video Card di berbagai ukuran layar */
         @media (min-width: 650px) {
             .video-card {
-                flex: 0 0 calc(50% - 10px); 
+                flex: 0 0 calc(50% - 10px); /* 2 video di tablet */
+            }
+        }
+        @media (min-width: 1024px) {
+            .video-card {
+                flex: 0 0 calc(33.33% - 13.33px); /* 3 video di PC/Laptop biasa */
+            }
+        }
+        @media (min-width: 1400px) {
+            .video-card {
+                flex: 0 0 calc(25% - 15px); /* 4 video di monitor ultrawide */
             }
         }
 
@@ -397,7 +409,7 @@
             font-weight: 500;
         }
 
-        /* === RESPONSIVE === */
+        /* === RESPONSIVE UTAMA === */
         @media (max-width: 600px) {
             .header-section {
                 flex-direction: column;
