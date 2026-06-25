@@ -5,10 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CV - Mahyu Herdi</title>
     
+    <!-- Library untuk Generate PDF langsung di HTML -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
     <style>
-        /* === VARIABEL WARNA & TEMA === */
+        /* === VARIABEL WARNA & TEMA WEB === */
         :root {
             --bg-color: #12141d;
             --text-main: #f0f0f5;
@@ -55,14 +56,7 @@
             background: var(--bg-color);
         }
 
-        .blob {
-            position: absolute;
-            filter: blur(90px);
-            border-radius: 50%;
-            animation: breathe 8s infinite alternate cubic-bezier(0.4, 0, 0.2, 1);
-            opacity: 0.7;
-        }
-
+        .blob { position: absolute; filter: blur(90px); border-radius: 50%; animation: breathe 8s infinite alternate cubic-bezier(0.4, 0, 0.2, 1); opacity: 0.7; }
         .blob-1 { top: -10%; left: -10%; width: 50vw; height: 50vw; background: var(--neon-1); animation-delay: 0s; }
         .blob-2 { bottom: -20%; right: -10%; width: 60vw; height: 60vw; background: var(--neon-2); animation-delay: -2s; }
         .blob-3 { top: 40%; left: 40%; width: 40vw; height: 40vw; background: var(--neon-3); animation-delay: -4s; }
@@ -74,34 +68,11 @@
         }
 
         /* === LAYOUT UTAMA === */
-        .container {
-            max-width: 1400px;
-            width: 95%;
-            margin: 40px auto;
-            padding: 0 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-        }
+        .container { max-width: 1400px; width: 95%; margin: 40px auto; padding: 0 20px; display: flex; flex-direction: column; gap: 30px; position: relative; z-index: 10; }
 
         /* === GAYA KOTAK (PANEL) === */
-        .panel {
-            background: var(--panel-bg);
-            border: 1px solid var(--panel-border);
-            border-radius: 24px;
-            padding: 30px;
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            box-shadow: var(--shadow-outer), var(--shadow-inner);
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
-        }
-
-        .panel:hover {
-            transform: translateY(-5px);
-            box-shadow: 15px 15px 40px rgba(0, 0, 0, 0.6), 
-                       -5px -5px 20px rgba(255, 255, 255, 0.03),
-                       var(--shadow-inner);
-        }
+        .panel { background: var(--panel-bg); border: 1px solid var(--panel-border); border-radius: 24px; padding: 30px; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); box-shadow: var(--shadow-outer), var(--shadow-inner); transition: transform 0.4s ease, box-shadow 0.4s ease; }
+        .panel:hover { transform: translateY(-5px); box-shadow: 15px 15px 40px rgba(0, 0, 0, 0.6), -5px -5px 20px rgba(255, 255, 255, 0.03), var(--shadow-inner); }
 
         /* === TIPOGRAFI === */
         h1, h2, h3 { color: var(--accent-blue); font-weight: 600; letter-spacing: 0.5px; }
@@ -178,6 +149,7 @@
         <div class="blob blob-3"></div>
     </div>
 
+    <!-- KONTEN WEB UTAMA -->
     <div class="container" id="web-container">
         
         <header class="panel header-section">
@@ -256,101 +228,94 @@
         <div style="text-align: center; margin-top: 10px;">
             <button id="btn-download" onclick="generatePDF()" class="print-btn">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-                Download PDF A4
+                Download PDF CV Klasik
             </button>
         </div>
 
     </div>
 
-    <div id="cv-pdf-template" style="display: none;">
-        <div id="pdf-content" style="padding: 40px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #222; background: #ffffff; width: 794px; min-height: 1122px; box-sizing: border-box;">
-            
-            <div style="display: flex; align-items: center; border-bottom: 3px solid #5e81ac; padding-bottom: 25px; margin-bottom: 25px;">
-                <img src="foto.png" style="width: 140px; height: 140px; border-radius: 50%; object-fit: cover; margin-right: 30px; border: 2px solid #5e81ac;">
-                <div>
-                    <h1 style="margin: 0 0 5px 0; color: #12141d; font-size: 36px; font-weight: bold; letter-spacing: 1px;">Mahyu Herdi</h1>
-                    <h3 style="margin: 0 0 12px 0; color: #5e81ac; font-size: 18px; font-weight: 500;">Kreator Digital & Wirausahawan</h3>
-                    <p style="margin: 0; font-size: 13px; color: #555; line-height: 1.6;">
-                        📞 +62 812-9437-9909 &nbsp;&nbsp;|&nbsp;&nbsp; ✉️ erbeawebird@gmail.com <br>
-                        🌍 Aceh Utara, Indonesia &nbsp;&nbsp;|&nbsp;&nbsp; 📸 IG: @mahyu_herdi
-                    </p>
-                </div>
+    <!-- =========================================================
+         TEMPLATE CV KLASIK (Disembunyikan, Dieksekusi khusus buat PDF)
+    ========================================================== -->
+    <div id="cv-pdf-template" style="display: none; position: absolute; top: 0; left: 0; width: 210mm; padding: 20mm; background: #ffffff; color: #000000; font-family: Arial, sans-serif; box-sizing: border-box; z-index: -100;">
+        
+        <h1 style="text-align: center; font-size: 24px; font-weight: bold; margin-bottom: 30px; text-transform: uppercase;">Curriculum Vitae</h1>
+        
+        <!-- SECTION: FOTO & DATA DIRI (Layout sesuai referensi text) -->
+        <div style="display: flex; justify-content: space-between; margin-bottom: 25px;">
+            <div style="width: 75%;">
+                <h2 style="font-size: 16px; font-weight: bold; margin-bottom: 10px; border-bottom: 2px solid #000; padding-bottom: 5px;">DATA DIRI</h2>
+                <table style="width: 100%; font-size: 14px; line-height: 1.8;">
+                    <tr><td style="width: 170px;">Nama</td><td>: Mahyu Herdi</td></tr>
+                    <tr><td>Tempat tanggal lahir</td><td>: Ulee Nyeue, 08 Maret 2001</td></tr>
+                    <tr><td>Jenis Kelamin</td><td>: Laki - Laki</td></tr>
+                    <tr><td>Agama</td><td>: Islam</td></tr>
+                    <tr><td>Status</td><td>: Menikah</td></tr>
+                    <tr><td style="vertical-align: top;">Alamat Tinggal</td><td>: Dusun Cot Kuta, Gampong Ulee Nyeue, Kec. Banda Baro, Aceh Utara 24376</td></tr>
+                    <tr><td>Phone</td><td>: 081294379909</td></tr>
+                    <tr><td>Email</td><td>: erbeawebird@gmail.com</td></tr>
+                </table>
             </div>
-
-            <div style="display: flex; gap: 40px;">
-                
-                <div style="flex: 1;">
-                    <h4 style="color: #5e81ac; border-bottom: 2px solid #eee; padding-bottom: 5px; margin-bottom: 15px; font-size: 15px; text-transform: uppercase;">Profil Singkat</h4>
-                    <p style="font-size: 13px; line-height: 1.6; margin-bottom: 25px; text-align: justify; color: #444;">
-                        Seorang profesional multitalenta di bidang media visual dan administrasi dengan latar belakang kewirausahaan. Berpengalaman dalam pengelolaan akuntansi, produksi karya orisinal (music video/film pendek), hingga deployment web portofolio.
-                    </p>
-                    
-                    <h4 style="color: #5e81ac; border-bottom: 2px solid #eee; padding-bottom: 5px; margin-bottom: 15px; font-size: 15px; text-transform: uppercase;">Informasi Pribadi</h4>
-                    <ul style="list-style: none; padding: 0; font-size: 13px; line-height: 1.8; margin-bottom: 25px; color: #444;">
-                        <li><strong>Usia:</strong> <span id="pdf-dynamic-age"></span></li>
-                        <li><strong>Jenis Kelamin:</strong> Laki-Laki</li>
-                        <li><strong>Agama/Status:</strong> Islam / Menikah</li>
-                    </ul>
-
-                    <h4 style="color: #5e81ac; border-bottom: 2px solid #eee; padding-bottom: 5px; margin-bottom: 15px; font-size: 15px; text-transform: uppercase;">Pendidikan</h4>
-                    <ul style="list-style: none; padding: 0; font-size: 13px; line-height: 1.8; margin-bottom: 25px; color: #444;">
-                        <li><strong>MAS Darul Kiram</strong><br><span style="color: #777;">Alumni 2019</span></li>
-                        <li style="margin-top: 10px;"><strong>MTs Jabal Nur Paloh Lada</strong><br><span style="color: #777;">Alumni</span></li>
-                        <li style="margin-top: 10px;"><strong>SD 5 Banda Baro</strong><br><span style="color: #777;">Alumni</span></li>
-                    </ul>
-                </div>
-
-                <div style="flex: 1.4;">
-                    <h4 style="color: #5e81ac; border-bottom: 2px solid #eee; padding-bottom: 5px; margin-bottom: 15px; font-size: 15px; text-transform: uppercase;">Pengalaman Kerja</h4>
-                    
-                    <div style="margin-bottom: 18px;">
-                        <div style="font-weight: bold; font-size: 14px; color: #12141d;">Yayasan Muslim Aceh Peduli</div>
-                        <div style="font-size: 12px; color: #5e81ac; margin-bottom: 5px; font-weight: 500;">Staf & Eksekutif (Berjalan)</div>
-                        <ul style="font-size: 13px; padding-left: 18px; margin: 0; line-height: 1.5; color: #444;">
-                            <li>Akuntan lembaga & Mengelola Divisi Media Publikasi.</li>
-                            <li>Menangani akuntansi khusus rekapan fasilitas pembangunan.</li>
-                        </ul>
-                    </div>
-
-                    <div style="margin-bottom: 18px;">
-                        <div style="font-weight: bold; font-size: 14px; color: #12141d;">CV Kembar Group</div>
-                        <div style="font-size: 12px; color: #5e81ac; margin-bottom: 5px; font-weight: 500;">Staf Akuntansi</div>
-                        <ul style="font-size: 13px; padding-left: 18px; margin: 0; line-height: 1.5; color: #444;">
-                            <li>Administrasi keuangan, pembukuan, dan laporan transaksi harian.</li>
-                        </ul>
-                    </div>
-
-                    <div style="margin-bottom: 18px;">
-                        <div style="font-weight: bold; font-size: 14px; color: #12141d;">Kreator Independen</div>
-                        <div style="font-size: 12px; color: #5e81ac; margin-bottom: 5px; font-weight: 500;">Karya Orisinal & Visual Media</div>
-                        <ul style="font-size: 13px; padding-left: 18px; margin: 0; line-height: 1.5; color: #444;">
-                            <li>Produksi Music Video dan Film Pendek secara mandiri.</li>
-                            <li>Deployment project web portofolio (Netlify/Vercel).</li>
-                        </ul>
-                    </div>
-
-                    <div style="margin-bottom: 25px;">
-                        <div style="font-weight: bold; font-size: 14px; color: #12141d;">Wirausaha Mandiri</div>
-                        <div style="font-size: 12px; color: #5e81ac; margin-bottom: 5px; font-weight: 500;">2022 - Sekarang</div>
-                        <ul style="font-size: 13px; padding-left: 18px; margin: 0; line-height: 1.5; color: #444;">
-                            <li>Mengelola Counter Pulsa & Produk Digital (2024 - Sekarang).</li>
-                            <li>Manajemen operasional Coffee Shop (2022 - 2025).</li>
-                        </ul>
-                    </div>
-
-                    <h4 style="color: #5e81ac; border-bottom: 2px solid #eee; padding-bottom: 5px; margin-bottom: 15px; font-size: 15px; text-transform: uppercase;">Keterampilan & Teknologi</h4>
-                    <ul style="font-size: 13px; padding-left: 18px; margin: 0; line-height: 1.8; color: #444;">
-                        <li><strong>Video Editing:</strong> Premiere Pro, DaVinci Resolve, Vegas Pro, OBS</li>
-                        <li><strong>Administrasi:</strong> Microsoft Office, Excel, Manajemen Keuangan</li>
-                        <li><strong>Desain:</strong> Adobe Illustrator, Canva</li>
-                        <li><strong>Web Deployment:</strong> GitHub, Vercel, Netlify</li>
-                    </ul>
-                </div>
+            <div style="width: 20%; text-align: right; padding-top: 10px;">
+                <img src="foto.png" style="width: 100%; max-width: 120px; border: 1px solid #ccc; padding: 2px;">
             </div>
         </div>
+
+        <h2 style="font-size: 16px; font-weight: bold; margin-bottom: 10px; border-bottom: 2px solid #000; padding-bottom: 5px;">PROFIL SINGKAT</h2>
+        <p style="font-size: 14px; line-height: 1.6; margin-bottom: 25px; text-align: justify;">
+            Seorang profesional multitalenta di bidang media visual dan administrasi dengan latar belakang kewirausahaan. Berpengalaman dalam pengelolaan akuntansi, produksi karya orisinal seperti music video dan film pendek, hingga deployment project web menggunakan platform modern. Saya terbiasa beradaptasi cepat, memaksimalkan tools digital untuk efisiensi kerja, dan sangat terbuka untuk berkolaborasi dalam proyek-proyek kreatif maupun inisiatif baru yang menantang.
+        </p>
+
+        <h2 style="font-size: 16px; font-weight: bold; margin-bottom: 10px; border-bottom: 2px solid #000; padding-bottom: 5px;">PENDIDIKAN</h2>
+        <ul style="font-size: 14px; line-height: 1.8; margin-bottom: 25px; padding-left: 20px;">
+            <li>MAS Darul Kiram Aceh Utara - Alumni 2019</li>
+            <li>MTs Jabal Nur Paloh Lada - Alumni</li>
+            <li>SD 5 Banda Baro, Gampong Ulee Nyeue - Alumni</li>
+        </ul>
+
+        <h2 style="font-size: 16px; font-weight: bold; margin-bottom: 10px; border-bottom: 2px solid #000; padding-bottom: 5px;">KETERAMPILAN</h2>
+        <table style="width: 100%; font-size: 14px; line-height: 1.8; margin-bottom: 25px;">
+            <tr><td style="width: 220px; font-weight: bold; vertical-align: top;">Video & Audio Editing</td><td style="vertical-align: top;">: Adobe Premiere Pro, DaVinci Resolve, Vegas Pro, OBS Studio</td></tr>
+            <tr><td style="font-weight: bold; vertical-align: top;">Akuntansi & Administrasi</td><td style="vertical-align: top;">: Microsoft Office, Excel, Manajemen Keuangan, Pembukuan Transaksi</td></tr>
+            <tr><td style="font-weight: bold; vertical-align: top;">Desain Grafis & Visual</td><td style="vertical-align: top;">: Adobe Illustrator, Canva, Produksi Film Pendek/MV</td></tr>
+            <tr><td style="font-weight: bold; vertical-align: top;">Web & Deployment</td><td style="vertical-align: top;">: GitHub, Vercel, Netlify, Dasar-dasar Pemrograman Web</td></tr>
+        </table>
+
+        <h2 style="font-size: 16px; font-weight: bold; margin-bottom: 10px; border-bottom: 2px solid #000; padding-bottom: 5px;">PENGALAMAN KERJA</h2>
+        <div style="font-size: 14px; margin-bottom: 15px;">
+            <strong style="font-size: 15px;">Yayasan Muslim Aceh Peduli</strong> (Staf & Eksekutif - Berjalan)<br>
+            <ul style="margin-top: 5px; padding-left: 20px; line-height: 1.5;">
+                <li>Memulai karier sebagai Akuntan lembaga.</li>
+                <li>Berkembang mengelola Divisi Media dan Publikasi untuk kebutuhan informasi yayasan.</li>
+                <li>Menangani akuntansi khusus untuk rekapan fasilitas pembangunan.</li>
+            </ul>
+        </div>
+        <div style="font-size: 14px; margin-bottom: 15px;">
+            <strong style="font-size: 15px;">CV Kembar Group</strong> (Staf Akuntansi)<br>
+            <ul style="margin-top: 5px; padding-left: 20px; line-height: 1.5;">
+                <li>Bertanggung jawab atas administrasi keuangan dan pembukuan perusahaan.</li>
+                <li>Mengelola laporan transaksi dan pencatatan akuntansi operasional secara sistematis.</li>
+            </ul>
+        </div>
+        <div style="font-size: 14px; margin-bottom: 15px;">
+            <strong style="font-size: 15px;">Kreator Independen & Visual Media</strong> (Karya Orisinal)<br>
+            <ul style="margin-top: 5px; padding-left: 20px; line-height: 1.5;">
+                <li>Memproduksi, menyutradarai, dan mengedit Music Video dan Film Pendek orisinal secara mandiri.</li>
+                <li>Mengeksplorasi tipografi, desain visual, dan video editing profesional.</li>
+                <li>Mengelola deployment project web untuk kebutuhan portofolio via Netlify dan Vercel.</li>
+            </ul>
+        </div>
+        <div style="font-size: 14px; margin-bottom: 15px;">
+            <strong style="font-size: 15px;">Wirausaha Mandiri</strong> (2022 - Sekarang)<br>
+            <ul style="margin-top: 5px; padding-left: 20px; line-height: 1.5;">
+                <li>Mengelola Counter Pulsa & Produk Digital (2024 - Sekarang): melayani transaksi pelanggan dan kelancaran sirkulasi saldo.</li>
+                <li>Mengelola Coffee Shop (2022 - 2025): menangani manajemen operasional harian, suplai bahan, dan promosi kedai.</li>
+            </ul>
+        </div>
+
     </div>
 
-
+    <!-- === SCRIPT KHUSUS LOGIKA === -->
     <script>
         // 1. Hitung Umur Otomatis
         document.addEventListener("DOMContentLoaded", function() {
@@ -362,26 +327,20 @@
                 age--;
             }
             document.getElementById("dynamic-age").innerText = age + " Tahun";
-            document.getElementById("pdf-dynamic-age").innerText = age + " Tahun"; // Lempar umur ke template PDF
         });
 
         // ==========================================
-        // 2. FUNGSI BARU UNTUK GENERATE PDF A4
+        // 2. FUNGSI GENERATE PDF YANG PASTI JALAN
         // ==========================================
         function generatePDF() {
             const btn = document.getElementById('btn-download');
-            btn.innerHTML = "Memproses PDF..."; // Kasih tanda ke user kalau lagi loading
-
-            const templateBox = document.getElementById('cv-pdf-template');
-            const element = document.getElementById('pdf-content');
-
-            // Tampilkan elemennya di layar tapi taruh di tumpukan paling belakang biar tertutup background web
-            templateBox.style.display = 'block';
-            templateBox.style.position = 'absolute';
-            templateBox.style.top = '0';
-            templateBox.style.left = '0';
-            templateBox.style.zIndex = '-999';
-
+            btn.innerHTML = "Menyiapkan PDF..."; // Status loading biar user tahu
+            
+            const element = document.getElementById('cv-pdf-template');
+            
+            // Kuncinya di sini: Tampilkan elemennya, tapi posisinya di z-index minus biar nggak nutupin web
+            element.style.display = 'block';
+            
             const options = {
                 margin:       0, 
                 filename:     'CV_Mahyu_Herdi.pdf',
@@ -390,13 +349,12 @@
                 jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
             };
 
-            // Beri jeda waktu browser 0.5 detik untuk nge-render gambarnya sebelum di-capture
+            // Jeda 0.5 detik buat nunggu foto/font beres ke-load di belakang layar
             setTimeout(() => {
                 html2pdf().set(options).from(element).save().then(() => {
-                    // Sembunyikan lagi setelah selesai download
-                    templateBox.style.display = 'none';
-                    templateBox.style.position = 'static';
-                    btn.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg> Download PDF A4`;
+                    // Balikin disembunyiin lagi setelah beres didownload
+                    element.style.display = 'none';
+                    btn.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg> Download PDF CV Klasik`;
                 });
             }, 500);
         }
@@ -489,20 +447,14 @@
 
         document.getElementById('videoSearch').addEventListener('input', function(e) {
             const keyword = e.target.value.toLowerCase();
-            
-            if(keyword === '') {
-                renderVideos(allVideos); 
-                return;
-            }
+            if(keyword === '') { renderVideos(allVideos); return; }
             
             const filtered = allVideos.filter(vid => {
                 const date = new Date(vid.pubDate);
                 const options = { month: 'long', year: 'numeric' };
                 const dateStr = date.toLocaleDateString('id-ID', options).toLowerCase();
-                
                 return vid.title.toLowerCase().includes(keyword) || dateStr.includes(keyword);
             });
-            
             renderVideos(filtered);
         });
     </script>
