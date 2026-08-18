@@ -14,7 +14,7 @@
     },
     {
       "source": "/undangan-resepsi/:path*",
-      "destination": "https://luxury-undangan-resepsi.vercel.app/*"
+      "destination": "https://luxury-undangan-resepsi.vercel.app/:path*"
     }
   ]
 }
