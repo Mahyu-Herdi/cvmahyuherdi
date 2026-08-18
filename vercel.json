@@ -1,14 +1,6 @@
 {
   "rewrites": [
     {
-      "source": "/poswaserda",
-      "destination": "https://poswaserda.erbea.id"
-    },
-    {
-      "source": "/poswaserda/:path*",
-      "destination": "https://poswaserda.erbea.id/:path*"
-    },
-    {
       "source": "/undangan-resepsi",
       "destination": "https://luxury-undangan-resepsi.vercel.app"
     },
