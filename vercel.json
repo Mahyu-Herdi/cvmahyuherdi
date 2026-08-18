@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/poswaserda",
+      "destination": "https://poswaserda.erbea.id"
+    },
+    {
+      "source": "/poswaserda/:path*",
+      "destination": "https://poswaserda.erbea.id/:path*"
+    }
+  ]
+}
