@@ -7,6 +7,14 @@
     {
       "source": "/poswaserda/:path*",
       "destination": "https://poswaserda.erbea.id/:path*"
+    },
+    {
+      "source": "/undangan-resepsi",
+      "destination": "https://undangan-resepsi.erbea.id"
+    },
+    {
+      "source": "/undangan-resepsi/:path*",
+      "destination": "https://poswaserda.erbea.id/:path*"
     }
   ]
 }
