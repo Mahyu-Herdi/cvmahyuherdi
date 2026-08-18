@@ -10,11 +10,11 @@
     },
     {
       "source": "/undangan-resepsi",
-      "destination": "https://undangan-resepsi.erbea.id"
+      "destination": "https://luxury-undangan-resepsi.vercel.app"
     },
     {
       "source": "/undangan-resepsi/:path*",
-      "destination": "https://poswaserda.erbea.id/:path*"
+      "destination": "https://luxury-undangan-resepsi.vercel.app/*"
     }
   ]
 }
