@@ -1,12 +1,27 @@
 {
-  "rewrites": [
+  "version": 2,
+  "builds": [
     {
-      "source": "/undangan-resepsi",
-      "destination": "https://luxury-undangan-resepsi.vercel.app"
+      "src": "server.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/undangan-resepsi",
+      "dest": "https://luxury-undangan-resepsi.vercel.app"
     },
     {
-      "source": "/undangan-resepsi/:path*",
-      "destination": "https://luxury-undangan-resepsi.vercel.app/:path*"
+      "src": "/undangan-resepsi/(.*)",
+      "dest": "https://luxury-undangan-resepsi.vercel.app/$1"
+    },
+    {
+      "src": "/(favicon.png|foto.png|src/.*)",
+      "dest": "/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "server.js"
     }
   ]
 }
