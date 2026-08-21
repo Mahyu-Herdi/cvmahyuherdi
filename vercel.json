@@ -1,8 +1,8 @@
 {
   "rewrites": [
     {
-      "source": "/undangan-resepsi-:slug*",
-      "destination": "https://officialinvited.erbea.id/undangan-resepsi-:slug*"
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ]
 }
