@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/undangan-resepsi-:slug*",
-      "destination": "https://undangan-resepsi-erbea.vercel.app/undangan-resepsi-:slug*"
+      "destination": "https://officialinvited.erbea.id/undangan-resepsi-:slug*"
     }
   ]
 }
