@@ -1400,11 +1400,33 @@
             flex-direction: column;
             justify-content: space-between;
             gap: 16px;
+            opacity: 0;
+            transform: translateY(18px);
+            transition:
+                opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+                background-color 0.2s ease,
+                box-shadow 0.2s ease,
+                border-color 0.2s ease;
         }
 
-        .bento-card:hover {
+        .bento-card.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .bento-card.is-visible:not(.bento-settled):nth-child(1) { transition-delay: 0ms; }
+        .bento-card.is-visible:not(.bento-settled):nth-child(2) { transition-delay: 60ms; }
+        .bento-card.is-visible:not(.bento-settled):nth-child(3) { transition-delay: 120ms; }
+        .bento-card.is-visible:not(.bento-settled):nth-child(4) { transition-delay: 180ms; }
+        .bento-card.is-visible:not(.bento-settled):nth-child(5) { transition-delay: 240ms; }
+        .bento-card.is-visible:not(.bento-settled):nth-child(6) { transition-delay: 300ms; }
+
+        .bento-card.is-visible:hover {
             transform: translateY(-3px);
             background: var(--glass-tile-hover);
+            transition-duration: 0.2s;
+            transition-delay: 0ms;
         }
 
         .bento-wide {
@@ -2347,6 +2369,19 @@
         }
 
         /* === RESPONSIVE BREAKPOINTS (PC, TABLET, MOBILE) === */
+        @media (max-width: 1140px) {
+            .top-bar {
+                gap: 14px;
+                padding: 8px 12px 8px 18px;
+            }
+            .nav-links {
+                gap: 14px;
+            }
+            .nav-link {
+                font-size: 0.85rem;
+            }
+        }
+
         @media (max-width: 1080px) {
             .hero-grid {
                 grid-template-columns: 1fr 1.05fr;
@@ -2361,6 +2396,30 @@
             }
             .segment-grid {
                 grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 980px) {
+            .top-bar {
+                padding: 8px 10px 8px 16px;
+                gap: 12px;
+            }
+            .nav-links {
+                display: none;
+            }
+            .theme-switcher {
+                display: none;
+            }
+            .theme-cycle-btn {
+                display: inline-flex;
+            }
+            .mobile-menu-btn {
+                display: inline-flex;
+            }
+            .btn-nav-cta {
+                min-height: 40px;
+                padding: 8px 16px;
+                font-size: 0.84rem;
             }
         }
 
@@ -2406,24 +2465,7 @@
                 padding: 12px 14px 48px;
                 gap: 20px;
             }
-            .top-bar {
-                padding: 8px 10px 8px 16px;
-                gap: 12px;
-            }
-            .nav-links {
-                display: none;
-            }
-            .theme-switcher {
-                display: none;
-            }
-            .theme-cycle-btn {
-                display: inline-flex;
-            }
-            .mobile-menu-btn {
-                display: inline-flex;
-            }
             .btn-nav-cta {
-                min-height: 40px;
                 padding: 8px 14px;
                 font-size: 0.82rem;
             }
@@ -2494,6 +2536,10 @@
                 animation-duration: 0.01ms !important;
                 animation-iteration-count: 1 !important;
                 transition-duration: 0.01ms !important;
+            }
+            .bento-card {
+                opacity: 1;
+                transform: none;
             }
         }
     </style>
@@ -4358,10 +4404,28 @@
             });
         }
 
+        function initBentoEntrance() {
+            const cards = document.querySelectorAll('.bento-card');
+            if (!cards.length) return;
+            requestAnimationFrame(function() {
+                requestAnimationFrame(function() {
+                    cards.forEach(function(card) {
+                        card.classList.add('is-visible');
+                    });
+                    setTimeout(function() {
+                        cards.forEach(function(card) {
+                            card.classList.add('bento-settled');
+                        });
+                    }, 950);
+                });
+            });
+        }
+
         document.addEventListener('DOMContentLoaded', function() {
             selectModule('qris', document.querySelector('.module-tab.active'));
             initPosSimulator();
             initSmartSearch();
+            initBentoEntrance();
         });
     </script>
 </body>
