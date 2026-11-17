@@ -452,12 +452,12 @@
             position: relative;
             z-index: 2;
             width: 100%;
-            max-width: 1280px;
+            max-width: 100%;
             margin: 0 auto;
-            padding: 18px 24px 64px;
+            padding: 14px 16px 56px;
             display: flex;
             flex-direction: column;
-            gap: 28px;
+            gap: 24px;
         }
 
         /* === TOP BAR (3-ZONE CONTRACT, iOS GLASS) === */
@@ -890,7 +890,7 @@
             margin-top: 16px;
             font-size: 1rem;
             color: var(--text-secondary);
-            max-width: 54ch;
+            max-width: 100%;
             line-height: 1.65;
         }
 
@@ -1384,7 +1384,7 @@
         .section-sub {
             font-size: 0.96rem;
             color: var(--text-secondary);
-            max-width: 56ch;
+            max-width: 64ch;
         }
 
         /* === BENTO GRID FITUR UNGGULAN (ASYMMETRIC DRIBBBLE GRID) === */
@@ -1908,7 +1908,7 @@
             font-size: 0.96rem;
             color: var(--text-secondary);
             line-height: 1.65;
-            max-width: 66ch;
+            max-width: 100%;
         }
 
         .director-actions {
@@ -1921,13 +1921,14 @@
 
         /* === SMART SEARCH BAR (IOS LIQUID GLASS COMMAND BAR) === */
         .search-section {
-            margin: 24px 0 28px 0;
-            padding: 28px 24px;
+            margin: 0;
+            padding: 28px 32px;
             position: relative;
         }
 
         .search-bar-wrap {
-            max-width: 840px;
+            width: 100%;
+            max-width: 100%;
             margin: 0 auto;
             display: flex;
             flex-direction: column;
@@ -1994,6 +1995,7 @@
         .search-chips-row {
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 8px;
             flex-wrap: wrap;
         }
@@ -2347,6 +2349,23 @@
         /* === RESPONSIVE BREAKPOINTS (PC, TABLET, MOBILE) === */
         @media (max-width: 1080px) {
             .hero-grid {
+                grid-template-columns: 1fr 1.05fr;
+                gap: 20px;
+            }
+            .hero-copy-pane {
+                padding: 22px;
+            }
+            .explorer-layout {
+                grid-template-columns: 260px 1fr;
+                gap: 16px;
+            }
+            .segment-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 920px) {
+            .hero-grid {
                 grid-template-columns: 1fr;
             }
             .explorer-layout {
@@ -2358,9 +2377,6 @@
             }
             .pricing-grid {
                 grid-template-columns: 1fr;
-            }
-            .segment-grid {
-                grid-template-columns: repeat(2, 1fr);
             }
         }
 
