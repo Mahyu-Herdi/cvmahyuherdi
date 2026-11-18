@@ -3825,7 +3825,7 @@
             </div>
         </section>
 
-        <!-- TESTIMONIALS & LIVE APP RATING (FIRESTORE REAL-TIME) -->
+        <!-- TESTIMONIALS & LIVE APP RATING -->
         <section id="testimoni" class="glass-card section-block">
             <div class="section-head">
                 <div>
@@ -5242,7 +5242,7 @@
         });
     </script>
 
-    <!-- FIREBASE AUTH + FIRESTORE REAL-TIME TESTIMONIALS & APP RATING -->
+    <!-- LIVE TESTIMONIALS & APP RATING -->
     <script type="module">
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js';
         import {
@@ -5262,8 +5262,7 @@
             orderBy,
             limit,
             onSnapshot,
-            serverTimestamp,
-            getDocFromServer
+            serverTimestamp
         } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js';
 
         const firebaseConfig = {
@@ -5281,47 +5280,10 @@
         const googleProvider = new GoogleAuthProvider();
         googleProvider.setCustomParameters({ prompt: 'select_account' });
 
-        const OperationType = {
-            CREATE: 'create',
-            UPDATE: 'update',
-            DELETE: 'delete',
-            LIST: 'list',
-            GET: 'get',
-            WRITE: 'write'
-        };
-
-        function handleFirestoreError(error, operationType, path) {
-            const user = auth.currentUser;
-            const errInfo = {
-                error: error instanceof Error ? error.message : String(error),
-                authInfo: {
-                    userId: user?.uid || null,
-                    email: user?.email || null,
-                    emailVerified: user?.emailVerified ?? null,
-                    isAnonymous: user?.isAnonymous ?? null,
-                    tenantId: user?.tenantId || null,
-                    providerInfo: user?.providerData?.map(p => ({
-                        providerId: p.providerId,
-                        email: p.email
-                    })) || []
-                },
-                operationType,
-                path
-            };
-            console.error('Firestore Error:', JSON.stringify(errInfo));
-            return errInfo;
+        function handleReviewSyncError(error) {
+            const msg = error instanceof Error ? error.message : String(error || '');
+            console.error('Kendala sinkronisasi ulasan:', msg);
         }
-
-        async function testConnection() {
-            try {
-                await getDocFromServer(doc(db, 'test', 'connection'));
-            } catch (error) {
-                if (error instanceof Error && error.message.includes('the client is offline')) {
-                    console.error('Periksa koneksi atau konfigurasi Firebase Firestore Anda.');
-                }
-            }
-        }
-        testConnection();
 
         function safeEscapeHtml(str) {
             if (typeof window.escapeHtml === 'function') return window.escapeHtml(str);
@@ -5447,7 +5409,7 @@
                 checkUserReviewed(currentUser);
             }
         }, (error) => {
-            handleFirestoreError(error, OperationType.LIST, testimonialsPath);
+            handleReviewSyncError(error);
         });
 
         // Auth & Form Elements
@@ -5526,7 +5488,7 @@
                 const reviewSnap = await getDoc(doc(db, testimonialsPath, user.uid));
                 userHasReviewed = reviewSnap.exists();
             } catch (error) {
-                handleFirestoreError(error, OperationType.GET, `${testimonialsPath}/${user.uid}`);
+                handleReviewSyncError(error);
                 userHasReviewed = false;
             } finally {
                 checkingReview = false;
@@ -5669,7 +5631,6 @@
                     submitBtn.textContent = 'Mengirim...';
                 }
 
-                const docPath = `${testimonialsPath}/${currentUser.uid}`;
                 try {
                     const batch = writeBatch(db);
                     batch.set(doc(db, testimonialsPath, currentUser.uid), {
@@ -5700,7 +5661,7 @@
                     syncAuthUi();
                     window.showToast?.('Ulasan Terkirim', 'Terima kasih! Ulasan dan rating Anda langsung tampil di halaman.');
                 } catch (error) {
-                    handleFirestoreError(error, OperationType.WRITE, docPath);
+                    handleReviewSyncError(error);
                     window.showToast?.('Gagal Mengirim Ulasan', 'Terjadi kendala koneksi ke server. Silakan coba lagi beberapa saat.', 'error');
                 } finally {
                     if (submitBtn) {
