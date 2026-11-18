@@ -54,7 +54,23 @@ service cloud.firestore {
         && data.createdAt == request.time;
     }
 
-    // 4. Aturan akses koleksi ulasan & rating (1 Akun Google = 1 Ulasan)
+    function isValidTestimonialEmail(data) {
+      return data.keys().hasAll(['uid', 'email', 'displayName', 'createdAt'])
+        && data.keys().hasOnly(['uid', 'email', 'displayName', 'createdAt'])
+        && data.uid is string
+        && data.uid == request.auth.uid
+        && data.email is string
+        && data.email == request.auth.token.email
+        && data.email.size() >= 3
+        && data.email.size() <= 160
+        && data.displayName is string
+        && data.displayName.size() >= 1
+        && data.displayName.size() <= 100
+        && data.createdAt is timestamp
+        && data.createdAt == request.time;
+    }
+
+    // 4. Aturan akses koleksi ulasan & rating publik (1 Akun Google = 1 Ulasan, tanpa email)
     match /testimonials/{reviewId} {
       // Publik dapat membaca ulasan dan menampilkan rating di halaman web
       allow get: if isValidId(reviewId);
@@ -68,6 +84,32 @@ service cloud.firestore {
 
       // Tidak bisa diedit ulang oleh publik (anti-manipulasi rating/isi ulasan)
       allow update: if false;
+
+      // Penghapusan oleh Admin terverifikasi (atau langsung manual dari Firebase Console)
+      allow delete: if isAdmin();
+    }
+
+    // 5. Koleksi privat email pengirim ulasan (terisolasi khusus Admin / Firebase Console)
+    match /testimonial_emails/{userId} {
+      // Hanya Admin yang dapat membaca daftar email pengirim ulasan
+      allow get: if isValidId(userId) && isAdmin();
+      allow list: if isAdmin();
+
+      // Hanya dapat dibuat bersamaan dengan pembuatan ulasan di /testimonials/{uid}
+      allow create: if isVerifiedUser()
+        && isValidId(userId)
+        && userId == request.auth.uid
+        && isValidTestimonialEmail(incoming())
+        && existsAfter(/databases/$(database)/documents/testimonials/$(userId));
+
+      // Hanya boleh diperbarui jika ulasan di /testimonials/{uid} sebelumnya dihapus Admin dan user menulis ulasan baru
+      allow update: if isVerifiedUser()
+        && isValidId(userId)
+        && userId == request.auth.uid
+        && isValidTestimonialEmail(incoming())
+        && incoming().uid == existing().uid
+        && !exists(/databases/$(database)/documents/testimonials/$(userId))
+        && existsAfter(/databases/$(database)/documents/testimonials/$(userId));
 
       // Penghapusan oleh Admin terverifikasi (atau langsung manual dari Firebase Console)
       allow delete: if isAdmin();
