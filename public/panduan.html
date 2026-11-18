@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="canonical" href="https://erbea.id/panduan.html">
+
+    <title>Panduan Bisnis UMKM, HPP, QRIS &amp; Manajemen Kasir — ERBEA.ID</title>
+    <meta name="description" content="Kumpulan panduan praktis bisnis UMKM Indonesia: cara hitung HPP &amp; Beban Tetap per Porsi, QRIS tanpa MDR, audit anti-kecurangan kasir, pisah Prive &amp; ROI, hingga cetak struk Bluetooth.">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:site_name" content="ERBEA.ID">
+    <meta property="og:url" content="https://erbea.id/panduan.html">
+    <meta property="og:title" content="Panduan Bisnis UMKM, HPP, QRIS &amp; Manajemen Kasir — ERBEA.ID">
+    <meta property="og:description" content="Panduan lengkap menghitung HPP, penyusutan aset, QRIS tanpa MDR, kontrol stok kasbon, dan tata kelola kasir profesional untuk UMKM Indonesia.">
+    <meta property="og:image" content="https://erbea.id/og-erbea.png">
+
+    <!-- Google AdSense (Khusus Domain Utama erbea.id) -->
+    <meta name="google-adsense-account" content="ca-pub-6862767591901097">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6862767591901097"
+         crossorigin="anonymous"></script>
+
+    <script>
+    (function() {
+        try {
+            var saved = localStorage.getItem('erbea_theme_mode') || 'auto';
+            var prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+            var resolved = saved === 'auto' ? (prefersLight ? 'light' : 'dark') : saved;
+            document.documentElement.setAttribute('data-theme', resolved);
+        } catch (e) {}
+    })();
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            color-scheme: light;
+            --bg: linear-gradient(155deg, #d7ebff 0%, #edf5ff 50%, #dceaff 100%);
+            --text: #0f172a;
+            --text-sub: #334155;
+            --text-muted: #52627a;
+            --accent: #0284c7;
+            --accent-deep: #0369a1;
+            --card: rgba(255, 255, 255, 0.72);
+            --card-sub: rgba(241, 247, 255, 0.85);
+            --border: rgba(255, 255, 255, 0.88);
+            --shadow: 0 20px 50px rgba(15, 45, 95, 0.1);
+            --divider: rgba(15, 45, 95, 0.09);
+        }
+        [data-theme="dark"] {
+            color-scheme: dark;
+            --bg: linear-gradient(155deg, #070a10 0%, #0d1422 50%, #09101a 100%);
+            --text: #f8fafc;
+            --text-sub: #cbd5e1;
+            --text-muted: #94a3b8;
+            --accent: #38bdf8;
+            --accent-deep: #7dd3fc;
+            --card: rgba(18, 24, 38, 0.76);
+            --card-sub: rgba(255, 255, 255, 0.05);
+            --border: rgba(255, 255, 255, 0.12);
+            --shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+            --divider: rgba(255, 255, 255, 0.1);
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            line-height: 1.68;
+            padding: 20px 16px 56px;
+        }
+        .wrap { max-width: 980px; margin: 0 auto; display: flex; flex-direction: column; gap: 22px; }
+        .glass {
+            background: var(--card);
+            backdrop-filter: blur(22px) saturate(160%);
+            -webkit-backdrop-filter: blur(22px) saturate(160%);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            box-shadow: var(--shadow);
+        }
+        .topbar {
+            padding: 14px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .brand { font-size: 1.15rem; font-weight: 800; color: var(--text); text-decoration: none; letter-spacing: -0.02em; }
+        .nav-group { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+        .nav-group a { color: var(--text-sub); text-decoration: none; font-size: 0.9rem; font-weight: 600; }
+        .nav-group a:hover { color: var(--accent); }
+        .btn-back {
+            display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; border-radius: 999px;
+            background: linear-gradient(135deg, #0284c7, #2563eb); color: #fff !important; font-weight: 700; font-size: 0.85rem;
+        }
+        .hero { padding: 30px 28px; }
+        .kicker { font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; font-weight: 600; color: var(--accent-deep); text-transform: uppercase; letter-spacing: 0.06em; }
+        h1 { font-size: clamp(1.55rem, 3vw, 2.2rem); font-weight: 800; margin-top: 8px; line-height: 1.25; }
+        .lead { color: var(--text-sub); margin-top: 10px; font-size: 0.98rem; }
+        .toc { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 10px; margin-top: 20px; }
+        .toc a {
+            padding: 12px 14px; border-radius: 14px; background: var(--card-sub); border: 1px solid var(--divider);
+            text-decoration: none; color: var(--text); font-size: 0.86rem; font-weight: 700; transition: transform 0.15s ease;
+        }
+        .toc a:hover { transform: translateY(-2px); border-color: var(--accent); color: var(--accent); }
+        .article { padding: 28px; display: flex; flex-direction: column; gap: 14px; }
+        .article-meta { font-family: 'JetBrains Mono', monospace; font-size: 0.76rem; color: var(--accent-deep); font-weight: 600; }
+        .article h2 { font-size: 1.32rem; font-weight: 800; line-height: 1.3; }
+        .article h3 { font-size: 1.02rem; font-weight: 800; margin-top: 6px; color: var(--text); }
+        .article p, .article li { font-size: 0.94rem; color: var(--text-sub); }
+        .article ul, .article ol { padding-left: 20px; display: flex; flex-direction: column; gap: 6px; }
+        .callout {
+            padding: 14px 16px; border-radius: 14px; background: var(--card-sub); border-left: 3px solid var(--accent);
+            font-size: 0.9rem; color: var(--text-sub);
+        }
+        .footer {
+            padding: 20px 24px; display: flex; justify-content: space-between; align-items: center; gap: 14px; flex-wrap: wrap;
+            font-size: 0.86rem; color: var(--text-muted);
+        }
+        .footer a { color: var(--text-sub); text-decoration: none; font-weight: 600; }
+        .footer a:hover { color: var(--accent); }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <header class="glass topbar">
+            <a href="/" class="brand">ERBEA.ID</a>
+            <nav class="nav-group" aria-label="Navigasi Panduan">
+                <a href="/panduan.html">Panduan Bisnis</a>
+                <a href="/kebijakan-privasi.html">Kebijakan Privasi</a>
+                <a href="/ketentuan-layanan.html">Ketentuan Layanan</a>
+                <a href="/" class="btn-back">&larr; Kembali ke Beranda</a>
+            </nav>
+        </header>
+
+        <section class="glass hero">
+            <div class="kicker">Pusat Edukasi UMKM &amp; Tata Kelola Kasir Modern</div>
+            <h1>Panduan Praktis Keuangan, Stok &amp; Operasional Bisnis Ritel maupun Kuliner</h1>
+            <p class="lead">Banyak usaha ramai pembeli setiap hari, tetapi pemiliknya tetap bingung ke mana perginya uang kas di akhir bulan. Kumpulan panduan ini disusun untuk membantu pemilik UMKM, kafe, toko grosir, hingga koperasi menata HPP, arus kas, pembayaran QRIS, dan kontrol stok secara nyata.</p>
+            <div class="toc">
+                <a href="#artikel-hpp">1. Menghitung HPP &amp; Beban Tetap per Porsi</a>
+                <a href="#artikel-qris">2. QRIS Dinamis Tanpa MDR vs Payment Gateway</a>
+                <a href="#artikel-audit">3. Mencegah Kebocoran Stok &amp; Kasir</a>
+                <a href="#artikel-prive">4. Pisahkan Prive Pemilik &amp; Hitung ROI</a>
+                <a href="#artikel-erp">5. Mengelola PO 14 Hari &amp; 6 Dokumen A4</a>
+                <a href="#artikel-printer">6. Cetak Struk Bluetooth &amp; Delta Dapur</a>
+            </div>
+        </section>
+
+        <article id="artikel-hpp" class="glass article">
+            <span class="article-meta">PANDUAN 01 · AKUNTANSI HARGA POKOK PENJUALAN</span>
+            <h2>Cara Menghitung HPP, Penyusutan Alat, dan Beban Tetap per Porsi agar Bisnis Tidak Rugi Diam-Diam</h2>
+            <p>Kesalahan paling umum pada usaha kuliner (F&amp;B) maupun ritel pemula adalah menganggap modal sebuah menu hanyalah harga bahan bakunya saja. Misalnya secangkir kopi susu modal biji kopi, susu, gula, dan gelasnya Rp 7.500, lalu dijual Rp 15.000 sehingga pemilik mengira untung bersihnya Rp 7.500 per gelas.</p>
+            <p>Padahal di balik setiap transaksi, ada <strong>biaya tetap bulanan</strong> (sewa tempat, listrik, internet, gaji karyawan) serta <strong>penyusutan aset usaha</strong> (mesin espresso, kulkas, tablet kasir, renovasi meja) yang nilainya terus berkurang setiap bulan.</p>
+            <h3>Rumus Sederhana Beban Tetap per Porsi</h3>
+            <ol>
+                <li><strong>Hitung Penyusutan Alat Bulanan:</strong> Harga beli alat usaha dibagi umur ekonomis dalam bulan. Contoh: peralatan total Rp 36.000.000 untuk umur pakai 36 bulan berarti penyusutan Rp 1.000.000/bulan.</li>
+                <li><strong>Jumlahkan Biaya Operasional Bulanan:</strong> Sewa + listrik + WiFi + gaji tetap = misalnya Rp 6.500.000/bulan. Total beban bulanan menjadi Rp 7.500.000.</li>
+                <li><strong>Bagi dengan Target Penjualan Realistis:</strong> Jika target terjual 2.500 porsi per bulan, maka <strong>Beban Tetap per Porsi = Rp 7.500.000 &divide; 2.500 = Rp 3.000/porsi</strong>.</li>
+            </ol>
+            <div class="callout">Dengan memasukkan Beban Tetap Rp 3.000 langsung ke hitungan HPP menu (Rp 7.500 + Rp 3.000 = Rp 10.500), Anda tahu batas aman saat ingin memberi promo diskon tanpa pernah mengalami jual rugi.</div>
+        </article>
+
+        <article id="artikel-qris" class="glass article">
+            <span class="article-meta">PANDUAN 02 · PEMBAYARAN DIGITAL &amp; ARUS KAS</span>
+            <h2>QRIS Dinamis Tanpa Biaya MDR vs Payment Gateway: Cara Dana Masuk Instan Tanpa Menunggu H+1</h2>
+            <p>Pembayaran QRIS kini menjadi standar di kasir modern. Namun banyak pemilik usaha mengeluhkan dua hal saat menggunakan agregator payment gateway: adanya potongan biaya MDR per transaksi dan dana penjualan yang baru cair pada hari kerja berikutnya (H+1 atau H+2), sehingga perputaran modal belanja bahan baku harian menjadi terhambat.</p>
+            <p>Alternatif yang semakin banyak dipakai UMKM adalah mengonversi <strong>QRIS statis toko milik sendiri</strong> menjadi <strong>QRIS dinamis</strong> di layar kasir. Nominal tagihan dikunci otomatis ke dalam kode QR sehingga pelanggan tidak perlu mengetik angka manual dan tidak bisa salah transfer nominal kurang.</p>
+            <h3>Keunggulan Alur Auto-Lunas &amp; Soundbox Bawaan</h3>
+            <ul>
+                <li><strong>Dana Langsung Masuk Rekening Toko:</strong> Karena memakai QRIS statis resmi toko Anda, uang langsung mendarat di rekening sesuai ketentuan bank/e-wallet terkait.</li>
+                <li><strong>Deteksi Notifikasi Otomatis:</strong> Dengan webhook pembaca notifikasi HP toko (seperti MacroDroid), status tagihan kasir langsung berubah menjadi <strong>LUNAS</strong> tanpa kasir harus bolak-balik mengecek mutasi ponsel.</li>
+                <li><strong>Notifikasi Suara Bahasa Indonesia:</strong> Perangkat kasir langsung membunyikan nada chime diikuti suara nominal uang masuk, sehingga pelaku usaha tidak wajib membeli mesin soundbox tambahan.</li>
+            </ul>
+        </article>
+
+        <article id="artikel-audit" class="glass article">
+            <span class="article-meta">PANDUAN 03 · KEAMANAN STOK &amp; ANTI-KECURANGAN</span>
+            <h2>Mencegah Kebocoran Stok &amp; Kecurangan Kasir dengan Audit Soft-Delete dan Kontrol Net Fisik</h2>
+            <p>Saat pemilik toko tidak selalu berada di tempat, celah terbesar kebocoran kas terjadi ketika transaksi yang sudah dibayar pelanggan dihapus diam-diam dari riwayat kasir, atau ketika barang keluar secara kasbon tidak dipisahkan dari stok gudang yang siap dijual.</p>
+            <h3>Dua Lapisan Kontrol yang Wajib Diterapkan Pemilik Usaha</h3>
+            <ul>
+                <li><strong>Audit Soft-Delete (Anti-Hapus Diam-Diam):</strong> Sistem kasir yang aman tidak boleh menghapus permanen transaksi ketika akun kasir menekan tombol hapus. Data harus masuk status arsip khusus (misal <em>&ldquo;Dihapus Kasir&rdquo;</em>) lengkap dengan nama operator dan jam penghapusan agar Admin bisa memeriksa, memulihkan (<em>Restore</em>), atau menyetujui penghapusan permanen beserta pengembalian stok otomatis.</li>
+                <li><strong>Kontrol Net Fisik Stok vs Kasbon Aktif:</strong> Jika gudang masih menyimpan 50 unit barang tetapi 10 unit di antaranya sedang tertahan dalam transaksi kasbon atau pesanan berjalan, maka stok bebas jual (Net Fisik) sebenarnya tinggal 40 unit. Pemisahan angka ini mencegah toko menjual barang yang sudah dipesan pelanggan lain.</li>
+            </ul>
+        </article>
+
+        <article id="artikel-prive" class="glass article">
+            <span class="article-meta">PANDUAN 04 · LAPORAN KEUANGAN &amp; ROI</span>
+            <h2>Memisahkan Uang Toko vs Prive Pemilik: Kunci Laporan Keuangan &amp; Hitung ROI yang Akurat</h2>
+            <p>Banyak usaha terlihat tidak pernah untung di pembukuan hanya karena pemilik mengambil uang laci untuk keperluan pribadi (belanja rumah tangga, bensin pribadi, cicilan keluarga) lalu mencatatnya sebagai biaya operasional toko.</p>
+            <p>Dalam akuntansi bisnis yang sehat, penarikan dana pribadi oleh pemilik wajib dicatat ke pos <strong>Prive Pemilik</strong>, terpisah dari Beban Operasional maupun pembelian bahan baku (HPP). Dengan pemisahan ini:</p>
+            <ul>
+                <li>Anda mengetahui <strong>Laba Bersih Usaha</strong> yang sesungguhnya untuk menilai apakah bisnis tersebut sehat atau perlu evaluasi harga jual.</li>
+                <li><strong>Kas Laci Riil</strong> tetap cocok saat tutup kasir (serah terima shift) tanpa selisih yang membingungkan.</li>
+                <li>Perhitungan <strong>ROI (Return on Investment / Balik Modal)</strong> dari total modal aset + modal bahan dapat terbaca jelas bulan demi bulan.</li>
+            </ul>
+        </article>
+
+        <article id="artikel-erp" class="glass article">
+            <span class="article-meta">PANDUAN 05 · ADMINISTRASI B2B &amp; SUPPLIER</span>
+            <h2>Cara Mengelola Pre-Order 14 Hari, PO Supplier, dan 6 Dokumen Resmi A4 untuk Klien Lembaga</h2>
+            <p>Ketika bisnis mulai melayani pesanan acara, instansi, sekolah, koperasi, atau reseller grosir, struk kasir thermal 58mm tidak lagi mencukupi. Klien korporat dan bendahara lembaga membutuhkan dokumen administrasi resmi berukuran A4.</p>
+            <p>Pastikan alur kerja toko sudah menyatukan penerbitan dokumen langsung dari data transaksi tanpa input ulang di program pengolah kata:</p>
+            <ul>
+                <li><strong>Pre-Order Terjadwal hingga 14 Hari:</strong> Pesanan per tanggal pengiriman dikelompokkan terpisah lengkap dengan diskon per jadwal dan pencatatan uang muka (DP/Termin).</li>
+                <li><strong>Dokumen A4 Lengkap:</strong> Invoice resmi ber-Terbilang Rupiah &amp; PPN, Surat Jalan pengiriman, Berita Acara Serah Terima (BAST), Surat Terima Barang, Surat Pesanan, dan RAB lengkap dengan Pagu Anggaran.</li>
+                <li><strong>PO Bahan Baku Supplier:</strong> Pesanan ke pemasok otomatis menambah stok saat barang diterima serta menyimpan foto bukti transfer pembayaran cicilan maupun pelunasan.</li>
+            </ul>
+        </article>
+
+        <article id="artikel-printer" class="glass article">
+            <span class="article-meta">PANDUAN 06 · PERANGKAT KASIR &amp; EFISIENSI RESTORAN</span>
+            <h2>Strategi Cetak Struk Thermal Web Bluetooth &amp; Delta Order Dapur Tanpa Aplikasi Berbayar</h2>
+            <p>Untuk menekan biaya awal pembukaan cabang, pemilik toko tidak perlu selalu membeli komputer kasir mahal atau berlangganan aplikasi print jembatan berbayar. Browser modern di Android maupun laptop sudah mendukung koneksi langsung ke printer thermal 58mm maupun 80mm melalui <strong>Web Bluetooth</strong>.</p>
+            <p>Bagi usaha restoran dan kafe dengan layanan makan di tempat (<em>Dine-In</em>), pemisahan struk pelanggan dengan <strong>Printer Dapur / Bar (Delta Order)</strong> sangat krusial: saat tamu menambah menu di meja yang sama, dapur hanya menerima cetakan item tambahan terbarunya lengkap dengan nomor meja dan nama pelayan, sehingga tidak terjadi masakan ganda.</p>
+            <div class="callout">Ingin mempraktikkan seluruh panduan di atas langsung di sistem kasir siap pakai? Anda bisa mencoba <a href="https://erbea.id/#beranda" style="color: var(--accent); font-weight: 700;">Demo Interaktif ERBEA.ID</a> secara gratis menggunakan nama toko Anda sendiri.</div>
+        </article>
+
+        <footer class="glass footer">
+            <div><strong style="color: var(--text);">ERBEA.ID</strong> — Kami percaya bisnis anda berkelas bersama kami</div>
+            <div class="nav-group">
+                <a href="/">Beranda</a>
+                <a href="/kebijakan-privasi.html">Kebijakan Privasi</a>
+                <a href="/ketentuan-layanan.html">Ketentuan Layanan</a>
+                <a href="mailto:erbeawebird@gmail.com">erbeawebird@gmail.com</a>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
