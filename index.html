@@ -1804,6 +1804,343 @@
             color: var(--text-secondary);
         }
 
+        /* === TESTIMONIALS (FROSTED GLASS, TERKURASI ANTI-SPAM) === */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .testimonial-card {
+            padding: 22px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 18px;
+        }
+
+        .testimonial-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .testimonial-stars {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            color: var(--accent-amber);
+        }
+
+        .testimonial-stars.is-empty {
+            color: var(--text-muted);
+            opacity: 0.55;
+        }
+
+        .testimonial-rating-pill {
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            padding: 4px 10px;
+            border-radius: 999px;
+            background: var(--surface-sub);
+            border: 1px solid var(--surface-sub-border);
+        }
+
+        .testimonial-quote {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.65;
+            font-style: italic;
+            min-height: 68px;
+            display: flex;
+            align-items: center;
+            padding: 14px;
+            border-radius: 14px;
+            background: var(--surface-sub);
+            border: 1px dashed var(--divider-dashed);
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding-top: 12px;
+            border-top: 1px solid var(--divider-line);
+        }
+
+        .testimonial-avatar {
+            width: 42px;
+            height: 42px;
+            border-radius: 13px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            background: var(--segment-icon-bg);
+            border: 1px solid var(--segment-icon-border);
+            color: var(--accent-blue-deep);
+        }
+
+        .testimonial-name {
+            font-size: 0.94rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            line-height: 1.25;
+        }
+
+        .testimonial-title {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        .testimonials-note-bar {
+            margin-top: 18px;
+            padding: 14px 18px;
+            border-radius: 16px;
+            background: var(--surface-sub);
+            border: 1px solid var(--surface-sub-border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .testimonials-note-text {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.86rem;
+            color: var(--text-secondary);
+        }
+
+        .app-rating-summary {
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+            padding: 12px 18px;
+            border-radius: 18px;
+            background: var(--glass-tile);
+            border: 1px solid var(--tile-border);
+            box-shadow: var(--tile-shadow);
+            flex-shrink: 0;
+        }
+
+        .app-rating-score {
+            font-family: var(--font-mono);
+            font-size: 1.55rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            line-height: 1;
+        }
+
+        .app-rating-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .app-rating-count {
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        .testimonial-quote.is-filled {
+            font-style: normal;
+            color: var(--text-secondary);
+            border-style: solid;
+            border-color: var(--surface-sub-border);
+        }
+
+        .testimonial-date {
+            font-size: 0.74rem;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        .testimonial-form-panel {
+            margin-top: 16px;
+            padding: 22px;
+            display: none;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .testimonial-form-panel.is-open {
+            display: flex;
+        }
+
+        .testimonial-form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+        }
+
+        .testimonial-field-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .testimonial-field-group.full-span {
+            grid-column: span 2;
+        }
+
+        .testimonial-field-label {
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .testimonial-input,
+        .testimonial-textarea {
+            width: 100%;
+            padding: 11px 14px;
+            border-radius: 14px;
+            border: 1px solid var(--surface-sub-border);
+            background: var(--surface-sub);
+            color: var(--text-primary);
+            font-family: inherit;
+            font-size: 0.9rem;
+            outline: none;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .testimonial-input:focus,
+        .testimonial-textarea:focus {
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.16);
+        }
+
+        .testimonial-textarea {
+            resize: vertical;
+            min-height: 92px;
+        }
+
+        .star-picker-row {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .star-pick-btn {
+            width: 38px;
+            height: 38px;
+            border-radius: 12px;
+            border: 1px solid var(--surface-sub-border);
+            background: var(--surface-sub);
+            color: var(--text-muted);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.15s ease, color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+        }
+
+        .star-pick-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .star-pick-btn.active {
+            color: var(--accent-amber);
+            border-color: rgba(245, 158, 11, 0.45);
+            background: rgba(245, 158, 11, 0.12);
+        }
+
+        .testimonial-form-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .hp-trap {
+            position: absolute;
+            left: -9999px;
+            width: 1px;
+            height: 1px;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .auth-gate-box {
+            padding: 16px 18px;
+            border-radius: 16px;
+            background: var(--surface-sub);
+            border: 1px solid var(--surface-sub-border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .auth-gate-info {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            min-width: 0;
+        }
+
+        .auth-gate-title {
+            font-size: 0.9rem;
+            font-weight: 800;
+            color: var(--text-primary);
+        }
+
+        .auth-gate-desc {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            line-height: 1.45;
+        }
+
+        .btn-google-signin {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            min-height: 42px;
+            padding: 9px 18px;
+            border-radius: 999px;
+            border: 1px solid var(--surface-sub-border);
+            background: var(--glass-tile);
+            color: var(--text-primary);
+            font-family: inherit;
+            font-size: 0.86rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: var(--tile-shadow);
+            transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease;
+        }
+
+        .btn-google-signin:hover:not(:disabled) {
+            transform: translateY(-1px);
+            border-color: var(--accent-blue);
+        }
+
+        .btn-google-signin:disabled {
+            opacity: 0.65;
+            cursor: not-allowed;
+        }
+
+        .testimonial-fields-wrap {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .testimonial-fields-wrap[hidden],
+        .auth-gate-box[hidden] {
+            display: none;
+        }
+
         /* === FAQ ACCORDION === */
         .faq-list {
             display: grid;
@@ -2438,6 +2775,15 @@
             }
             .pricing-grid {
                 grid-template-columns: 1fr;
+            }
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+            .testimonial-form-grid {
+                grid-template-columns: 1fr;
+            }
+            .testimonial-field-group.full-span {
+                grid-column: span 1;
             }
         }
 
@@ -3347,6 +3693,210 @@
                     </a>
                 </article>
             </div>
+        </section>
+
+        <!-- TESTIMONIALS & LIVE APP RATING (FIRESTORE REAL-TIME) -->
+        <section id="testimoni" class="glass-card section-block">
+            <div class="section-head">
+                <div>
+                    <div class="section-kicker">Testimonials</div>
+                    <h2 class="section-title">Ulasan &amp; Rating Pengguna ERBEA.ID</h2>
+                    <p class="section-sub" style="margin-top: 6px;">Ulasan dan rating aplikasi langsung terhubung ke Firestore secara real-time untuk seluruh pengguna ERBEA.ID.</p>
+                </div>
+
+                <div class="app-rating-summary" id="appRatingSummary" aria-live="polite">
+                    <span class="app-rating-score tabular" id="appRatingScore">&mdash;</span>
+                    <div class="app-rating-meta">
+                        <div class="testimonial-stars is-empty" id="appRatingStars" aria-label="Rating aplikasi belum terisi">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                        </div>
+                        <span class="app-rating-count" id="appRatingCount">Rating Aplikasi · Belum ada ulasan</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonials-grid" id="testimonialsGrid">
+                <article class="glass-tile testimonial-card">
+                    <div>
+                        <div class="testimonial-top">
+                            <div class="testimonial-stars is-empty" aria-label="Rating belum terisi">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                            </div>
+                            <span class="testimonial-rating-pill">Rating: &mdash; / 5.0</span>
+                        </div>
+                        <p class="testimonial-quote" style="margin-top: 14px;">
+                            Belum ada ulasan masuk. Jadilah klien pertama yang membagikan pengalaman memakai ERBEA.ID.
+                        </p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar" aria-hidden="true">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                        </div>
+                        <div>
+                            <div class="testimonial-name">Slot Ulasan #1</div>
+                            <div class="testimonial-title">Menunggu ulasan pertama klien</div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="glass-tile testimonial-card">
+                    <div>
+                        <div class="testimonial-top">
+                            <div class="testimonial-stars is-empty" aria-label="Rating belum terisi">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                            </div>
+                            <span class="testimonial-rating-pill">Rating: &mdash; / 5.0</span>
+                        </div>
+                        <p class="testimonial-quote" style="margin-top: 14px;">
+                            Slot ulasan siap menampilkan cerita penggunaan dari pemilik toko, kafe, maupun gudang.
+                        </p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar" aria-hidden="true">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                        </div>
+                        <div>
+                            <div class="testimonial-name">Slot Ulasan #2</div>
+                            <div class="testimonial-title">Menunggu ulasan klien</div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="glass-tile testimonial-card">
+                    <div>
+                        <div class="testimonial-top">
+                            <div class="testimonial-stars is-empty" aria-label="Rating belum terisi">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                            </div>
+                            <span class="testimonial-rating-pill">Rating: &mdash; / 5.0</span>
+                        </div>
+                        <p class="testimonial-quote" style="margin-top: 14px;">
+                            Semua ulasan baru langsung tampil dan memperbarui skor rating aplikasi secara otomatis.
+                        </p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar" aria-hidden="true">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                        </div>
+                        <div>
+                            <div class="testimonial-name">Slot Ulasan #3</div>
+                            <div class="testimonial-title">Menunggu ulasan klien</div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <div class="testimonials-note-bar">
+                <div class="testimonials-note-text">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue-deep)" stroke-width="2.2" style="flex-shrink:0;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                    <span><strong>Bagikan Pengalaman Anda:</strong> Ulasan &amp; rating Anda langsung tampil di halaman ini dan membantu calon pengguna lain.</span>
+                </div>
+                <button type="button" id="toggleTestimonialFormBtn" class="btn-primary" style="font-size: 0.85rem; min-height: 40px; padding: 8px 18px;">
+                    Tulis Ulasan &amp; Rating
+                </button>
+            </div>
+
+            <form id="testimonialFormPanel" class="glass-tile testimonial-form-panel" novalidate>
+                <div style="display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap;">
+                    <div>
+                        <h3 style="font-size: 1rem; font-weight: 800; color: var(--text-primary);">Kirim Ulasan &amp; Rating Aplikasi</h3>
+                        <p style="font-size: 0.82rem; color: var(--text-muted); margin-top: 2px;">Wajib masuk dengan Google 1-klik (1 akun = 1 ulasan) agar ulasan asli &amp; bebas spam.</p>
+                    </div>
+                    <button type="button" id="closeTestimonialHeaderBtn" class="btn-glass-secondary" style="font-size: 0.82rem; min-height: 36px; padding: 6px 14px;">Tutup</button>
+                </div>
+
+                <!-- Gate Belum Login Google -->
+                <div id="authSignedOutBox" class="auth-gate-box">
+                    <div class="auth-gate-info">
+                        <span class="auth-gate-title">Verifikasi Akun Google (1-Klik)</span>
+                        <span class="auth-gate-desc">Klik tombol di samping untuk masuk dengan Google sebelum menulis ulasan. Email Anda tidak ditampilkan ke publik.</span>
+                    </div>
+                    <button type="button" id="googleSignInBtn" class="btn-google-signin">
+                        <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                            <path fill="#4285F4" d="M23.745 12.27c0-.79-.07-1.54-.19-2.27H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.665-5.17 3.665-8.97z"/>
+                            <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.11-6.72-4.96H1.29v3.14C3.26 21.3 7.31 24 12 24z"/>
+                            <path fill="#FBBC05" d="M5.28 14.24c-.24-.72-.38-1.49-.38-2.24s.14-1.52.38-2.24V6.62H1.29C.47 8.24 0 10.06 0 12s.47 3.76 1.29 5.38l3.99-3.14z"/>
+                            <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.31 0 3.26 2.7 1.29 6.62l3.99 3.14c.95-2.85 3.6-4.96 6.72-4.96z"/>
+                        </svg>
+                        <span>Masuk dengan Google</span>
+                    </button>
+                </div>
+
+                <!-- Status Sudah Login Google -->
+                <div id="authSignedInBox" class="auth-gate-box" hidden>
+                    <div class="auth-gate-info">
+                        <span class="auth-gate-title">Terverifikasi sebagai <span id="authUserDisplayName">Pengguna Google</span></span>
+                        <span class="auth-gate-desc" id="authUserStatusNote">Akun siap mengirim 1 ulasan &amp; rating.</span>
+                    </div>
+                    <button type="button" id="googleSignOutBtn" class="btn-glass-secondary" style="font-size: 0.82rem; min-height: 38px; padding: 7px 14px;">Keluar / Ganti Akun</button>
+                </div>
+
+                <!-- Status Akun Sudah Mengirim Ulasan -->
+                <div id="authAlreadyReviewedBox" class="auth-gate-box" hidden>
+                    <div class="auth-gate-info">
+                        <span class="auth-gate-title">Ulasan Akun Ini Sudah Tersimpan</span>
+                        <span class="auth-gate-desc">Setiap akun Google dibatasi maksimal 1 ulasan untuk menjaga keaslian rating ERBEA.ID. Terima kasih atas masukan Anda!</span>
+                    </div>
+                </div>
+
+                <div id="testimonialFieldsWrap" class="testimonial-fields-wrap" hidden>
+                    <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+                        <span class="testimonial-field-label">Pilih Rating:</span>
+                        <div class="star-picker-row" id="starPickerRow" role="radiogroup" aria-label="Rating Bintang">
+                            <button type="button" class="star-pick-btn active" data-rating="1" aria-label="1 Bintang"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.8"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg></button>
+                            <button type="button" class="star-pick-btn active" data-rating="2" aria-label="2 Bintang"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.8"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg></button>
+                            <button type="button" class="star-pick-btn active" data-rating="3" aria-label="3 Bintang"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.8"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg></button>
+                            <button type="button" class="star-pick-btn active" data-rating="4" aria-label="4 Bintang"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.8"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg></button>
+                            <button type="button" class="star-pick-btn active" data-rating="5" aria-label="5 Bintang"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.8"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg></button>
+                        </div>
+                        <input type="hidden" id="reviewRatingInput" value="5">
+                    </div>
+
+                    <div class="hp-trap" aria-hidden="true">
+                        <label for="reviewWebsiteTrap">Website</label>
+                        <input type="text" id="reviewWebsiteTrap" tabindex="-1" autocomplete="off">
+                    </div>
+
+                    <div class="testimonial-form-grid">
+                        <div class="testimonial-field-group">
+                            <label for="reviewNameInput" class="testimonial-field-label">Nama Anda</label>
+                            <input type="text" id="reviewNameInput" class="testimonial-input" minlength="2" maxlength="60" placeholder="Contoh: Hendra Wijaya" required>
+                        </div>
+                        <div class="testimonial-field-group">
+                            <label for="reviewTitleInput" class="testimonial-field-label">Jabatan &amp; Nama Usaha</label>
+                            <input type="text" id="reviewTitleInput" class="testimonial-input" minlength="2" maxlength="80" placeholder="Contoh: Pemilik Kedai Kopi Nusantara" required>
+                        </div>
+                        <div class="testimonial-field-group full-span">
+                            <label for="reviewMessageInput" class="testimonial-field-label">Ulasan Pengalaman Anda (10–500 karakter)</label>
+                            <textarea id="reviewMessageInput" class="testimonial-textarea" minlength="10" maxlength="500" placeholder="Ceritakan fitur ERBEA.ID yang paling membantu usaha Anda..." required></textarea>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-form-footer">
+                        <span id="reviewCharCounter" style="font-size: 0.78rem; color: var(--text-muted);">0 / 500 karakter</span>
+                        <div style="display:flex; gap:10px; align-items:center;">
+                            <button type="button" id="cancelTestimonialFormBtn" class="btn-glass-secondary" style="font-size: 0.84rem; min-height: 40px; padding: 8px 16px;">Batal</button>
+                            <button type="submit" id="submitTestimonialBtn" class="btn-primary" style="font-size: 0.85rem; min-height: 40px; padding: 8px 20px;">Kirim Ulasan Sekarang</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
         </section>
 
         <!-- FAQ SINGKAT -->
@@ -4357,6 +4907,18 @@
                 ]
             },
             {
+                id: 'testimoni',
+                category: 'Testimoni & Rating Live',
+                badgeClass: '',
+                title: 'Testimonials & Rating Aplikasi Real-Time ERBEA.ID',
+                desc: 'Lihat rating rata-rata aplikasi dan ulasan klien langsung dari Firestore secara real-time, atau tulis ulasan Anda sendiri.',
+                keywords: ['testimoni', 'testimonial', 'testimonials', 'ulasan', 'review', 'rating', 'klien', 'feedback', 'bintang', 'firestore'],
+                targetId: 'testimoni',
+                actions: [
+                    { type: 'scroll', label: 'Lihat & Tulis Testimoni', targetId: 'testimoni', primary: true }
+                ]
+            },
+            {
                 id: 'tentang-erbea',
                 category: 'Filosofi Perusahaan',
                 badgeClass: '',
@@ -4545,6 +5107,467 @@
             initSmartSearch();
             initBentoEntrance();
         });
+    </script>
+
+    <!-- FIREBASE AUTH + FIRESTORE REAL-TIME TESTIMONIALS & APP RATING (1 AKUN = 1 ULASAN) -->
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js';
+        import {
+            getAuth,
+            GoogleAuthProvider,
+            signInWithPopup,
+            signOut,
+            onAuthStateChanged
+        } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js';
+        import {
+            getFirestore,
+            collection,
+            doc,
+            getDoc,
+            setDoc,
+            query,
+            orderBy,
+            limit,
+            onSnapshot,
+            serverTimestamp,
+            getDocFromServer
+        } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js';
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDrBGRQEW8lFsym2UkJdrpTLw-uPZoPEnQ",
+            authDomain: "erbea-bfc50.firebaseapp.com",
+            projectId: "erbea-bfc50",
+            storageBucket: "erbea-bfc50.firebasestorage.app",
+            messagingSenderId: "777027593969",
+            appId: "1:777027593969:web:b5e39fa997c85696e6ab50"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+        const googleProvider = new GoogleAuthProvider();
+        googleProvider.setCustomParameters({ prompt: 'select_account' });
+
+        const OperationType = {
+            CREATE: 'create',
+            UPDATE: 'update',
+            DELETE: 'delete',
+            LIST: 'list',
+            GET: 'get',
+            WRITE: 'write'
+        };
+
+        function handleFirestoreError(error, operationType, path) {
+            const user = auth.currentUser;
+            const errInfo = {
+                error: error instanceof Error ? error.message : String(error),
+                authInfo: {
+                    userId: user?.uid || null,
+                    email: user?.email || null,
+                    emailVerified: user?.emailVerified ?? null,
+                    isAnonymous: user?.isAnonymous ?? null,
+                    tenantId: user?.tenantId || null,
+                    providerInfo: user?.providerData?.map(p => ({
+                        providerId: p.providerId,
+                        email: p.email
+                    })) || []
+                },
+                operationType,
+                path
+            };
+            console.error('Firestore Error:', JSON.stringify(errInfo));
+            return errInfo;
+        }
+
+        async function testConnection() {
+            try {
+                await getDocFromServer(doc(db, 'test', 'connection'));
+            } catch (error) {
+                if (error instanceof Error && error.message.includes('the client is offline')) {
+                    console.error('Periksa koneksi atau konfigurasi Firebase Firestore Anda.');
+                }
+            }
+        }
+        testConnection();
+
+        function safeEscapeHtml(str) {
+            if (typeof window.escapeHtml === 'function') return window.escapeHtml(str);
+            return String(str || '')
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+        }
+
+        function renderStarsSvg(count, size = 16) {
+            const clamped = Math.max(0, Math.min(5, Math.round(Number(count) || 0)));
+            let html = '';
+            for (let i = 1; i <= 5; i++) {
+                const filled = i <= clamped;
+                html += `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="${filled ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2" style="${filled ? '' : 'opacity:0.35;'}"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>`;
+            }
+            return html;
+        }
+
+        function getInitials(name) {
+            const parts = String(name || '').trim().split(/\s+/).filter(Boolean);
+            if (!parts.length) return 'ER';
+            if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
+            return (parts[0][0] + parts[1][0]).toUpperCase();
+        }
+
+        function formatDateId(ts) {
+            try {
+                if (!ts || typeof ts.toDate !== 'function') return 'Baru saja';
+                return ts.toDate().toLocaleDateString('id-ID', {
+                    day: 'numeric',
+                    month: 'short',
+                    year: 'numeric'
+                });
+            } catch (e) {
+                return '';
+            }
+        }
+
+        const gridEl = document.getElementById('testimonialsGrid');
+        const emptySlotsHtml = gridEl ? gridEl.innerHTML : '';
+        const scoreEl = document.getElementById('appRatingScore');
+        const starsEl = document.getElementById('appRatingStars');
+        const countEl = document.getElementById('appRatingCount');
+
+        function renderLiveTestimonials(items) {
+            if (!items || items.length === 0) {
+                if (scoreEl) scoreEl.innerHTML = '&mdash;';
+                if (starsEl) {
+                    starsEl.classList.add('is-empty');
+                    starsEl.innerHTML = renderStarsSvg(0, 16);
+                    starsEl.setAttribute('aria-label', 'Rating aplikasi belum terisi');
+                }
+                if (countEl) countEl.textContent = 'Rating Aplikasi · Belum ada ulasan';
+                if (gridEl && emptySlotsHtml) gridEl.innerHTML = emptySlotsHtml;
+                return;
+            }
+
+            const totalScore = items.reduce((sum, item) => sum + (Number(item.rating) || 0), 0);
+            const avg = totalScore / items.length;
+            const avgText = avg.toFixed(1);
+
+            if (scoreEl) scoreEl.textContent = avgText;
+            if (starsEl) {
+                starsEl.classList.remove('is-empty');
+                starsEl.innerHTML = renderStarsSvg(Math.round(avg), 16);
+                starsEl.setAttribute('aria-label', `Rating rata-rata aplikasi ${avgText} dari 5 bintang`);
+            }
+            if (countEl) countEl.textContent = `Rating Aplikasi · ${items.length} Ulasan Klien`;
+
+            if (gridEl) {
+                gridEl.innerHTML = items.map(item => {
+                    const safeName = safeEscapeHtml(item.name);
+                    const safeTitle = safeEscapeHtml(item.title);
+                    const safeMsg = safeEscapeHtml(item.message);
+                    const initials = safeEscapeHtml(getInitials(item.name));
+                    const ratingNum = Math.max(1, Math.min(5, Math.round(Number(item.rating) || 5)));
+                    const dateText = safeEscapeHtml(formatDateId(item.createdAt));
+
+                    return `
+                        <article class="glass-tile testimonial-card">
+                            <div>
+                                <div class="testimonial-top">
+                                    <div class="testimonial-stars" aria-label="${ratingNum} dari 5 bintang">
+                                        ${renderStarsSvg(ratingNum, 16)}
+                                    </div>
+                                    <span class="testimonial-rating-pill tabular">Rating: ${ratingNum}.0 / 5.0</span>
+                                </div>
+                                <p class="testimonial-quote is-filled" style="margin-top: 14px;">
+                                    &ldquo;${safeMsg}&rdquo;
+                                </p>
+                            </div>
+                            <div class="testimonial-author">
+                                <div class="testimonial-avatar" aria-hidden="true" style="font-weight:800; font-size:0.86rem;">
+                                    ${initials}
+                                </div>
+                                <div>
+                                    <div class="testimonial-name">${safeName}</div>
+                                    <div class="testimonial-title">${safeTitle}</div>
+                                    ${dateText ? `<div class="testimonial-date">${dateText}</div>` : ''}
+                                </div>
+                            </div>
+                        </article>
+                    `;
+                }).join('');
+            }
+        }
+
+        const testimonialsPath = 'testimonials';
+        const testimonialsQuery = query(
+            collection(db, testimonialsPath),
+            orderBy('createdAt', 'desc'),
+            limit(24)
+        );
+
+        onSnapshot(testimonialsQuery, (snapshot) => {
+            const list = snapshot.docs.map(d => ({ id: d.id, ...d.data() }));
+            renderLiveTestimonials(list);
+            if (currentUser) {
+                checkUserReviewed(currentUser);
+            }
+        }, (error) => {
+            handleFirestoreError(error, OperationType.LIST, testimonialsPath);
+        });
+
+        // Auth & Form Elements
+        const toggleBtn = document.getElementById('toggleTestimonialFormBtn');
+        const closeHeaderBtn = document.getElementById('closeTestimonialHeaderBtn');
+        const cancelBtn = document.getElementById('cancelTestimonialFormBtn');
+        const formPanel = document.getElementById('testimonialFormPanel');
+        const authSignedOutBox = document.getElementById('authSignedOutBox');
+        const authSignedInBox = document.getElementById('authSignedInBox');
+        const authAlreadyBox = document.getElementById('authAlreadyReviewedBox');
+        const authUserDisplayName = document.getElementById('authUserDisplayName');
+        const authUserStatusNote = document.getElementById('authUserStatusNote');
+        const googleSignInBtn = document.getElementById('googleSignInBtn');
+        const googleSignOutBtn = document.getElementById('googleSignOutBtn');
+        const fieldsWrap = document.getElementById('testimonialFieldsWrap');
+
+        const starPickerRow = document.getElementById('starPickerRow');
+        const ratingInput = document.getElementById('reviewRatingInput');
+        const nameInput = document.getElementById('reviewNameInput');
+        const titleInput = document.getElementById('reviewTitleInput');
+        const msgInput = document.getElementById('reviewMessageInput');
+        const charCounter = document.getElementById('reviewCharCounter');
+        const submitBtn = document.getElementById('submitTestimonialBtn');
+        const trapInput = document.getElementById('reviewWebsiteTrap');
+
+        let currentUser = null;
+        let userHasReviewed = false;
+        let checkingReview = false;
+
+        function syncAuthUi() {
+            if (!currentUser) {
+                if (authSignedOutBox) authSignedOutBox.hidden = false;
+                if (authSignedInBox) authSignedInBox.hidden = true;
+                if (authAlreadyBox) authAlreadyBox.hidden = true;
+                if (fieldsWrap) fieldsWrap.hidden = true;
+                return;
+            }
+
+            if (authSignedOutBox) authSignedOutBox.hidden = true;
+            if (authSignedInBox) authSignedInBox.hidden = false;
+            if (authUserDisplayName) {
+                authUserDisplayName.textContent = currentUser.displayName || 'Pengguna Google';
+            }
+
+            if (checkingReview) {
+                if (authUserStatusNote) authUserStatusNote.textContent = 'Memeriksa status ulasan akun Anda...';
+                if (authAlreadyBox) authAlreadyBox.hidden = true;
+                if (fieldsWrap) fieldsWrap.hidden = true;
+                return;
+            }
+
+            if (userHasReviewed) {
+                if (authUserStatusNote) authUserStatusNote.textContent = 'Akun ini sudah memiliki 1 ulasan aktif.';
+                if (authAlreadyBox) authAlreadyBox.hidden = false;
+                if (fieldsWrap) fieldsWrap.hidden = true;
+            } else {
+                if (authUserStatusNote) authUserStatusNote.textContent = 'Akun siap mengirim 1 ulasan & rating.';
+                if (authAlreadyBox) authAlreadyBox.hidden = true;
+                if (fieldsWrap) fieldsWrap.hidden = false;
+                if (nameInput && !nameInput.value.trim() && currentUser.displayName) {
+                    nameInput.value = currentUser.displayName.slice(0, 60);
+                }
+            }
+        }
+
+        async function checkUserReviewed(user) {
+            if (!user) {
+                userHasReviewed = false;
+                checkingReview = false;
+                syncAuthUi();
+                return;
+            }
+            checkingReview = true;
+            syncAuthUi();
+            try {
+                const reviewSnap = await getDoc(doc(db, testimonialsPath, user.uid));
+                userHasReviewed = reviewSnap.exists();
+            } catch (error) {
+                handleFirestoreError(error, OperationType.GET, `${testimonialsPath}/${user.uid}`);
+                userHasReviewed = false;
+            } finally {
+                checkingReview = false;
+                syncAuthUi();
+            }
+        }
+
+        onAuthStateChanged(auth, (user) => {
+            currentUser = user;
+            if (user) {
+                checkUserReviewed(user);
+            } else {
+                userHasReviewed = false;
+                checkingReview = false;
+                syncAuthUi();
+            }
+        });
+
+        if (googleSignInBtn) {
+            googleSignInBtn.addEventListener('click', async () => {
+                googleSignInBtn.disabled = true;
+                const origHtml = googleSignInBtn.innerHTML;
+                googleSignInBtn.textContent = 'Menghubungkan Google...';
+                try {
+                    await signInWithPopup(auth, googleProvider);
+                    window.showToast?.('Berhasil Masuk', 'Akun Google terverifikasi. Silakan tulis ulasan Anda.');
+                } catch (error) {
+                    const code = error?.code || '';
+                    if (code === 'auth/popup-closed-by-user' || code === 'auth/cancelled-popup-request') {
+                        window.showToast?.('Login Dibatalkan', 'Jendela login Google ditutup sebelum selesai.', 'error');
+                    } else if (code === 'auth/popup-blocked') {
+                        window.showToast?.('Popup Diblokir Browser', 'Mohon izinkan popup pada browser Anda untuk login Google.', 'error');
+                    } else if (code === 'auth/unauthorized-domain') {
+                        window.showToast?.('Domain Belum Terdaftar', 'Tambahkan domain ini di Firebase Console -> Authentication -> Authorized domains.', 'error');
+                    } else if (code === 'auth/operation-not-allowed') {
+                        window.showToast?.('Login Google Belum Aktif', 'Aktifkan provider Google di Firebase Console -> Authentication -> Sign-in method.', 'error');
+                    } else {
+                        console.error('Google Auth Error:', error);
+                        window.showToast?.('Gagal Masuk Google', 'Periksa aktivasi Google Sign-In & Authorized Domains di Firebase Console.', 'error');
+                    }
+                } finally {
+                    googleSignInBtn.disabled = false;
+                    googleSignInBtn.innerHTML = origHtml;
+                }
+            });
+        }
+
+        if (googleSignOutBtn) {
+            googleSignOutBtn.addEventListener('click', async () => {
+                try {
+                    await signOut(auth);
+                    window.showToast?.('Keluar Akun', 'Anda telah keluar dari akun Google.');
+                } catch (error) {
+                    console.error('Sign-out error:', error);
+                }
+            });
+        }
+
+        function setPickedStars(val) {
+            const n = Math.max(1, Math.min(5, Number(val) || 5));
+            if (ratingInput) ratingInput.value = String(n);
+            if (!starPickerRow) return;
+            starPickerRow.querySelectorAll('.star-pick-btn').forEach(btn => {
+                const r = Number(btn.getAttribute('data-rating'));
+                btn.classList.toggle('active', r <= n);
+            });
+        }
+
+        if (starPickerRow) {
+            starPickerRow.querySelectorAll('.star-pick-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    setPickedStars(btn.getAttribute('data-rating'));
+                });
+            });
+        }
+
+        if (toggleBtn && formPanel) {
+            toggleBtn.addEventListener('click', () => {
+                const isOpen = formPanel.classList.toggle('is-open');
+                syncAuthUi();
+                if (isOpen && currentUser && !userHasReviewed && nameInput) {
+                    nameInput.focus();
+                }
+            });
+        }
+
+        if (closeHeaderBtn && formPanel) {
+            closeHeaderBtn.addEventListener('click', () => {
+                formPanel.classList.remove('is-open');
+            });
+        }
+
+        if (cancelBtn && formPanel) {
+            cancelBtn.addEventListener('click', () => {
+                formPanel.classList.remove('is-open');
+            });
+        }
+
+        if (msgInput && charCounter) {
+            msgInput.addEventListener('input', () => {
+                charCounter.textContent = `${msgInput.value.length} / 500 karakter`;
+            });
+        }
+
+        if (formPanel) {
+            formPanel.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                if (trapInput && trapInput.value.trim() !== '') return;
+
+                if (!currentUser) {
+                    window.showToast?.('Login Diperlukan', 'Silakan masuk dengan akun Google terlebih dahulu.', 'error');
+                    return;
+                }
+
+                if (userHasReviewed) {
+                    window.showToast?.('Sudah Mengirim Ulasan', '1 akun Google hanya dapat mengirim 1 ulasan.', 'error');
+                    syncAuthUi();
+                    return;
+                }
+
+                const name = (nameInput?.value || '').trim();
+                const title = (titleInput?.value || '').trim();
+                const message = (msgInput?.value || '').trim();
+                const rating = Math.max(1, Math.min(5, parseInt(ratingInput?.value || '5', 10)));
+
+                if (name.length < 2 || name.length > 60) {
+                    window.showToast?.('Nama Tidak Valid', 'Isi nama Anda antara 2 sampai 60 karakter.', 'error');
+                    nameInput?.focus();
+                    return;
+                }
+                if (title.length < 2 || title.length > 80) {
+                    window.showToast?.('Jabatan / Usaha Kosong', 'Isi jabatan atau nama usaha (2–80 karakter).', 'error');
+                    titleInput?.focus();
+                    return;
+                }
+                if (message.length < 10 || message.length > 500) {
+                    window.showToast?.('Ulasan Terlalu Singkat', 'Tulis ulasan minimal 10 karakter (maksimal 500 karakter).', 'error');
+                    msgInput?.focus();
+                    return;
+                }
+
+                if (submitBtn) {
+                    submitBtn.disabled = true;
+                    submitBtn.textContent = 'Mengirim...';
+                }
+
+                const docPath = `${testimonialsPath}/${currentUser.uid}`;
+                try {
+                    await setDoc(doc(db, testimonialsPath, currentUser.uid), {
+                        authorUid: currentUser.uid,
+                        name,
+                        title,
+                        message,
+                        rating,
+                        createdAt: serverTimestamp()
+                    });
+
+                    userHasReviewed = true;
+                    formPanel.reset();
+                    setPickedStars(5);
+                    if (charCounter) charCounter.textContent = '0 / 500 karakter';
+                    formPanel.classList.remove('is-open');
+                    syncAuthUi();
+                    window.showToast?.('Ulasan Terkirim', 'Terima kasih! Ulasan dan rating Anda langsung tampil di halaman.');
+                } catch (error) {
+                    handleFirestoreError(error, OperationType.CREATE, docPath);
+                    window.showToast?.('Gagal Mengirim Ulasan', 'Pastikan Firestore Rules terbaru sudah di-publish di Firebase Console.', 'error');
+                } finally {
+                    if (submitBtn) {
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = 'Kirim Ulasan Sekarang';
+                    }
+                }
+            });
+        }
     </script>
 </body>
 </html>

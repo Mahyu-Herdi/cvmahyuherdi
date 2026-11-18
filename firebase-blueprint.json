@@ -1,0 +1,53 @@
+{
+  "entities": {
+    "Testimonial": {
+      "title": "Testimonial",
+      "description": "Ulasan dan rating klien ERBEA.ID yang tampil secara real-time di bagian Testimonials.",
+      "type": "object",
+      "properties": {
+        "authorUid": {
+          "type": "string",
+          "description": "UID akun Google pengirim ulasan (sama dengan ID dokumen).",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "name": {
+          "type": "string",
+          "description": "Nama lengkap atau panggilan klien.",
+          "minLength": 2,
+          "maxLength": 60
+        },
+        "title": {
+          "type": "string",
+          "description": "Jabatan dan/atau nama usaha klien.",
+          "minLength": 2,
+          "maxLength": 80
+        },
+        "message": {
+          "type": "string",
+          "description": "Isi ulasan pengalaman menggunakan ERBEA.ID.",
+          "minLength": 10,
+          "maxLength": 500
+        },
+        "rating": {
+          "type": "integer",
+          "description": "Rating bintang dari 1 sampai 5."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp saat ulasan dikirim."
+        }
+      },
+      "required": ["authorUid", "name", "title", "message", "rating", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/testimonials/{reviewId}": {
+      "schema": {
+        "$ref": "#/entities/Testimonial"
+      },
+      "description": "Koleksi ulasan dan rating klien ERBEA.ID. Publik dapat membaca; pengiriman ulasan wajib login Google terverifikasi dengan ID dokumen dikunci ke UID akun (1 akun = 1 ulasan); penghapusan dilakukan admin melalui Firebase Console atau akun admin terverifikasi."
+    }
+  }
+}

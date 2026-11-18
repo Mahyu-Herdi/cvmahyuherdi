@@ -1,0 +1,76 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // 1. Default-deny safety net untuk seluruh path lain
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // 2. Helper autentikasi, validasi ID, payload, dan Admin
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isVerifiedUser() {
+      return isSignedIn()
+        && request.auth.token.email_verified == true;
+    }
+
+    function isValidId(id) {
+      return id is string
+        && id.size() >= 1
+        && id.size() <= 128
+        && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function isAdmin() {
+      return isVerifiedUser()
+        && request.auth.token.email == 'erbeawebird@gmail.com';
+    }
+
+    // 3. Validasi ketat struktur, kepemilikan UID, tipe, panjang teks, rating 1-5, dan server timestamp
+    function isValidTestimonial(data) {
+      return data.keys().hasAll(['authorUid', 'name', 'title', 'message', 'rating', 'createdAt'])
+        && data.keys().hasOnly(['authorUid', 'name', 'title', 'message', 'rating', 'createdAt'])
+        && data.authorUid is string
+        && data.authorUid == request.auth.uid
+        && data.name is string
+        && data.name.size() >= 2
+        && data.name.size() <= 60
+        && data.title is string
+        && data.title.size() >= 2
+        && data.title.size() <= 80
+        && data.message is string
+        && data.message.size() >= 10
+        && data.message.size() <= 500
+        && data.rating is int
+        && data.rating >= 1
+        && data.rating <= 5
+        && data.createdAt is timestamp
+        && data.createdAt == request.time;
+    }
+
+    // 4. Aturan akses koleksi ulasan & rating (1 Akun Google = 1 Ulasan)
+    match /testimonials/{reviewId} {
+      // Publik dapat membaca ulasan dan menampilkan rating di halaman web
+      allow get: if isValidId(reviewId);
+      allow list: if true;
+
+      // Wajib login Google terverifikasi, ID dokumen dikunci ke UID akun (1 akun = 1 ulasan)
+      allow create: if isVerifiedUser()
+        && isValidId(reviewId)
+        && reviewId == request.auth.uid
+        && isValidTestimonial(incoming());
+
+      // Tidak bisa diedit ulang oleh publik (anti-manipulasi rating/isi ulasan)
+      allow update: if false;
+
+      // Penghapusan oleh Admin terverifikasi (atau langsung manual dari Firebase Console)
+      allow delete: if isAdmin();
+    }
+  }
+}
