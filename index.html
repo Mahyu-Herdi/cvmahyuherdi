@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="/favicon.png">
-    <link rel="apple-touch-icon" href="/favicon.png">
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon.png">
+    <link rel="apple-touch-icon" sizes="500x500" href="/logo.png">
     <link rel="canonical" href="https://erbea.id/">
 
     <title>ERBEA.ID — Kasir POS Enterprise, QRIS Soundbox &amp; ERP Mini</title>
@@ -45,7 +47,7 @@
           "@id": "https://erbea.id/#organization",
           "name": "ERBEA.ID",
           "url": "https://erbea.id/",
-          "logo": "https://erbea.id/favicon.png",
+          "logo": "https://erbea.id/logo.png",
           "email": "erbeawebird@gmail.com",
           "founder": {
             "@type": "Person",
@@ -611,12 +613,25 @@
         }
 
         .brand-wordmark {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
             font-size: 1.15rem;
             font-weight: 800;
             letter-spacing: 0.02em;
             color: var(--text-primary);
             white-space: nowrap;
             flex-shrink: 0;
+        }
+
+        .brand-logo-img {
+            width: 32px;
+            height: 32px;
+            border-radius: 9px;
+            object-fit: cover;
+            flex-shrink: 0;
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.22);
         }
 
         .nav-links {
@@ -3037,7 +3052,10 @@
         <!-- TOP BAR (3 ZONES: WORDMARK — LINKS — PRIMARY CTA) -->
         <div class="top-bar-wrap">
             <header class="top-bar">
-                <a href="#beranda" class="brand-wordmark">ERBEA.ID</a>
+                <a href="#beranda" class="brand-wordmark">
+                    <img src="/logo.png" alt="Logo ERBEA.ID" class="brand-logo-img" width="32" height="32">
+                    <span>ERBEA.ID</span>
+                </a>
 
                 <nav class="nav-links" aria-label="Navigasi Utama">
                     <a href="#fitur" class="nav-link">Fitur</a>
@@ -4260,8 +4278,9 @@
 
         <!-- QUIET FOOTER -->
         <footer class="glass-card site-footer">
-            <div>
-                <strong style="color: var(--text-primary);">ERBEA.ID</strong> — Kami percaya bisnis anda berkelas bersama kami
+            <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+                <img src="/logo.png" alt="Logo ERBEA.ID" width="26" height="26" style="border-radius:7px; object-fit:cover; flex-shrink:0;">
+                <span><strong style="color: var(--text-primary);">ERBEA.ID</strong> — Kami percaya bisnis anda berkelas bersama kami</span>
             </div>
             <div class="footer-links">
                 <a href="/panduan.html">Panduan UMKM</a>
