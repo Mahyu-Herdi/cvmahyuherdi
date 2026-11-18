@@ -3857,7 +3857,7 @@
                 <div style="display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap;">
                     <div>
                         <h3 style="font-size: 1rem; font-weight: 800; color: var(--text-primary);">Kirim Ulasan &amp; Rating Aplikasi</h3>
-                        <p style="font-size: 0.82rem; color: var(--text-muted); margin-top: 2px;">Wajib masuk dengan Google 1-klik (1 akun = 1 ulasan) agar ulasan asli &amp; bebas spam.</p>
+                        <p style="font-size: 0.82rem; color: var(--text-muted); margin-top: 2px;">Masuk dengan akun Google untuk memverifikasi identitas pengulas. Email Anda dijaga privat.</p>
                     </div>
                     <button type="button" id="closeTestimonialHeaderBtn" class="btn-glass-secondary" style="font-size: 0.82rem; min-height: 36px; padding: 6px 14px;">Tutup</button>
                 </div>
@@ -3865,8 +3865,8 @@
                 <!-- Gate Belum Login Google -->
                 <div id="authSignedOutBox" class="auth-gate-box">
                     <div class="auth-gate-info">
-                        <span class="auth-gate-title">Verifikasi Akun Google (1-Klik)</span>
-                        <span class="auth-gate-desc">Klik tombol di samping untuk masuk dengan Google sebelum menulis ulasan. Email Anda tidak ditampilkan ke publik.</span>
+                        <span class="auth-gate-title">Verifikasi Pengulas</span>
+                        <span class="auth-gate-desc">Masuk cepat menggunakan Google sebelum menulis ulasan. Alamat email tidak ditampilkan ke publik.</span>
                     </div>
                     <button type="button" id="googleSignInBtn" class="btn-google-signin">
                         <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
@@ -3882,17 +3882,17 @@
                 <!-- Status Sudah Login Google -->
                 <div id="authSignedInBox" class="auth-gate-box" hidden>
                     <div class="auth-gate-info">
-                        <span class="auth-gate-title">Terverifikasi sebagai <span id="authUserDisplayName">Pengguna Google</span></span>
-                        <span class="auth-gate-desc" id="authUserStatusNote">Akun siap mengirim 1 ulasan &amp; rating.</span>
+                        <span class="auth-gate-title">Terhubung sebagai <span id="authUserDisplayName">Pengguna Google</span></span>
+                        <span class="auth-gate-desc" id="authUserStatusNote">Identitas terverifikasi. Silakan tulis ulasan pengalaman Anda.</span>
                     </div>
                     <button type="button" id="googleSignOutBtn" class="btn-glass-secondary" style="font-size: 0.82rem; min-height: 38px; padding: 7px 14px;">Keluar / Ganti Akun</button>
                 </div>
 
-                <!-- Status Akun Sudah Mengirim Ulasan -->
+                <!-- Status Ulasan Akun Sudah Tercatat -->
                 <div id="authAlreadyReviewedBox" class="auth-gate-box" hidden>
                     <div class="auth-gate-info">
-                        <span class="auth-gate-title">Ulasan Akun Ini Sudah Tersimpan</span>
-                        <span class="auth-gate-desc">Setiap akun Google dibatasi maksimal 1 ulasan untuk menjaga keaslian rating ERBEA.ID. Terima kasih atas masukan Anda!</span>
+                        <span class="auth-gate-title">Terima Kasih atas Ulasan Anda</span>
+                        <span class="auth-gate-desc">Masukan dan rating dari akun Anda sudah tercatat dan tayang di halaman ini.</span>
                     </div>
                 </div>
 
@@ -5150,7 +5150,7 @@
         });
     </script>
 
-    <!-- FIREBASE AUTH + FIRESTORE REAL-TIME TESTIMONIALS & APP RATING (1 AKUN = 1 ULASAN) -->
+    <!-- FIREBASE AUTH + FIRESTORE REAL-TIME TESTIMONIALS & APP RATING -->
     <script type="module">
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js';
         import {
@@ -5408,11 +5408,11 @@
             }
 
             if (userHasReviewed) {
-                if (authUserStatusNote) authUserStatusNote.textContent = 'Akun ini sudah memiliki 1 ulasan aktif.';
+                if (authUserStatusNote) authUserStatusNote.textContent = 'Identitas terverifikasi · Ulasan sudah tercatat.';
                 if (authAlreadyBox) authAlreadyBox.hidden = false;
                 if (fieldsWrap) fieldsWrap.hidden = true;
             } else {
-                if (authUserStatusNote) authUserStatusNote.textContent = 'Akun siap mengirim 1 ulasan & rating.';
+                if (authUserStatusNote) authUserStatusNote.textContent = 'Identitas terverifikasi. Silakan tulis ulasan pengalaman Anda.';
                 if (authAlreadyBox) authAlreadyBox.hidden = true;
                 if (fieldsWrap) fieldsWrap.hidden = false;
                 if (nameInput && !nameInput.value.trim() && currentUser.displayName) {
@@ -5550,7 +5550,7 @@
                 }
 
                 if (userHasReviewed) {
-                    window.showToast?.('Sudah Mengirim Ulasan', '1 akun Google hanya dapat mengirim 1 ulasan.', 'error');
+                    window.showToast?.('Ulasan Sudah Tercatat', 'Terima kasih, ulasan dari akun Anda sudah tersimpan sebelumnya.');
                     syncAuthUi();
                     return;
                 }
