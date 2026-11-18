@@ -3742,7 +3742,7 @@
                 <div>
                     <div class="section-kicker">Testimonials</div>
                     <h2 class="section-title">Ulasan &amp; Rating Pengguna ERBEA.ID</h2>
-                    <p class="section-sub" style="margin-top: 6px;">Ulasan dan rating aplikasi langsung terhubung ke Firestore secara real-time untuk seluruh pengguna ERBEA.ID.</p>
+                    <p class="section-sub" style="margin-top: 6px;">Ulasan dan rating langsung dari pemilik usaha yang telah menggunakan sistem kasir ERBEA.ID secara nyata.</p>
                 </div>
 
                 <div class="app-rating-summary" id="appRatingSummary" aria-live="polite">
@@ -4952,8 +4952,8 @@
                 category: 'Testimoni & Rating Live',
                 badgeClass: '',
                 title: 'Testimonials & Rating Aplikasi Real-Time ERBEA.ID',
-                desc: 'Lihat rating rata-rata aplikasi dan ulasan klien langsung dari Firestore secara real-time, atau tulis ulasan Anda sendiri.',
-                keywords: ['testimoni', 'testimonial', 'testimonials', 'ulasan', 'review', 'rating', 'klien', 'feedback', 'bintang', 'firestore'],
+                desc: 'Lihat rating rata-rata aplikasi dan ulasan klien ERBEA.ID secara real-time, atau bagikan pengalaman Anda sendiri.',
+                keywords: ['testimoni', 'testimonial', 'testimonials', 'ulasan', 'review', 'rating', 'klien', 'feedback', 'bintang'],
                 targetId: 'testimoni',
                 actions: [
                     { type: 'scroll', label: 'Lihat & Tulis Testimoni', targetId: 'testimoni', primary: true }
@@ -5467,13 +5467,9 @@
                         window.showToast?.('Login Dibatalkan', 'Jendela login Google ditutup sebelum selesai.', 'error');
                     } else if (code === 'auth/popup-blocked') {
                         window.showToast?.('Popup Diblokir Browser', 'Mohon izinkan popup pada browser Anda untuk login Google.', 'error');
-                    } else if (code === 'auth/unauthorized-domain') {
-                        window.showToast?.('Domain Belum Terdaftar', 'Tambahkan domain ini di Firebase Console -> Authentication -> Authorized domains.', 'error');
-                    } else if (code === 'auth/operation-not-allowed') {
-                        window.showToast?.('Login Google Belum Aktif', 'Aktifkan provider Google di Firebase Console -> Authentication -> Sign-in method.', 'error');
                     } else {
-                        console.error('Google Auth Error:', error);
-                        window.showToast?.('Gagal Masuk Google', 'Periksa aktivasi Google Sign-In & Authorized Domains di Firebase Console.', 'error');
+                        console.error('Google Auth Error:', code, error);
+                        window.showToast?.('Gagal Masuk Google', 'Terjadi kendala saat menghubungkan akun Google. Silakan coba lagi beberapa saat.', 'error');
                     }
                 } finally {
                     googleSignInBtn.disabled = false;
@@ -5613,7 +5609,7 @@
                     window.showToast?.('Ulasan Terkirim', 'Terima kasih! Ulasan dan rating Anda langsung tampil di halaman.');
                 } catch (error) {
                     handleFirestoreError(error, OperationType.WRITE, docPath);
-                    window.showToast?.('Gagal Mengirim Ulasan', 'Pastikan Firestore Rules terbaru sudah di-publish di Firebase Console.', 'error');
+                    window.showToast?.('Gagal Mengirim Ulasan', 'Terjadi kendala koneksi ke server. Silakan coba lagi beberapa saat.', 'error');
                 } finally {
                     if (submitBtn) {
                         submitBtn.disabled = false;
