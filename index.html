@@ -31,23 +31,106 @@
     <meta name="twitter:image" content="https://erbea.id/og-erbea.png">
     <meta name="twitter:image:alt" content="ERBEA.ID — Sistem Kasir POS Enterprise &amp; ERP Mini Terintegrasi">
 
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="keywords" content="aplikasi kasir, sistem kasir POS, POS UMKM Indonesia, kasir online murah, demo kasir gratis, QRIS dinamis tanpa MDR, soundbox QRIS gratis, ERP mini, invoice A4, laporan keuangan ROI, printer thermal web bluetooth, ERBEA.ID">
+    <link rel="alternate" type="text/plain" title="Ringkasan AI (llms.txt)" href="https://erbea.id/llms.txt">
     <meta name="theme-color" id="themeColorMeta" content="#080a0f">
 
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": "ERBEA.ID",
-      "url": "https://erbea.id/",
-      "image": "https://erbea.id/og-erbea.png",
-      "applicationCategory": "BusinessApplication",
-      "operatingSystem": "Web, Android, iOS, Windows, macOS",
-      "description": "Sistem Kasir POS Enterprise & ERP Mini online real-time dengan QRIS Dinamis Auto-Lunas & Soundbox Indonesia, Global Barcode Suara, PO 14 hari, 6 Dokumen A4, Akuntansi ROI riil, Audit Anti-Kecurangan Kasir, Web Bluetooth Printer, dan PWA White-Label.",
-      "creator": {
-        "@type": "Person",
-        "name": "Mahyu Herdi",
-        "email": "erbeawebird@gmail.com"
-      }
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://erbea.id/#organization",
+          "name": "ERBEA.ID",
+          "url": "https://erbea.id/",
+          "logo": "https://erbea.id/favicon.png",
+          "email": "erbeawebird@gmail.com",
+          "founder": {
+            "@type": "Person",
+            "name": "Mahyu Herdi",
+            "jobTitle": "Direktur & Lead Developer"
+          },
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+62-812-9437-9909",
+            "contactType": "sales",
+            "areaServed": "ID",
+            "availableLanguage": "Indonesian"
+          }
+        },
+        {
+          "@type": "SoftwareApplication",
+          "@id": "https://erbea.id/#software",
+          "name": "ERBEA.ID — Kasir POS Enterprise & ERP Mini",
+          "url": "https://erbea.id/",
+          "image": "https://erbea.id/og-erbea.png",
+          "applicationCategory": "BusinessApplication",
+          "applicationSubCategory": "Point of Sale (POS) & Mini ERP",
+          "operatingSystem": "Web, Android, iOS, Windows, macOS",
+          "inLanguage": "id-ID",
+          "description": "Aplikasi kasir POS online real-time dan ERP Mini untuk UMKM, toko retail, restoran, gudang, jasa, dan koperasi. Mendukung uji coba demo gratis, QRIS Dinamis Auto-Lunas & Soundbox Bahasa Indonesia tanpa MDR, Global Barcode Suara, 2 Kondisi Harga, PO 14 Hari, 6 Dokumen A4, Akuntansi ROI & Beban Tetap, Audit Anti-Kecurangan Kasir, serta Printer Thermal Web Bluetooth tanpa aplikasi berbayar.",
+          "featureList": [
+            "QRIS Dinamis Auto-Lunas tanpa biaya MDR dan Soundbox suara Bahasa Indonesia bawaan",
+            "Global Barcode Scanner USB/Bluetooth/Kamera dengan feedback suara dan 2 Kondisi Harga",
+            "Pre-Order terjadwal 14 hari, Manajemen Meja & Printer Dapur Delta Order",
+            "6 Generator Dokumen Bisnis A4 (Invoice, Surat Jalan, BAST, Terima Barang, Surat Pesanan, RAB Pagu) & Manajemen Supplier",
+            "Akuntansi bisnis riil: Penyusutan Aset, Beban Tetap per Porsi, Prive Pemilik, Kasbon Net Fisik, Mutasi Stok & ROI",
+            "Audit Soft-Delete anti-kecurangan kasir & reset sandi OTP otomatis",
+            "Printer Thermal 58mm/80mm Web Bluetooth tanpa aplikasi berbayar & Auto Cash Drawer Kick",
+            "Auto Hapus Background Foto Produk & PWA White-Label dinamis per toko"
+          ],
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "IDR",
+            "description": "Tersedia uji coba demo interaktif gratis langsung di subdomain toko Anda serta aktivasi akses penuh tanpa fitur yang dikunci.",
+            "url": "https://erbea.id/#paket"
+          },
+          "publisher": {
+            "@id": "https://erbea.id/#organization"
+          }
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://erbea.id/#faq",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Apakah harus membeli mesin kasir atau barcode scanner khusus untuk memakai ERBEA.ID?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Tidak wajib. ERBEA.ID berjalan langsung lewat browser di laptop, PC, tablet, maupun HP dengan kamera untuk scan barcode. Jika memakai scanner fisik USB/Bluetooth, tersedia Global Barcode Scanner lengkap dengan suara penyebut nama produk, serta dukungan Printer Thermal 58mm/80mm via Web Bluetooth tanpa aplikasi berbayar."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Apakah uang QRIS ditampung dulu dan ada potongan MDR payment gateway?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Tidak ditampung dan tanpa biaya MDR payment gateway. Cukup upload QRIS statis milik usaha sekali saja, nominal tagihan terkunci di QR Dinamis dan dana langsung masuk ke rekening toko tanpa menunggu H+1, dilengkapi deteksi notifikasi otomatis (MacroDroid) dan suara Soundbox Bahasa Indonesia."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Apakah cetak struk Bluetooth dan buka laci kasir butuh aplikasi berbayar?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Tidak perlu aplikasi berbayar. ERBEA.ID mendukung printer thermal 58mm/80mm langsung dari browser via Web Bluetooth dengan 4 template struk industri dan perintah Auto Cash Drawer Kick (Pin 2 / Pin 5)."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Bagaimana cara mencoba demo ERBEA.ID dengan nama toko sendiri?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Klik tombol Coba Demo di halaman ERBEA.ID, masukkan nama subdomain usaha Anda (contoh: kedaikopi), lalu buka alamat demo toko untuk langsung mencoba seluruh fitur secara gratis."
+              }
+            }
+          ]
+        }
+      ]
     }
     </script>
 

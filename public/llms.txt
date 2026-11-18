@@ -1,0 +1,33 @@
+# ERBEA.ID — Sistem Kasir POS Enterprise & ERP Mini Terintegrasi
+
+> Tagline: Kami percaya bisnis anda berkelas bersama kami
+> Website Resmi: https://erbea.id/
+> Demo Interaktif Gratis: https://demo.erbea.id/
+> Pimpinan & Lead Developer: Mahyu Herdi (erbeawebird@gmail.com | WhatsApp: +6281294379909)
+
+ERBEA.ID adalah aplikasi kasir Point of Sale (POS) berbasis web (Pure Online Real-Time) dan ERP Mini untuk UMKM, minimarket, restoran, kafe, gudang logistik, distributor, jasa, koperasi, hingga yayasan di Indonesia. Seluruh modul langsung terbuka tanpa fitur yang dikunci, dengan biaya operasional sangat hemat karena tidak memerlukan alat soundbox terpisah maupun aplikasi printer pihak ketiga berbayar.
+
+## Keunggulan Utama ERBEA.ID
+1. **QRIS Dinamis Auto-Lunas + Soundbox Suara Bahasa Indonesia (Tanpa MDR Gateway & Tanpa Alat Tambahan)**
+   - Upload QRIS statis toko sekali saja; nominal tagihan otomatis terkunci di QR Code setiap transaksi tanpa biaya MDR payment gateway dan dana langsung masuk ke rekening tanpa menunggu H+1.
+   - Auto-deteksi notifikasi transfer masuk via MacroDroid webhook menandai transaksi LUNAS otomatis serta membunyikan nada chime dan suara nominal Bahasa Indonesia.
+2. **Global Barcode Scanner + Voice Feedback + 2 Kondisi Harga Mandiri**
+   - Scanner USB/Bluetooth langsung scan tanpa klik kolom input, plus dukungan kamera HP/laptop dan suara pembaca nama barang.
+   - 1 produk mendukung 2 kondisi harga & satuan berbeda (Eceran/Grosir, Panas/Dingin, Gram/Kg) dengan barcode dan resep potong stok masing-masing.
+3. **ERP Mini, Pre-Order 14 Hari, Manajemen Meja & 6 Dokumen Bisnis A4**
+   - Pre-Order terjadwal hingga 14 hari dengan diskon per tanggal dan filter checkout.
+   - Manajemen Meja (Dine-In/Takeaway) real-time + Printer Dapur/Bar Delta Order (hanya mencetak item tambahan baru).
+   - Generator dokumen A4 resmi (PDF, cetak, Share WA): Invoice A4 (Terbilang, DP/Termin, PPN), Surat Jalan, BAST, Terima Barang, Surat Pesanan (PO), dan RAB dengan Pagu Anggaran, serta Manajemen PO Supplier + bukti transfer.
+4. **Akuntansi Bisnis Riil & ROI (Balik Modal)**
+   - Kalkulator Penyusutan Aset & Beban Tetap per Porsi otomatis masuk hitungan HPP menu.
+   - Memisahkan Kas Laci Riil, HPP Bahan, Beban Operasional, Catatan Prive Pemilik, Kasbon pelanggan dengan kontrol Net Fisik stok, Rekap Mutasi Stok, Performa Menu PDF, dan grafik ROI.
+5. **Keamanan & Anti-Kecurangan Kasir (Audit Soft-Delete)**
+   - Penghapusan transaksi/kasbon oleh kasir masuk status "Dihapus Kasir" beserta nama dan waktu, dapat dipulihkan (Restore) atau dihapus permanen oleh Admin dengan pengembalian stok & kas otomatis, plus reset sandi OTP otomatis via email.
+6. **Printer Thermal Web Bluetooth & Cash Drawer Tanpa Aplikasi Berbayar**
+   - Cetak langsung struk 58mm/80mm dari browser dengan 4 template industri (Retail, F&B, Gudang, Jasa) dan dukungan Auto Cash Drawer Kick (Pin 2 / Pin 5).
+7. **Teknologi Modern, Ringan & PWA White-Label**
+   - Auto hapus background foto produk, 4 tema visual (Neutral, Light, Dark, Glass), Mode Demo bawaan, dan PWA White-Label yang bisa di-install di Android maupun PC memakai nama dan logo toko sendiri.
+
+## Cara Uji Coba & Aktivasi
+- Pengunjung dapat mencoba demo gratis langsung lewat tombol "Coba Demo" di https://erbea.id/ atau mengakses https://demo.erbea.id/.
+- Untuk aktivasi subdomain toko pribadi (namatoko.erbea.id) atau setup kop lembaga, hubungi langsung WhatsApp +6281294379909 atau email erbeawebird@gmail.com.
