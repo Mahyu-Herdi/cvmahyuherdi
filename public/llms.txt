@@ -27,6 +27,9 @@ ERBEA.ID adalah aplikasi kasir Point of Sale (POS) berbasis web (Pure Online Rea
    - Cetak langsung struk 58mm/80mm dari browser dengan 4 template industri (Retail, F&B, Gudang, Jasa) dan dukungan Auto Cash Drawer Kick (Pin 2 / Pin 5).
 7. **Teknologi Modern, Ringan & PWA White-Label**
    - Auto hapus background foto produk, 4 tema visual (Neutral, Light, Dark, Glass), Mode Demo bawaan, dan PWA White-Label yang bisa di-install di Android maupun PC memakai nama dan logo toko sendiri.
+8. **Mode Kios (Self-Order Pelanggan) & Slot Poster Promo**
+   - Tablet di depan kasir bisa menampilkan poster promo, acara, atau menu baru yang di-upload sebelum pelanggan menyentuh layar.
+   - Pelanggan memilih sendiri menu, quantity, metode pembayaran, tipe pesanan, serta Dine-In atau Takeaway, lalu pesanan otomatis langsung masuk ke layar kasir untuk diproses.
 
 ## Cara Uji Coba & Aktivasi
 - Pengunjung dapat mencoba demo gratis langsung lewat tombol "Coba Demo" di https://erbea.id/ atau mengakses https://demo.erbea.id/.

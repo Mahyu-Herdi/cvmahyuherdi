@@ -34,7 +34,7 @@
     <meta name="twitter:image:alt" content="ERBEA.ID — Sistem Kasir POS Enterprise &amp; ERP Mini Terintegrasi">
 
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-    <meta name="keywords" content="aplikasi kasir, sistem kasir POS, POS UMKM Indonesia, kasir online murah, demo kasir gratis, QRIS dinamis tanpa MDR, soundbox QRIS gratis, ERP mini, invoice A4, laporan keuangan ROI, printer thermal web bluetooth, ERBEA.ID">
+    <meta name="keywords" content="aplikasi kasir, sistem kasir POS, POS UMKM Indonesia, kasir online murah, demo kasir gratis, mode kiosk kasir, self order pelanggan, poster promo kiosk, QRIS dinamis tanpa MDR, soundbox QRIS gratis, ERP mini, invoice A4, laporan keuangan ROI, printer thermal web bluetooth, ERBEA.ID">
     <link rel="alternate" type="text/plain" title="Ringkasan AI (llms.txt)" href="https://erbea.id/llms.txt">
     <meta name="theme-color" id="themeColorMeta" content="#080a0f">
 
@@ -81,7 +81,8 @@
             "Akuntansi bisnis riil: Penyusutan Aset, Beban Tetap per Porsi, Prive Pemilik, Kasbon Net Fisik, Mutasi Stok & ROI",
             "Audit Soft-Delete anti-kecurangan kasir & reset sandi OTP otomatis",
             "Printer Thermal 58mm/80mm Web Bluetooth tanpa aplikasi berbayar & Auto Cash Drawer Kick",
-            "Auto Hapus Background Foto Produk & PWA White-Label dinamis per toko"
+            "Auto Hapus Background Foto Produk & PWA White-Label dinamis per toko",
+            "Mode Kios (Self-Order di tablet depan kasir: pilih menu, qty, metode pembayaran, tipe pesanan, Dine-In/Takeaway langsung masuk kasir) lengkap slot upload poster promo/acara/menu baru"
           ],
           "offers": {
             "@type": "Offer",
@@ -1568,6 +1569,8 @@
         .bento-card.is-visible:not(.bento-settled):nth-child(7) { transition-delay: 360ms; }
         .bento-card.is-visible:not(.bento-settled):nth-child(8) { transition-delay: 420ms; }
 
+        .bento-card.is-visible:not(.bento-settled):nth-child(9) { transition-delay: 480ms; }
+
         .bento-card.is-visible:hover {
             transform: translateY(-3px);
             background: var(--glass-tile-hover);
@@ -1577,6 +1580,10 @@
 
         .bento-wide {
             grid-column: span 2;
+        }
+
+        .bento-full {
+            grid-column: 1 / -1;
         }
 
         .bento-head {
@@ -2935,7 +2942,8 @@
             .bento-grid {
                 grid-template-columns: 1fr;
             }
-            .bento-wide {
+            .bento-wide,
+            .bento-full {
                 grid-column: span 1;
             }
             .doc-mini-strip {
@@ -3138,7 +3146,7 @@
                         <div class="hero-eyebrow" id="heroEyebrow">Pure Online Cloud Real-Time · QRIS Soundbox Auto-Lunas · ERP Mini &amp; Akuntansi Riil</div>
                         <h1 class="hero-title" id="heroHeadline">Mesin Kasir POS Enterprise &amp; ERP Mini Terintegrasi untuk Bisnis Serius</h1>
                         <p class="hero-desc" id="heroDescription">
-                            Dirancang untuk <strong>Minimarket</strong>, <strong>Restoran &amp; Kafe</strong>, <strong>Gudang Logistik &amp; Jasa</strong>, hingga <strong>Koperasi &amp; Yayasan</strong>. Lengkap dari kasir <strong>QRIS Dinamis Auto-Lunas + Soundbox Bahasa Indonesia</strong>, Global Barcode Suara &amp; 2 Kondisi Harga, PO 14 Hari &amp; Manajemen Supplier, 6 Dokumen A4 Resmi, Akuntansi ROI &amp; Beban Tetap per Porsi, Audit Anti-Kecurangan Kasir, hingga Printer Web Bluetooth &amp; PWA White-Label.
+                            Dirancang untuk <strong>Minimarket</strong>, <strong>Restoran &amp; Kafe</strong>, <strong>Gudang Logistik &amp; Jasa</strong>, hingga <strong>Koperasi &amp; Yayasan</strong>. Lengkap dari kasir <strong>QRIS Dinamis Auto-Lunas + Soundbox Bahasa Indonesia</strong>, <strong>Mode Kios Self-Order &amp; Poster Promo</strong> di depan kasir, Global Barcode Suara &amp; 2 Kondisi Harga, PO 14 Hari &amp; Manajemen Supplier, 6 Dokumen A4 Resmi, Akuntansi ROI &amp; Beban Tetap per Porsi, Audit Anti-Kecurangan Kasir, hingga Printer Web Bluetooth &amp; PWA White-Label.
                         </p>
                     </div>
 
@@ -3371,6 +3379,10 @@
                     <button type="button" class="search-chip" onclick="triggerSearchChip('pwa white label background pure online')">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
                         PWA White-Label &amp; Cloud
+                    </button>
+                    <button type="button" class="search-chip" onclick="triggerSearchChip('kios kiosk poster promo self order')">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="4" y="2" width="16" height="20" rx="2"></rect><line x1="8" y1="6" x2="16" y2="6"></line><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+                        Mode Kios &amp; Poster Promo
                     </button>
                     <button type="button" class="search-chip" onclick="triggerSearchChip('lupa sandi otp')">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
@@ -3623,6 +3635,35 @@
                         </div>
                     </div>
                 </article>
+
+                <!-- 09. FULL CARD: MODE KIOS (SELF-ORDER PELANGGAN) + SLOT POSTER PROMO -->
+                <article class="glass-tile bento-card bento-full" id="bentoCard09">
+                    <div class="bento-head">
+                        <div>
+                            <span class="bento-num">09</span>
+                            <h3 class="bento-title">Mode Kios (Self-Order di Depan Kasir) + Slot Upload Poster Promo</h3>
+                            <p class="bento-desc">Ubah tablet di depan kasir menjadi layar pesan mandiri pelanggan. Tersedia <strong>slot upload poster</strong> yang tampil penuh di layar Kios sebelum pelanggan menyentuh apa pun&mdash;cocok untuk memajang <strong>promo berjalan, jadwal acara, maupun menu baru</strong>. Begitu diklik, pelanggan bisa langsung memilih <strong>menu, quantity, metode pembayaran, tipe pesanan, dan Dine-In atau Takeaway</strong> sendiri, lalu pesanan otomatis masuk ke layar kasir untuk segera diproses oleh kasir.</p>
+                        </div>
+                        <div class="bento-icon-box" aria-hidden="true">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"></rect><rect x="7" y="5" width="10" height="7" rx="1"></rect><line x1="7" y1="15" x2="17" y2="15"></line><line x1="12" y1="18.5" x2="12.01" y2="18.5"></line></svg>
+                        </div>
+                    </div>
+
+                    <div class="doc-mini-strip">
+                        <div class="doc-mini-card">
+                            <strong>Slot Poster Layar Depan</strong>
+                            <span>Upload poster promo, acara, atau menu baru</span>
+                        </div>
+                        <div class="doc-mini-card">
+                            <strong>Self-Order Lengkap</strong>
+                            <span>Pilih menu, qty, bayar &amp; Dine-In / Takeaway</span>
+                        </div>
+                        <div class="doc-mini-card">
+                            <strong>Langsung Masuk Kasir</strong>
+                            <span>Order otomatis tampil &amp; diproses kasir</span>
+                        </div>
+                    </div>
+                </article>
             </div>
         </section>
 
@@ -3694,6 +3735,14 @@
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="9 18 15 12 9 6"></polyline></svg>
                     </button>
 
+                    <button type="button" class="module-tab" data-module="kios" onclick="selectModule('kios', this)">
+                        <div>
+                            <div class="module-tab-title">Mode Kios &amp; Poster Promo</div>
+                            <span class="module-tab-sub">Self-order di depan kasir + slot poster</span>
+                        </div>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </button>
+
                     <button type="button" class="module-tab" data-module="security" onclick="selectModule('security', this)">
                         <div>
                             <div class="module-tab-title">Anti-Fraud, Print BT &amp; PWA</div>
@@ -3733,7 +3782,7 @@
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line><line x1="14" y1="1" x2="14" y2="4"></line></svg>
                     </div>
                     <h3>Restoran, Kafe &amp; Bar (FnB)</h3>
-                    <p><strong>Meja Berjalan &amp; Dapur Delta Order:</strong> Manajemen meja Dine-In/Takeaway dengan pantauan tagihan &amp; potensi laba, cetak dapur/bar hanya item tambahan baru, 2 kondisi (Panas/Dingin) + resep masing-masing, serta Beban Tetap per Porsi ke HPP.</p>
+                    <p><strong>Meja Berjalan, Mode Kios &amp; Dapur Delta Order:</strong> Pelanggan bisa pesan mandiri lewat Mode Kios (lengkap slot poster promo/menu baru sebelum order), meja Dine-In/Takeaway terpantau real-time, cetak dapur/bar hanya item tambahan baru, 2 kondisi (Panas/Dingin) + resep, serta Beban Tetap per Porsi ke HPP.</p>
                 </article>
 
                 <article class="glass-tile segment-card">
@@ -3800,6 +3849,10 @@
                             <li>
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent-green)" stroke-width="2.6" style="flex-shrink:0;margin-top:3px;"><polyline points="20 6 9 17 4 12"></polyline></svg>
                                 <span>Akuntansi Riil: Beban Tetap/Porsi, Prive, Mutasi Stok, Kasbon Net Fisik, ROI, Grafik &amp; PDF Performa Menu</span>
+                            </li>
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent-green)" stroke-width="2.6" style="flex-shrink:0;margin-top:3px;"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <span>Mode Kios Self-Order (pilih menu, qty, metode bayar, tipe pesanan &amp; Dine-In/Takeaway langsung masuk kasir) lengkap slot upload poster promo</span>
                             </li>
                             <li>
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent-green)" stroke-width="2.6" style="flex-shrink:0;margin-top:3px;"><polyline points="20 6 9 17 4 12"></polyline></svg>
@@ -4219,6 +4272,16 @@
 
                 <div class="glass-tile faq-item">
                     <button type="button" class="faq-trigger" aria-expanded="false" onclick="toggleFaq(this)">
+                        <span>Bagaimana cara kerja Mode Kios dan slot upload poster promo di depan kasir?</span>
+                        <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </button>
+                    <div class="faq-answer">
+                        Pada <strong>Mode Kios</strong>, tablet yang diletakkan di depan kasir menampilkan <strong>poster promo, acara, atau menu baru</strong> yang Anda upload sebelum pelanggan menyentuh layar. Saat pelanggan mulai memesan, mereka bisa langsung memilih <strong>menu, quantity, metode pembayaran, tipe pesanan, serta Dine-In atau Takeaway</strong> secara mandiri—dan pesanan tersebut otomatis langsung masuk ke layar kasir untuk segera diproses oleh kasir.
+                    </div>
+                </div>
+
+                <div class="glass-tile faq-item">
+                    <button type="button" class="faq-trigger" aria-expanded="false" onclick="toggleFaq(this)">
                         <span>Bagaimana cara mencoba demo dengan nama toko saya sendiri?</span>
                         <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="6 9 12 15 18 9"></polyline></svg>
                     </button>
@@ -4394,7 +4457,7 @@
                 tabLive.classList.add('active');
                 eyebrow.textContent = 'Pure Online Cloud Real-Time · QRIS Soundbox Auto-Lunas · ERP Mini & Akuntansi Riil';
                 headline.textContent = 'Mesin Kasir POS Enterprise & ERP Mini Terintegrasi untuk Bisnis Serius';
-                desc.innerHTML = 'Dirancang untuk <strong>Minimarket</strong>, <strong>Restoran &amp; Kafe</strong>, <strong>Gudang Logistik &amp; Jasa</strong>, hingga <strong>Koperasi &amp; Yayasan</strong>. Lengkap dari kasir <strong>QRIS Dinamis Auto-Lunas + Soundbox Bahasa Indonesia</strong>, Global Barcode Suara &amp; 2 Kondisi Harga, PO 14 Hari &amp; Manajemen Supplier, 6 Dokumen A4 Resmi, Akuntansi ROI &amp; Beban Tetap per Porsi, Audit Anti-Kecurangan Kasir, hingga Printer Web Bluetooth &amp; PWA White-Label.';
+                desc.innerHTML = 'Dirancang untuk <strong>Minimarket</strong>, <strong>Restoran &amp; Kafe</strong>, <strong>Gudang Logistik &amp; Jasa</strong>, hingga <strong>Koperasi &amp; Yayasan</strong>. Lengkap dari kasir <strong>QRIS Dinamis Auto-Lunas + Soundbox Bahasa Indonesia</strong>, <strong>Mode Kios Self-Order &amp; Poster Promo</strong> di depan kasir, Global Barcode Suara &amp; 2 Kondisi Harga, PO 14 Hari &amp; Manajemen Supplier, 6 Dokumen A4 Resmi, Akuntansi ROI &amp; Beban Tetap per Porsi, Audit Anti-Kecurangan Kasir, hingga Printer Web Bluetooth &amp; PWA White-Label.';
             }
         }
 
@@ -4544,6 +4607,24 @@
                     ['Printer & Laci Kasir', 'Web Bluetooth 58/80mm · 4 Template · Drawer Pin 2/5'],
                     ['Foto & PWA Toko', 'Auto Hapus Background + Install Ikon & Nama Toko Sendiri'],
                     ['Koneksi & Tema POS', 'Pure Online Real-Time (Anti Bentrok Cache) · 4 Tema POS']
+                ]
+            },
+            kios: {
+                kicker: 'Modul Self-Order Tablet Depan Kasir & Poster Promo',
+                title: 'Mode Kios: Pelanggan Pesan Mandiri + Layar Poster Promo Sebelum Order',
+                desc: 'Mode Kios memungkinkan tablet di depan kasir digunakan langsung oleh pelanggan untuk memesan sendiri tanpa mengganggu alur kasir utama. Sebelum pelanggan mengklik apa pun, layar Kios menampilkan poster yang Anda upload—ideal untuk promosi berjalan, info acara, atau menu baru. Setelah diklik, pelanggan bebas memilih menu, quantity, metode pembayaran, tipe pesanan, serta Dine-In atau Takeaway, lalu pesanan langsung masuk ke layar kasir untuk diproses.',
+                steps: [
+                    'Admin/Kasir meng-upload poster promo, pengumuman acara, atau menu baru pada slot poster Mode Kios.',
+                    'Sebelum pelanggan menyentuh layar, tablet Kios menampilkan poster tersebut di layar depan.',
+                    'Pelanggan tap layar lalu memilih sendiri menu, quantity, metode pembayaran, tipe pesanan, dan Dine-In / Takeaway.',
+                    'Pesanan langsung masuk otomatis ke daftar antrean kasir untuk segera diproses oleh kasir.'
+                ],
+                previewTitle: 'Alur Mode Kios & Layar Poster Promo',
+                rows: [
+                    ['Layar Awal (Idle)', 'Poster Promo / Acara / Menu Baru (Upload Mandiri)'],
+                    ['Pilihan Pelanggan', 'Menu · Quantity · Metode Pembayaran · Tipe Pesanan'],
+                    ['Layanan Pesanan', 'Pilih Sendiri: Dine-In atau Takeaway'],
+                    ['Sinkron ke Kasir', 'Pesanan Langsung Masuk Antrean Kasir untuk Diproses']
                 ]
             }
         };
@@ -5056,6 +5137,19 @@
                 actions: [
                     { type: 'scroll', label: 'Lihat PWA & Pure Online', targetId: 'bentoCard08', primary: true },
                     { type: 'tab', label: 'Simulasi Teknologi', tabKey: 'security' }
+                ]
+            },
+            {
+                id: 'mode-kios',
+                category: 'Self-Order & Poster Promo',
+                badgeClass: '',
+                title: 'Mode Kios (Self-Order Pelanggan) & Slot Upload Poster Promo',
+                desc: 'Pelanggan memilih menu, quantity, metode pembayaran, tipe pesanan, dan Dine-In/Takeaway sendiri di tablet depan kasir, lalu pesanan langsung masuk kasir. Sebelum pelanggan mengklik apa pun, tampil poster promo/acara/menu baru yang bisa di-upload.',
+                keywords: ['kios', 'kiosk', 'kiosks', 'self order', 'self-order', 'pesan mandiri', 'poster', 'promo', 'acara', 'menu baru', 'upload poster', 'dine in', 'takeaway', 'metode pembayaran', 'tipe pesanan', 'tablet kasir'],
+                targetId: 'bentoCard09',
+                actions: [
+                    { type: 'scroll', label: 'Lihat Fitur Mode Kios', targetId: 'bentoCard09', primary: true },
+                    { type: 'tab', label: 'Simulasi Mode Kios', tabKey: 'kios' }
                 ]
             },
             {
