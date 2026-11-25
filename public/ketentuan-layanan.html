@@ -49,11 +49,13 @@
             --shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
         }
         * { box-sizing: border-box; margin: 0; padding: 0; }
+        html, body { width: 100%; max-width: 100%; overflow-x: hidden; overflow-x: clip; }
         body {
             font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
             background: var(--bg); color: var(--text); min-height: 100vh; line-height: 1.7; padding: 20px 16px 56px;
         }
-        .wrap { max-width: 880px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; }
+        .wrap { max-width: 880px; width: 100%; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; min-width: 0; }
+        .wrap > *, .content, .content > * { min-width: 0; max-width: 100%; overflow-wrap: break-word; overflow-wrap: anywhere; }
         .glass {
             background: var(--card); backdrop-filter: blur(22px) saturate(160%); -webkit-backdrop-filter: blur(22px) saturate(160%);
             border: 1px solid var(--border); border-radius: 24px; box-shadow: var(--shadow);
@@ -65,13 +67,20 @@
         .nav-group a:hover { color: var(--accent); }
         .btn-back { padding: 8px 16px; border-radius: 999px; background: linear-gradient(135deg, #0284c7, #2563eb); color: #fff !important; font-weight: 700; font-size: 0.85rem; }
         .content { padding: 32px 28px; display: flex; flex-direction: column; gap: 16px; }
-        h1 { font-size: clamp(1.5rem, 2.8vw, 2rem); font-weight: 800; }
+        h1 { font-size: clamp(1.45rem, 2.8vw, 2rem); font-weight: 800; }
         h2 { font-size: 1.12rem; font-weight: 800; margin-top: 8px; }
         p, li { font-size: 0.94rem; color: var(--text-sub); }
         ul { padding-left: 20px; display: flex; flex-direction: column; gap: 6px; }
         a.ext { color: var(--accent); font-weight: 600; }
         .footer { padding: 20px 24px; display: flex; justify-content: space-between; align-items: center; gap: 14px; flex-wrap: wrap; font-size: 0.86rem; color: var(--text-muted); }
         .footer a { color: var(--text-sub); text-decoration: none; font-weight: 600; }
+        @media (max-width: 520px) {
+            body { padding: 12px 10px 40px; }
+            .wrap { gap: 14px; }
+            .topbar, .content, .footer { padding: 16px; border-radius: 18px; }
+            .nav-group { gap: 10px 12px; }
+            .btn-back { width: 100%; text-align: center; }
+        }
     </style>
 </head>
 <body>
