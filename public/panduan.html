@@ -170,8 +170,9 @@
             <a href="/" class="brand"><img src="/logo.png" alt="Logo ERBEA.ID" width="28" height="28" style="border-radius:8px; object-fit:cover;"><span>ERBEA.ID</span></a>
             <nav class="nav-group" aria-label="Navigasi Panduan">
                 <a href="/panduan.html">Panduan Bisnis</a>
+                <a href="/tentang-kami.html">Tentang Kami</a>
+                <a href="/kontak.html">Kontak</a>
                 <a href="/kebijakan-privasi.html">Kebijakan Privasi</a>
-                <a href="/ketentuan-layanan.html">Ketentuan Layanan</a>
                 <a href="/" class="btn-back">&larr; Kembali ke Beranda</a>
             </nav>
         </header>
@@ -202,6 +203,7 @@
                 <li><strong>Bagi dengan Target Penjualan Realistis:</strong> Jika target terjual 2.500 porsi per bulan, maka <strong>Beban Tetap per Porsi = Rp 7.500.000 &divide; 2.500 = Rp 3.000/porsi</strong>.</li>
             </ol>
             <div class="callout">Dengan memasukkan Beban Tetap Rp 3.000 langsung ke hitungan HPP menu (Rp 7.500 + Rp 3.000 = Rp 10.500), Anda tahu batas aman saat ingin memberi promo diskon tanpa pernah mengalami jual rugi.</div>
+            <p><a href="/artikel-hpp-beban-tetap.html" style="color: var(--accent); font-weight: 700; text-decoration: none;">Baca Panduan Lengkap: Rumus Penyusutan Alat &amp; Simulasi Diskon Aman &rarr;</a></p>
         </article>
 
         <article id="artikel-qris" class="glass article">
@@ -215,6 +217,7 @@
                 <li><strong>Deteksi Notifikasi Otomatis:</strong> Dengan webhook pembaca notifikasi HP toko (seperti MacroDroid), status tagihan kasir langsung berubah menjadi <strong>LUNAS</strong> tanpa kasir harus bolak-balik mengecek mutasi ponsel.</li>
                 <li><strong>Notifikasi Suara Bahasa Indonesia:</strong> Perangkat kasir langsung membunyikan nada chime diikuti suara nominal uang masuk, sehingga pelaku usaha tidak wajib membeli mesin soundbox tambahan.</li>
             </ul>
+            <p><a href="/artikel-qris-tanpa-mdr.html" style="color: var(--accent); font-weight: 700; text-decoration: none;">Baca Panduan Lengkap: Cara Kerja QRIS Dinamis &amp; Checklist Setup Toko &rarr;</a></p>
         </article>
 
         <article id="artikel-audit" class="glass article">
@@ -226,6 +229,7 @@
                 <li><strong>Audit Soft-Delete (Anti-Hapus Diam-Diam):</strong> Sistem kasir yang aman tidak boleh menghapus permanen transaksi ketika akun kasir menekan tombol hapus. Data harus masuk status arsip khusus (misal <em>&ldquo;Dihapus Kasir&rdquo;</em>) lengkap dengan nama operator dan jam penghapusan agar Admin bisa memeriksa, memulihkan (<em>Restore</em>), atau menyetujui penghapusan permanen beserta pengembalian stok otomatis.</li>
                 <li><strong>Kontrol Net Fisik Stok vs Kasbon Aktif:</strong> Jika gudang masih menyimpan 50 unit barang tetapi 10 unit di antaranya sedang tertahan dalam transaksi kasbon atau pesanan berjalan, maka stok bebas jual (Net Fisik) sebenarnya tinggal 40 unit. Pemisahan angka ini mencegah toko menjual barang yang sudah dipesan pelanggan lain.</li>
             </ul>
+            <p><a href="/artikel-audit-anti-kecurangan.html" style="color: var(--accent); font-weight: 700; text-decoration: none;">Baca Panduan Lengkap: 3 Kebiasaan Audit Harian Anti-Selisih Kasir &rarr;</a></p>
         </article>
 
         <article id="artikel-prive" class="glass article">
@@ -238,6 +242,7 @@
                 <li><strong>Kas Laci Riil</strong> tetap cocok saat tutup kasir (serah terima shift) tanpa selisih yang membingungkan.</li>
                 <li>Perhitungan <strong>ROI (Return on Investment / Balik Modal)</strong> dari total modal aset + modal bahan dapat terbaca jelas bulan demi bulan.</li>
             </ul>
+            <p><a href="/artikel-pisah-prive-roi.html" style="color: var(--accent); font-weight: 700; text-decoration: none;">Baca Panduan Lengkap: Simulasi Hitung Balik Modal &amp; 4 Pos Kas Toko &rarr;</a></p>
         </article>
 
         <article id="artikel-erp" class="glass article">
@@ -250,6 +255,7 @@
                 <li><strong>Dokumen A4 Lengkap:</strong> Invoice resmi ber-Terbilang Rupiah &amp; PPN, Surat Jalan pengiriman, Berita Acara Serah Terima (BAST), Surat Terima Barang, Surat Pesanan, dan RAB lengkap dengan Pagu Anggaran.</li>
                 <li><strong>PO Bahan Baku Supplier:</strong> Pesanan ke pemasok otomatis menambah stok saat barang diterima serta menyimpan foto bukti transfer pembayaran cicilan maupun pelunasan.</li>
             </ul>
+            <p><a href="/artikel-po-dokumen-a4.html" style="color: var(--accent); font-weight: 700; text-decoration: none;">Baca Panduan Lengkap: Alur Pengadaan B2B &amp; 6 Dokumen Resmi A4 &rarr;</a></p>
         </article>
 
         <article id="artikel-printer" class="glass article">
@@ -258,15 +264,17 @@
             <p>Untuk menekan biaya awal pembukaan cabang, pemilik toko tidak perlu selalu membeli komputer kasir mahal atau berlangganan aplikasi print jembatan berbayar. Browser modern di Android maupun laptop sudah mendukung koneksi langsung ke printer thermal 58mm maupun 80mm melalui <strong>Web Bluetooth</strong>.</p>
             <p>Bagi usaha restoran dan kafe dengan layanan makan di tempat (<em>Dine-In</em>), pemisahan struk pelanggan dengan <strong>Printer Dapur / Bar (Delta Order)</strong> sangat krusial: saat tamu menambah menu di meja yang sama, dapur hanya menerima cetakan item tambahan terbarunya lengkap dengan nomor meja dan nama pelayan, sehingga tidak terjadi masakan ganda.</p>
             <div class="callout">Ingin mempraktikkan seluruh panduan di atas langsung di sistem kasir siap pakai? Anda bisa mencoba <a href="https://erbea.id/#beranda" style="color: var(--accent); font-weight: 700;">Demo Interaktif ERBEA.ID</a> secara gratis menggunakan nama toko Anda sendiri.</div>
+            <p><a href="/artikel-printer-bluetooth-kios.html" style="color: var(--accent); font-weight: 700; text-decoration: none;">Baca Panduan Lengkap: Web Bluetooth, Delta Dapur &amp; Mode Kios Self-Order &rarr;</a></p>
         </article>
 
         <footer class="glass footer">
             <div style="display:flex; align-items:center; gap:9px; flex-wrap:wrap;"><img src="/logo.png" alt="Logo ERBEA.ID" width="24" height="24" style="border-radius:6px; object-fit:cover;"><span><strong style="color: var(--text);">ERBEA.ID</strong> — Kami percaya bisnis anda berkelas bersama kami</span></div>
             <div class="nav-group">
                 <a href="/">Beranda</a>
+                <a href="/tentang-kami.html">Tentang Kami</a>
+                <a href="/kontak.html">Kontak</a>
                 <a href="/kebijakan-privasi.html">Kebijakan Privasi</a>
                 <a href="/ketentuan-layanan.html">Ketentuan Layanan</a>
-                <a href="mailto:erbeawebird@gmail.com">erbeawebird@gmail.com</a>
             </div>
         </footer>
     </div>

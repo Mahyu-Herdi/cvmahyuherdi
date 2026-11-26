@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon.png">
+    <link rel="apple-touch-icon" sizes="500x500" href="/logo.png">
+    <link rel="canonical" href="https://erbea.id/artikel-hpp-beban-tetap.html">
+
+    <title>Cara Menghitung HPP, Penyusutan Alat &amp; Beban Tetap per Porsi — ERBEA.ID</title>
+    <meta name="description" content="Panduan lengkap menghitung Harga Pokok Penjualan (HPP) usaha kuliner dan ritel, memasukkan penyusutan peralatan, serta beban tetap bulanan ke setiap porsi agar tidak rugi diam-diam.">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:site_name" content="ERBEA.ID">
+    <meta property="og:url" content="https://erbea.id/artikel-hpp-beban-tetap.html">
+    <meta property="og:title" content="Cara Menghitung HPP, Penyusutan Alat &amp; Beban Tetap per Porsi — ERBEA.ID">
+    <meta property="og:description" content="Simulasi langkah demi langkah menghitung HPP riil UMKM agar promo diskon tetap menghasilkan laba bersih.">
+    <meta property="og:image" content="https://erbea.id/og-erbea.png">
+
+    <!-- Google AdSense (Khusus Domain Utama erbea.id) -->
+    <meta name="google-adsense-account" content="ca-pub-6862767591901097">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6862767591901097"
+         crossorigin="anonymous"></script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Cara Menghitung HPP, Penyusutan Alat, dan Beban Tetap per Porsi agar Usaha Tidak Rugi Diam-Diam",
+      "author": { "@type": "Person", "name": "Mahyu Herdi" },
+      "publisher": { "@type": "Organization", "name": "ERBEA.ID", "logo": { "@type": "ImageObject", "url": "https://erbea.id/logo.png" } },
+      "datePublished": "2026-11-18",
+      "dateModified": "2026-11-26",
+      "mainEntityOfPage": "https://erbea.id/artikel-hpp-beban-tetap.html",
+      "inLanguage": "id-ID"
+    }
+    </script>
+
+    <script>
+    (function() {
+        try {
+            var saved = localStorage.getItem('erbea_theme_mode') || 'auto';
+            var prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+            var resolved = saved === 'auto' ? (prefersLight ? 'light' : 'dark') : saved;
+            document.documentElement.setAttribute('data-theme', resolved);
+        } catch (e) {}
+    })();
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            color-scheme: light;
+            --bg: linear-gradient(155deg, #d7ebff 0%, #edf5ff 50%, #dceaff 100%);
+            --text: #0f172a; --text-sub: #334155; --text-muted: #52627a;
+            --accent: #0284c7; --accent-deep: #0369a1;
+            --card: rgba(255, 255, 255, 0.74); --card-sub: rgba(241, 247, 255, 0.85);
+            --border: rgba(255, 255, 255, 0.88); --divider: rgba(15, 45, 95, 0.09);
+            --shadow: 0 20px 50px rgba(15, 45, 95, 0.1);
+        }
+        [data-theme="dark"] {
+            color-scheme: dark;
+            --bg: linear-gradient(155deg, #070a10 0%, #0d1422 50%, #09101a 100%);
+            --text: #f8fafc; --text-sub: #cbd5e1; --text-muted: #94a3b8;
+            --accent: #38bdf8; --accent-deep: #7dd3fc;
+            --card: rgba(18, 24, 38, 0.78); --card-sub: rgba(255, 255, 255, 0.05);
+            --border: rgba(255, 255, 255, 0.12); --divider: rgba(255, 255, 255, 0.1);
+            --shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html, body { width: 100%; max-width: 100%; overflow-x: hidden; overflow-x: clip; }
+        img { max-width: 100%; }
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg); color: var(--text); min-height: 100vh; line-height: 1.72; padding: 20px 16px 56px;
+        }
+        .wrap { max-width: 880px; width: 100%; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; min-width: 0; }
+        .wrap > *, .topbar > *, .article > *, .footer > * { min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
+        .glass {
+            background: var(--card); backdrop-filter: blur(22px) saturate(160%); -webkit-backdrop-filter: blur(22px) saturate(160%);
+            border: 1px solid var(--border); border-radius: 24px; box-shadow: var(--shadow); width: 100%;
+        }
+        .topbar { padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+        .brand { display: inline-flex; align-items: center; gap: 10px; font-size: 1.15rem; font-weight: 800; color: var(--text); text-decoration: none; flex-shrink: 0; }
+        .nav-group { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; max-width: 100%; }
+        .nav-group a { color: var(--text-sub); text-decoration: none; font-size: 0.9rem; font-weight: 600; }
+        .nav-group a:hover { color: var(--accent); }
+        .btn-back { display: inline-flex; align-items: center; justify-content: center; padding: 8px 16px; border-radius: 999px; background: linear-gradient(135deg, #0284c7, #2563eb); color: #fff !important; font-weight: 700; font-size: 0.85rem; }
+        .article { padding: 32px 28px; display: flex; flex-direction: column; gap: 15px; }
+        .breadcrumb { font-size: 0.82rem; color: var(--text-muted); font-weight: 600; }
+        .breadcrumb a { color: var(--accent); text-decoration: none; }
+        .kicker { font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; font-weight: 600; color: var(--accent-deep); text-transform: uppercase; letter-spacing: 0.05em; }
+        h1 { font-size: clamp(1.38rem, 2.8vw, 2rem); font-weight: 800; line-height: 1.28; }
+        h2 { font-size: 1.18rem; font-weight: 800; margin-top: 8px; }
+        h3 { font-size: 1.02rem; font-weight: 800; margin-top: 4px; }
+        p, li { font-size: 0.95rem; color: var(--text-sub); }
+        ul, ol { padding-left: 20px; display: flex; flex-direction: column; gap: 7px; }
+        .box { padding: 16px 18px; border-radius: 16px; background: var(--card-sub); border: 1px solid var(--divider); }
+        .related-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr)); gap: 10px; margin-top: 4px; }
+        .related-grid a { padding: 12px 14px; border-radius: 14px; background: var(--card-sub); border: 1px solid var(--divider); text-decoration: none; color: var(--text); font-size: 0.86rem; font-weight: 700; display: block; }
+        .related-grid a:hover { border-color: var(--accent); color: var(--accent); }
+        .footer { padding: 20px 24px; display: flex; justify-content: space-between; align-items: center; gap: 14px; flex-wrap: wrap; font-size: 0.86rem; color: var(--text-muted); }
+        .footer a { color: var(--text-sub); text-decoration: none; font-weight: 600; }
+        .footer a:hover { color: var(--accent); }
+        @media (max-width: 520px) {
+            body { padding: 12px 10px 40px; }
+            .wrap { gap: 14px; }
+            .glass { border-radius: 18px; }
+            .topbar, .article, .footer { padding: 16px; }
+            .btn-back { width: 100%; }
+            .footer { flex-direction: column; align-items: flex-start; }
+        }
+        @media (max-width: 360px) {
+            body { padding: 10px 8px 34px; }
+            .topbar, .article, .footer { padding: 13px; }
+            p, li { font-size: 0.89rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <header class="glass topbar">
+            <a href="/" class="brand"><img src="/logo.png" alt="Logo ERBEA.ID" width="28" height="28" style="border-radius:8px; object-fit:cover;"><span>ERBEA.ID</span></a>
+            <nav class="nav-group" aria-label="Navigasi Artikel">
+                <a href="/panduan.html">Semua Panduan</a>
+                <a href="/tentang-kami.html">Tentang Kami</a>
+                <a href="/kontak.html">Kontak</a>
+                <a href="/" class="btn-back">&larr; Kembali ke Beranda</a>
+            </nav>
+        </header>
+
+        <main class="glass article">
+            <div class="breadcrumb"><a href="/">Beranda</a> &rsaquo; <a href="/panduan.html">Panduan Bisnis</a> &rsaquo; HPP &amp; Beban Tetap</div>
+            <div class="kicker">Panduan Keuangan 01 · Akuntansi Usaha UMKM</div>
+            <h1>Cara Menghitung HPP, Penyusutan Alat, dan Beban Tetap per Porsi agar Usaha Tidak Rugi Diam-Diam</h1>
+            <p style="font-size: 0.84rem; color: var(--text-muted);">Ditulis oleh <strong>Mahyu Herdi</strong> · Diperbarui November 2026 · Waktu baca ±4 menit</p>
+
+            <p>Salah satu jebakan paling sering dialami pelaku usaha kuliner (F&amp;B) maupun toko ritel baru adalah menyamakan <strong>harga pokok penjualan (HPP)</strong> dengan harga belanja bahan baku saja. Kedai terlihat ramai pembeli setiap hari, catatan omzet meningkat, tetapi saat akhir bulan uang kas tetap menipis bahkan sulit membayar sewa tempat atau mengganti peralatan yang mulai aus.</p>
+
+            <p>Masalah ini terjadi karena dua komponen biaya tersembunyi belum ikut masuk ke dalam perhitungan harga jual per unit atau per porsi: <strong>biaya operasional tetap bulanan (overhead)</strong> dan <strong>penyusutan aset usaha (depresiasi)</strong>.</p>
+
+            <h2>1. Membedakan Modal Bahan Baku vs HPP Menyeluruh</h2>
+            <p>Ambil contoh kedai kopi menjual segelas es kopi susu seharga Rp 18.000. Jika dihitung berdasarkan resep bahan baku:</p>
+            <ul>
+                <li>Biji kopi espresso (18 gram): Rp 3.200</li>
+                <li>Susu segar &amp; krimer: Rp 3.400</li>
+                <li>Gula aren, es batu, cup plastik, tutup &amp; sedotan: Rp 1.900</li>
+            </ul>
+            <p>Total modal bahan baku langsungnya adalah <strong>Rp 8.500 per gelas</strong>. Sekilas pemilik mengira ada margin kotor Rp 9.500 per gelas. Namun angka Rp 9.500 itu <em>belum</em> menjadi laba bersih karena masih harus menanggung sewa ruko, listrik kulkas dan AC, internet kasir, gaji barista, serta harga mesin yang nilainya menyusut setiap bulan.</p>
+
+            <h2>2. Rumus Praktis Menghitung Penyusutan Alat Bulanan</h2>
+            <p>Banyak pemilik usaha lupa menyisihkan dana penggantian aset. Ketika mesin espresso, chiller, blender komersial, atau tablet kasir rusak setelah 2–3 tahun pemakaian, kas toko mendadak jebol karena tidak ada dana cadangan.</p>
+            <div class="box">
+                <strong>Rumus Penyusutan Garis Lurus:</strong><br>
+                Penyusutan per Bulan = (Total Harga Beli Peralatan &minus; Nilai Sisa) &divide; Umur Ekonomis (Bulan)<br><br>
+                <em>Contoh nyata:</em> Total investasi alat kedai + renovasi meja bar adalah Rp 42.000.000 untuk umur pakai wajar 36 bulan (3 tahun), dengan nilai sisa di akhir tahun ke-3 diperkirakan Rp 6.000.000.<br>
+                Maka beban penyusutan = (Rp 42.000.000 &minus; Rp 6.000.000) &divide; 36 = <strong>Rp 1.000.000 per bulan</strong>.
+            </div>
+
+            <h2>3. Menggabungkan Beban Tetap Bulanan ke Harga Per Porsi</h2>
+            <p>Langkah berikutnya adalah menjumlahkan seluruh biaya tetap bulanan di luar pembelian stok dagangan:</p>
+            <ol>
+                <li>Sewa tempat bulanan: Rp 3.000.000</li>
+                <li>Listrik, air &amp; koneksi internet kasir: Rp 1.100.000</li>
+                <li>Gaji tetap karyawan / barista: Rp 3.400.000</li>
+                <li>Penyusutan peralatan usaha (dari langkah 2): Rp 1.000.000</li>
+            </ol>
+            <p>Total beban tetap bulanan = <strong>Rp 8.500.000</strong>. Selanjutnya bagi angka ini dengan target penjualan realistis (bukan angka optimis saat hari libur). Jika rata-rata terjual 85 porsi per hari (sekitar <strong>2.550 porsi per bulan</strong>), maka:</p>
+            <div class="box">
+                <strong>Beban Tetap per Porsi:</strong> Rp 8.500.000 &divide; 2.550 porsi = <strong>Rp 3.333 per porsi</strong>.<br>
+                <strong>HPP Riil Es Kopi Susu:</strong> Rp 8.500 (bahan) + Rp 3.333 (beban tetap &amp; penyusutan) = <strong>Rp 11.833</strong>.
+            </div>
+
+            <h2>4. Cara Menentukan Batas Promo Diskon yang Aman</h2>
+            <p>Dengan mengetahui HPP riil Rp 11.833 dan harga jual Rp 18.000, Anda memiliki angka keamanan yang jelas:</p>
+            <ul>
+                <li>Laba bersih riil per gelas sebelum pajak adalah sekitar <strong>Rp 6.167</strong> (margin bersih 34,2%).</li>
+                <li>Jika ingin mengadakan promo tanggal kembar atau diskon pembukaan 25% (harga menjadi Rp 13.500), usaha masih aman karena tetap berada di atas HPP riil Rp 11.833.</li>
+                <li>Sebaliknya, jika Anda memberi diskon 40% (harga turun jadi Rp 10.800), setiap gelas yang terjual justru menggerus uang sewa dan cadangan alat Anda sebesar Rp 1.033 per gelas.</li>
+            </ul>
+
+            <h2>5. Otomatiskan Perhitungan di Sistem Kasir</h2>
+            <p>Menghitung ulang penyusutan dan HPP secara manual di buku tulis setiap kali harga susu atau kopi naik sangat melelahkan. Pastikan sistem kasir yang Anda gunakan mendukung pengisian resep bahan baku per menu serta kalkulator <strong>Beban Tetap per Porsi</strong> agar laporan laba bersih dan grafik balik modal (ROI) selalu sesuai kondisi kas nyata.</p>
+
+            <h2>Baca Panduan Terkait</h2>
+            <div class="related-grid">
+                <a href="/artikel-pisah-prive-roi.html">Pisahkan Prive Pemilik &amp; Hitung ROI &rarr;</a>
+                <a href="/artikel-qris-tanpa-mdr.html">QRIS Dinamis Tanpa Potongan MDR &rarr;</a>
+                <a href="/artikel-audit-anti-kecurangan.html">Audit Stok &amp; Anti-Kecurangan Kasir &rarr;</a>
+            </div>
+        </main>
+
+        <footer class="glass footer">
+            <div style="display:flex; align-items:center; gap:9px; flex-wrap:wrap;"><img src="/logo.png" alt="Logo ERBEA.ID" width="24" height="24" style="border-radius:6px; object-fit:cover;"><span><strong style="color: var(--text);">ERBEA.ID</strong> — Kami percaya bisnis anda berkelas bersama kami</span></div>
+            <div class="nav-group">
+                <a href="/">Beranda</a>
+                <a href="/panduan.html">Panduan Bisnis</a>
+                <a href="/tentang-kami.html">Tentang Kami</a>
+                <a href="/kontak.html">Kontak</a>
+                <a href="/kebijakan-privasi.html">Kebijakan Privasi</a>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
