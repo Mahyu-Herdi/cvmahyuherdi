@@ -1887,6 +1887,149 @@
             font-size: 0.86rem;
         }
 
+        /* === VIDEO PANDUAN PREVIEW CARD === */
+        .video-guide-grid {
+            display: grid;
+            grid-template-columns: 0.95fr 1.25fr;
+            gap: 24px;
+            align-items: center;
+        }
+
+        .video-guide-grid > * {
+            min-width: 0;
+            max-width: 100%;
+        }
+
+        .video-guide-copy {
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .video-guide-points {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .video-guide-points li {
+            display: flex;
+            align-items: flex-start;
+            gap: 9px;
+            font-size: 0.92rem;
+            color: var(--text-secondary);
+        }
+
+        .video-player-card {
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .video-player-frame {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            border-radius: 16px;
+            overflow: hidden;
+            background: #090d16;
+            border: 1px solid var(--tile-border);
+        }
+
+        .video-player-frame iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+            display: block;
+        }
+
+        .video-facade-btn {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            border: none;
+            background: #090d16;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .video-thumb-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), filter 0.25s ease;
+            filter: brightness(0.84);
+        }
+
+        .video-facade-btn:hover .video-thumb-img {
+            transform: scale(1.03);
+            filter: brightness(0.95);
+        }
+
+        .video-facade-scrim {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(9, 13, 22, 0.12) 0%, rgba(9, 13, 22, 0.62) 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 16px;
+        }
+
+        .video-play-ring {
+            width: 68px;
+            height: 68px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 14px 32px rgba(220, 38, 38, 0.45), 0 0 0 6px rgba(255, 255, 255, 0.2);
+            transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .video-facade-btn:hover .video-play-ring {
+            transform: scale(1.08);
+        }
+
+        .video-play-caption {
+            padding: 6px 14px;
+            border-radius: 999px;
+            background: rgba(15, 23, 42, 0.78);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.22);
+            color: #f8fafc;
+            font-size: 0.82rem;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .video-player-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px 14px;
+            flex-wrap: wrap;
+            padding: 2px 6px;
+            font-size: 0.82rem;
+            color: var(--text-muted);
+        }
+
         /* === SEGMEN USAHA (BOTTOM APPLIANCE ROW STYLE FROM REFERENCE) === */
         .segment-grid {
             display: grid;
@@ -3009,7 +3152,8 @@
         }
 
         @media (max-width: 920px) {
-            .hero-grid {
+            .hero-grid,
+            .video-guide-grid {
                 grid-template-columns: 1fr;
             }
             .explorer-layout {
@@ -3252,8 +3396,17 @@
             .pricing-card,
             .testimonial-card,
             .segment-card,
-            .step-tile {
+            .step-tile,
+            .video-guide-copy {
                 padding: 16px;
+            }
+            .video-play-ring {
+                width: 54px;
+                height: 54px;
+            }
+            .video-play-caption {
+                font-size: 0.76rem;
+                padding: 5px 11px;
             }
             .modal-card {
                 padding: 20px 16px;
@@ -3485,6 +3638,7 @@
                 <a href="#pencarian" onclick="closeMobileMenu()">Cari Pintar</a>
                 <a href="#direktur" onclick="closeMobileMenu()">Direktur &amp; Developer</a>
                 <a href="#simulasi" onclick="closeMobileMenu()">Alur Kerja Sistem</a>
+                <a href="#video-panduan" onclick="closeMobileMenu()">Video Panduan</a>
                 <a href="#segmen" onclick="closeMobileMenu()">Segmen Usaha</a>
                 <a href="#paket" onclick="closeMobileMenu()">Paket Penawaran</a>
                 <a href="#faq" onclick="closeMobileMenu()">Pertanyaan Umum</a>
@@ -4143,6 +4297,68 @@
                 <div class="glass-tile explorer-stage" id="explorerStage">
                     <!-- Rendered dynamically via selectModule() -->
                 </div>
+            </div>
+        </section>
+
+        <!-- VIDEO PANDUAN CARA MENGOPERASIKAN ERBEA.ID -->
+        <section id="video-panduan" class="glass-card section-block">
+            <div class="section-head">
+                <div>
+                    <div class="section-kicker">Video Panduan Operasional</div>
+                    <h2 class="section-title">Lihat Cara Mengoperasikan ERBEA.ID Secara Langsung</h2>
+                </div>
+                <p class="section-sub">Putar video panduan langsung di dalam kartu ini tanpa perlu keluar membuka aplikasi YouTube.</p>
+            </div>
+
+            <div class="video-guide-grid">
+                <div class="glass-tile video-guide-copy">
+                    <div>
+                        <span class="badge-pill badge-cobalt" style="margin-bottom: 10px;">Tutorial Praktis</span>
+                        <h3 style="font-size: 1.24rem; font-weight: 800; color: var(--text-primary); line-height: 1.3;">Panduan Lengkap Alur Kasir &amp; Pengaturan Toko</h3>
+                        <p style="margin-top: 8px; font-size: 0.93rem; color: var(--text-secondary); line-height: 1.6;">Cocok ditonton oleh pemilik usaha maupun staf kasir baru sebelum mulai mencoba demo interaktif atau mengoperasikan toko harian.</p>
+                    </div>
+                    <ul class="video-guide-points">
+                        <li>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent-green)" stroke-width="2.6" style="flex-shrink:0;margin-top:3px;"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            <span>Pengenalan tampilan utama kasir, katalog produk, dan transaksi cepat.</span>
+                        </li>
+                        <li>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent-green)" stroke-width="2.6" style="flex-shrink:0;margin-top:3px;"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            <span>Langkah mengelola stok, metode pembayaran, dan laporan harian.</span>
+                        </li>
+                        <li>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent-green)" stroke-width="2.6" style="flex-shrink:0;margin-top:3px;"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            <span>Dapat langsung diputar di halaman ini serta mendukung mode layar penuh.</span>
+                        </li>
+                    </ul>
+                    <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                        <button type="button" class="btn-primary" onclick="playGuideVideo()" style="min-height: 42px; padding: 9px 18px; font-size: 0.88rem;">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="6 4 20 12 6 20 6 4"></polygon></svg>
+                            Putar Video Sekarang
+                        </button>
+                        <button type="button" class="btn-glass-secondary" onclick="openStoreModal()" style="min-height: 42px; padding: 9px 18px; font-size: 0.88rem;">
+                            Coba Demo Toko
+                        </button>
+                    </div>
+                </div>
+
+                <article class="glass-tile video-player-card">
+                    <div class="video-player-frame" id="videoGuideFrame">
+                        <button type="button" class="video-facade-btn" id="videoFacadeBtn" onclick="playGuideVideo()" aria-label="Putar video panduan cara mengoperasikan ERBEA.ID di dalam kartu">
+                            <img src="https://i.ytimg.com/vi/DsfNxHHmDrw/hqdefault.jpg" alt="Preview Video Panduan Cara Mengoperasikan ERBEA.ID" class="video-thumb-img" loading="lazy">
+                            <div class="video-facade-scrim">
+                                <span class="video-play-ring" aria-hidden="true">
+                                    <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" style="margin-left: 3px;"><polygon points="6 4 20 12 6 20 6 4"></polygon></svg>
+                                </span>
+                                <span class="video-play-caption">Klik untuk Putar Video Panduan di Sini</span>
+                            </div>
+                        </button>
+                    </div>
+                    <div class="video-player-meta">
+                        <span><strong>Video Panduan ERBEA.ID</strong> · Putar langsung di kartu</span>
+                        <span style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--accent-blue-deep);">16:9 HD Inline Player</span>
+                    </div>
+                </article>
             </div>
         </section>
 
@@ -5400,6 +5616,19 @@
                 ]
             },
             {
+                id: 'video-panduan',
+                category: 'Video Tutorial',
+                badgeClass: '',
+                title: 'Video Panduan Cara Mengoperasikan ERBEA.ID',
+                desc: 'Tonton panduan visual penggunaan aplikasi kasir ERBEA.ID langsung di kartu preview tanpa harus keluar ke YouTube.',
+                keywords: ['video', 'tutorial', 'panduan', 'youtube', 'cara pakai', 'cara menggunakan', 'mengoperasikan', 'belajar', 'demo video'],
+                targetId: 'video-panduan',
+                actions: [
+                    { type: 'scroll', label: 'Putar Video Panduan', targetId: 'video-panduan', primary: true },
+                    { type: 'demo', label: 'Buka Demo Toko' }
+                ]
+            },
+            {
                 id: 'qris',
                 category: 'Pembayaran & Soundbox',
                 badgeClass: '',
@@ -5735,6 +5964,23 @@
                     }, 950);
                 });
             });
+        }
+
+        function playGuideVideo() {
+            const container = document.getElementById('videoGuideFrame');
+            if (!container) return;
+            if (container.querySelector('iframe')) {
+                container.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                return;
+            }
+            const iframe = document.createElement('iframe');
+            iframe.src = 'https://www.youtube.com/embed/DsfNxHHmDrw?autoplay=1&rel=0&playsinline=1';
+            iframe.title = 'Video Panduan Cara Mengoperasikan ERBEA.ID';
+            iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+            iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+            iframe.allowFullscreen = true;
+            container.innerHTML = '';
+            container.appendChild(iframe);
         }
 
         document.addEventListener('DOMContentLoaded', function() {
